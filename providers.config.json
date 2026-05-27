@@ -1,0 +1,26 @@
+{
+  "mem0": {
+    "envVar": "MEM0_URL",
+    "defaultUrl": "http://localhost:8080",
+    "seedDelayMs": 5500,
+    "beliefToText": "canonical_name_aliases"
+  },
+  "zep": {
+    "envVar": "ZEP_URL",
+    "defaultUrl": "http://localhost:8081",
+    "seedDelayMs": 5500,
+    "beliefToText": "canonical_name_aliases"
+  },
+  "memori": {
+    "envVar": "MEMORI_URL",
+    "defaultUrl": "http://localhost:8081",
+    "seedDelayMs": 5500,
+    "beliefToText": "content"
+  },
+  "hindsight": {
+    "envVar": "HINDSIGHT_URL",
+    "defaultUrl": "http://localhost:8080",
+    "seedDelayMs": 5500,
+    "beliefToText": "canonical_name_aliases"
+  }
+}

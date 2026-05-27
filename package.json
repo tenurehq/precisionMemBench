@@ -1,0 +1,38 @@
+{
+  "name": "precisionmembench",
+  "version": "1.0.0",
+  "description": "**The first retrieval-precision benchmark for LLM memory systems.**",
+  "license": "MIT",
+  "author": "tenurehq",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "eval": "npx ava retrieval.external.eval.test.ts && npx ava session-retrieval.external.eval.test.ts",
+    "eval:fresh": "RESEED=true npm run eval",
+    "eval:vector": "npx ava retrieval.vector.eval.test.ts && npx ava session-retrieval.vector.eval.test.ts",
+    "embed-seed": "npx tsx src/utils/embed-seed.ts",
+    "export": "python export_to_hf.py"
+  },
+  "devDependencies": {
+    "@types/node": "25.9.1",
+    "ava": "8.0.0",
+    "tsx": "4.22.3"
+  },
+  "dependencies": {
+    "mongodb": "7.2.0"
+  },
+  "ava": {
+    "timeout": "120s",
+    "extensions": [
+      "ts"
+    ],
+    "nodeArguments": [
+      "--import=tsx"
+    ],
+    "files": [
+      "src/**/*.test.ts",
+      "!src/**/*.eval.test.ts"
+    ],
+    "workerThreads": false
+  }
+}

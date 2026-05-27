@@ -1,0 +1,560 @@
+{
+  "provider": "zep",
+  "retrieval": {
+    "meanLatencyMs": 396.89,
+    "p50LatencyMs": 418.13,
+    "p95LatencyMs": 659.99,
+    "caseCount": 2,
+    "meanPrecision": 0.1112,
+    "meanRecall": 0.9091,
+    "totalPassed": 0,
+    "totalCases": 12,
+    "passRate": 0,
+    "activeRetrievalPasses": 0,
+    "passTypes": {
+      "activeRetrieval": 0,
+      "structural": 0,
+      "triviallyEmpty": 0
+    },
+    "categories": [
+      {
+        "category": "Session-level noise isolation",
+        "caseCount": 12,
+        "passed": 0,
+        "failed": 12,
+        "meanPrecision": 0.1112,
+        "meanRecall": 0.9091
+      }
+    ],
+    "turnCount": 12
+  },
+  "cases": [
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 0,
+      "label": "establishes_topic",
+      "retrievedBeliefIds": [
+        "b-auth-depends-redis",
+        "b-mongo-raw-driver",
+        "b-dead-letter-queue",
+        "b-kubernetes-entity",
+        "b-react-entity",
+        "b-fastify-pref",
+        "b-error-handling",
+        "b-sqlalchemy-superseded",
+        "b-functional-pipeline",
+        "b-redis-writing",
+        "b-auth-open-q",
+        "b-redis-code"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0.9166666666666666,
+      "passed": false,
+      "failures": [
+        "turn 0: unexpected relevant belief: b-auth-depends-redis",
+        "turn 0: unexpected relevant belief: b-mongo-raw-driver",
+        "turn 0: unexpected relevant belief: b-dead-letter-queue",
+        "turn 0: unexpected relevant belief: b-kubernetes-entity",
+        "turn 0: unexpected relevant belief: b-react-entity",
+        "turn 0: unexpected relevant belief: b-fastify-pref",
+        "turn 0: unexpected relevant belief: b-error-handling",
+        "turn 0: unexpected relevant belief: b-sqlalchemy-superseded",
+        "turn 0: unexpected relevant belief: b-functional-pipeline",
+        "turn 0: unexpected relevant belief: b-redis-writing",
+        "turn 0: unexpected relevant belief: b-auth-open-q"
+      ],
+      "retrievalLatencyMs": 659.99,
+      "retrievalPrecision": 0.08333333333333333,
+      "retrievalRecall": 1
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 1,
+      "label": "drift",
+      "retrievedBeliefIds": [
+        "b-kubernetes-entity",
+        "b-auth-open-q",
+        "b-auth-depends-redis",
+        "b-hosting-resolved",
+        "b-error-handling",
+        "b-pinned-resolved-interaction",
+        "b-react-entity",
+        "b-react-expertise",
+        "b-fastify-pref",
+        "b-zero-reinforcement-fresh",
+        "b-redis-code"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0.9090909090909091,
+      "passed": false,
+      "failures": [
+        "turn 1: unexpected relevant belief: b-auth-open-q",
+        "turn 1: unexpected relevant belief: b-auth-depends-redis",
+        "turn 1: unexpected relevant belief: b-hosting-resolved",
+        "turn 1: unexpected relevant belief: b-error-handling",
+        "turn 1: unexpected relevant belief: b-pinned-resolved-interaction",
+        "turn 1: unexpected relevant belief: b-react-entity",
+        "turn 1: unexpected relevant belief: b-react-expertise",
+        "turn 1: unexpected relevant belief: b-fastify-pref",
+        "turn 1: unexpected relevant belief: b-zero-reinforcement-fresh",
+        "turn 1: unexpected relevant belief: b-redis-code"
+      ],
+      "retrievalLatencyMs": 454.38,
+      "retrievalPrecision": 0.09090909090909091,
+      "retrievalRecall": 1
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 2,
+      "label": "drift",
+      "retrievedBeliefIds": [
+        "b-react-entity",
+        "b-hosting-resolved",
+        "b-auth-open-q",
+        "b-dead-letter-queue",
+        "b-auth-depends-redis",
+        "b-redis-writing",
+        "b-kubernetes-entity",
+        "b-mongo-raw-driver",
+        "b-linting-v1",
+        "b-react-expertise",
+        "b-error-handling",
+        "b-linting-v0",
+        "b-functional-pipeline",
+        "b-ts-pref",
+        "b-redis-code"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0.9333333333333333,
+      "passed": false,
+      "failures": [
+        "turn 2: unexpected relevant belief: b-hosting-resolved",
+        "turn 2: unexpected relevant belief: b-auth-open-q",
+        "turn 2: unexpected relevant belief: b-dead-letter-queue",
+        "turn 2: unexpected relevant belief: b-auth-depends-redis",
+        "turn 2: unexpected relevant belief: b-redis-writing",
+        "turn 2: unexpected relevant belief: b-kubernetes-entity",
+        "turn 2: unexpected relevant belief: b-mongo-raw-driver",
+        "turn 2: unexpected relevant belief: b-linting-v1",
+        "turn 2: unexpected relevant belief: b-react-expertise",
+        "turn 2: unexpected relevant belief: b-error-handling",
+        "turn 2: unexpected relevant belief: b-linting-v0",
+        "turn 2: unexpected relevant belief: b-functional-pipeline",
+        "turn 2: unexpected relevant belief: b-ts-pref",
+        "turn 2: unexpected relevant belief: b-redis-code"
+      ],
+      "retrievalLatencyMs": 449.04,
+      "retrievalPrecision": 0.06666666666666667,
+      "retrievalRecall": 1
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 3,
+      "label": "drift",
+      "retrievedBeliefIds": [
+        "b-error-handling",
+        "b-functional-pipeline",
+        "b-ts-pref",
+        "b-fastify-pref",
+        "b-kubernetes-entity",
+        "b-linting-v0",
+        "b-auth-open-q",
+        "b-mongo-raw-driver",
+        "b-linting-v1",
+        "b-react-entity"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0.7,
+      "passed": false,
+      "failures": [
+        "turn 3: unexpected relevant belief: b-functional-pipeline",
+        "turn 3: unexpected relevant belief: b-kubernetes-entity",
+        "turn 3: unexpected relevant belief: b-linting-v0",
+        "turn 3: unexpected relevant belief: b-auth-open-q",
+        "turn 3: unexpected relevant belief: b-mongo-raw-driver",
+        "turn 3: unexpected relevant belief: b-linting-v1",
+        "turn 3: unexpected relevant belief: b-react-entity"
+      ],
+      "retrievalLatencyMs": 509.42,
+      "retrievalPrecision": 0.3,
+      "retrievalRecall": 1
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 4,
+      "label": "drift",
+      "retrievedBeliefIds": [
+        "b-ci-gha-entity",
+        "b-react-entity",
+        "b-vitest-pref",
+        "b-auth-open-q",
+        "b-kubernetes-entity",
+        "b-fastify-pref",
+        "b-react-expertise",
+        "b-auth-depends-redis",
+        "b-functional-pipeline",
+        "b-ts-pref",
+        "b-pinned-resolved-interaction",
+        "b-redis-code"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0.9166666666666666,
+      "passed": false,
+      "failures": [
+        "turn 4: unexpected relevant belief: b-react-entity",
+        "turn 4: unexpected relevant belief: b-vitest-pref",
+        "turn 4: unexpected relevant belief: b-auth-open-q",
+        "turn 4: unexpected relevant belief: b-kubernetes-entity",
+        "turn 4: unexpected relevant belief: b-fastify-pref",
+        "turn 4: unexpected relevant belief: b-react-expertise",
+        "turn 4: unexpected relevant belief: b-auth-depends-redis",
+        "turn 4: unexpected relevant belief: b-functional-pipeline",
+        "turn 4: unexpected relevant belief: b-ts-pref",
+        "turn 4: unexpected relevant belief: b-pinned-resolved-interaction",
+        "turn 4: unexpected relevant belief: b-redis-code"
+      ],
+      "retrievalLatencyMs": 360.42,
+      "retrievalPrecision": 0.08333333333333333,
+      "retrievalRecall": 1
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 5,
+      "label": "drift",
+      "retrievedBeliefIds": [
+        "b-auth-open-q",
+        "b-auth-depends-redis",
+        "b-kubernetes-entity",
+        "b-pinned-resolved-interaction",
+        "b-react-entity",
+        "b-hosting-resolved",
+        "b-ci-parallel-decision",
+        "b-error-handling",
+        "b-functional-pipeline",
+        "b-redis-writing",
+        "b-mongo-raw-driver",
+        "b-redis-code"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0.8333333333333334,
+      "passed": false,
+      "failures": [
+        "turn 5: unexpected relevant belief: b-auth-open-q",
+        "turn 5: unexpected relevant belief: b-kubernetes-entity",
+        "turn 5: unexpected relevant belief: b-pinned-resolved-interaction",
+        "turn 5: unexpected relevant belief: b-react-entity",
+        "turn 5: unexpected relevant belief: b-hosting-resolved",
+        "turn 5: unexpected relevant belief: b-ci-parallel-decision",
+        "turn 5: unexpected relevant belief: b-error-handling",
+        "turn 5: unexpected relevant belief: b-functional-pipeline",
+        "turn 5: unexpected relevant belief: b-redis-writing",
+        "turn 5: unexpected relevant belief: b-mongo-raw-driver"
+      ],
+      "retrievalLatencyMs": 502.11,
+      "retrievalPrecision": 0.16666666666666666,
+      "retrievalRecall": 1
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 6,
+      "label": "drift",
+      "retrievedBeliefIds": [
+        "b-functional-pipeline",
+        "b-mongo-raw-driver",
+        "b-error-handling",
+        "b-auth-open-q",
+        "b-react-entity",
+        "b-ci-parallel-decision",
+        "b-sqlalchemy-superseded",
+        "b-linting-v0",
+        "b-composition-inheritance",
+        "b-pinned-resolved-interaction",
+        "b-linting-v1",
+        "b-kubernetes-entity"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0.8333333333333334,
+      "passed": false,
+      "failures": [
+        "turn 6: unexpected relevant belief: b-error-handling",
+        "turn 6: unexpected relevant belief: b-auth-open-q",
+        "turn 6: unexpected relevant belief: b-react-entity",
+        "turn 6: unexpected relevant belief: b-ci-parallel-decision",
+        "turn 6: unexpected relevant belief: b-sqlalchemy-superseded",
+        "turn 6: unexpected relevant belief: b-linting-v0",
+        "turn 6: unexpected relevant belief: b-composition-inheritance",
+        "turn 6: unexpected relevant belief: b-pinned-resolved-interaction",
+        "turn 6: unexpected relevant belief: b-linting-v1",
+        "turn 6: unexpected relevant belief: b-kubernetes-entity"
+      ],
+      "retrievalLatencyMs": 418.13,
+      "retrievalPrecision": 0.16666666666666666,
+      "retrievalRecall": 1
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 7,
+      "label": "drift",
+      "retrievedBeliefIds": [
+        "b-ts-pref",
+        "b-linting-v1",
+        "b-error-handling",
+        "b-redis-writing",
+        "b-prose-style-user-edited",
+        "b-linting-v0",
+        "b-functional-pipeline",
+        "b-mongo-raw-driver",
+        "b-react-entity",
+        "b-auth-open-q"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0.8,
+      "passed": false,
+      "failures": [
+        "turn 7: unexpected relevant belief: b-linting-v1",
+        "turn 7: unexpected relevant belief: b-redis-writing",
+        "turn 7: unexpected relevant belief: b-prose-style-user-edited",
+        "turn 7: unexpected relevant belief: b-linting-v0",
+        "turn 7: unexpected relevant belief: b-functional-pipeline",
+        "turn 7: unexpected relevant belief: b-mongo-raw-driver",
+        "turn 7: unexpected relevant belief: b-react-entity",
+        "turn 7: unexpected relevant belief: b-auth-open-q"
+      ],
+      "retrievalLatencyMs": 458.8,
+      "retrievalPrecision": 0.2,
+      "retrievalRecall": 1
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 8,
+      "label": "drift",
+      "retrievedBeliefIds": [
+        "b-composition-inheritance",
+        "b-kubernetes-entity",
+        "b-ci-parallel-decision",
+        "b-mongo-raw-driver",
+        "b-error-handling",
+        "b-ts-pref",
+        "b-functional-pipeline",
+        "b-auth-open-q",
+        "b-pinned-resolved-interaction",
+        "b-vitest-pref"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0.9,
+      "passed": false,
+      "failures": [
+        "turn 8: unexpected relevant belief: b-kubernetes-entity",
+        "turn 8: unexpected relevant belief: b-ci-parallel-decision",
+        "turn 8: unexpected relevant belief: b-mongo-raw-driver",
+        "turn 8: unexpected relevant belief: b-error-handling",
+        "turn 8: unexpected relevant belief: b-ts-pref",
+        "turn 8: unexpected relevant belief: b-functional-pipeline",
+        "turn 8: unexpected relevant belief: b-auth-open-q",
+        "turn 8: unexpected relevant belief: b-pinned-resolved-interaction",
+        "turn 8: unexpected relevant belief: b-vitest-pref"
+      ],
+      "retrievalLatencyMs": 344.02,
+      "retrievalPrecision": 0.1,
+      "retrievalRecall": 1
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 9,
+      "label": "implicit_continuation",
+      "retrievedBeliefIds": [
+        "b-narrator-superseded",
+        "b-kubernetes-entity",
+        "b-functional-pipeline",
+        "b-linting-v0",
+        "b-sqlalchemy-superseded",
+        "b-linting-v1",
+        "b-mongo-raw-driver",
+        "b-react-entity",
+        "b-auth-open-q",
+        "b-redis-writing",
+        "b-pinned-resolved-interaction",
+        "b-zero-reinforcement-fresh",
+        "b-vitest-pref"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [
+        "b-kubernetes-entity",
+        "b-react-entity",
+        "b-functional-pipeline"
+      ],
+      "driftScore": 1,
+      "passed": false,
+      "failures": [
+        "turn 9: unexpected relevant belief: b-narrator-superseded",
+        "turn 9: unexpected relevant belief: b-kubernetes-entity",
+        "turn 9: unexpected relevant belief: b-functional-pipeline",
+        "turn 9: unexpected relevant belief: b-linting-v0",
+        "turn 9: unexpected relevant belief: b-sqlalchemy-superseded",
+        "turn 9: unexpected relevant belief: b-linting-v1",
+        "turn 9: unexpected relevant belief: b-mongo-raw-driver",
+        "turn 9: unexpected relevant belief: b-react-entity",
+        "turn 9: unexpected relevant belief: b-auth-open-q",
+        "turn 9: unexpected relevant belief: b-redis-writing",
+        "turn 9: unexpected relevant belief: b-pinned-resolved-interaction",
+        "turn 9: unexpected relevant belief: b-zero-reinforcement-fresh",
+        "turn 9: unexpected relevant belief: b-vitest-pref",
+        "turn 9: noise belief surfaced: b-kubernetes-entity",
+        "turn 9: noise belief surfaced: b-react-entity",
+        "turn 9: noise belief surfaced: b-functional-pipeline"
+      ],
+      "retrievalLatencyMs": 149.52,
+      "retrievalPrecision": 0,
+      "retrievalRecall": null
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 10,
+      "label": "re_entry",
+      "retrievedBeliefIds": [
+        "b-auth-open-q",
+        "b-error-handling",
+        "b-functional-pipeline",
+        "b-ts-pref",
+        "b-zero-reinforcement-fresh",
+        "b-pinned-resolved-interaction",
+        "b-react-expertise",
+        "b-react-entity",
+        "b-sqlalchemy-superseded",
+        "b-kubernetes-entity",
+        "b-mongo-raw-driver"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [
+        "b-kubernetes-entity",
+        "b-react-entity",
+        "b-error-handling",
+        "b-functional-pipeline"
+      ],
+      "driftScore": 1,
+      "passed": false,
+      "failures": [
+        "turn 10: unexpected relevant belief: b-auth-open-q",
+        "turn 10: unexpected relevant belief: b-error-handling",
+        "turn 10: unexpected relevant belief: b-functional-pipeline",
+        "turn 10: unexpected relevant belief: b-ts-pref",
+        "turn 10: unexpected relevant belief: b-zero-reinforcement-fresh",
+        "turn 10: unexpected relevant belief: b-pinned-resolved-interaction",
+        "turn 10: unexpected relevant belief: b-react-expertise",
+        "turn 10: unexpected relevant belief: b-react-entity",
+        "turn 10: unexpected relevant belief: b-sqlalchemy-superseded",
+        "turn 10: unexpected relevant belief: b-kubernetes-entity",
+        "turn 10: unexpected relevant belief: b-mongo-raw-driver",
+        "turn 10: missing expected belief: b-redis-code",
+        "turn 10: noise belief surfaced: b-kubernetes-entity",
+        "turn 10: noise belief surfaced: b-react-entity",
+        "turn 10: noise belief surfaced: b-error-handling",
+        "turn 10: noise belief surfaced: b-functional-pipeline"
+      ],
+      "retrievalLatencyMs": 268.54,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0
+    },
+    {
+      "caseId": "cross-session-formative-turn-surfaces-via-belief-join",
+      "category": "Session-level noise isolation",
+      "turnIndex": 0,
+      "label": "implicit_continuation",
+      "retrievedBeliefIds": [
+        "b-kubernetes-entity",
+        "b-dead-letter-queue",
+        "b-sqlalchemy-superseded",
+        "b-functional-pipeline",
+        "b-mongo-raw-driver",
+        "b-auth-depends-redis",
+        "b-ci-parallel-decision",
+        "b-protagonist-entity",
+        "b-auth-open-q",
+        "b-error-handling",
+        "b-prose-style-user-edited",
+        "b-react-entity",
+        "b-redis-code"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [
+        "b-ci-parallel-decision"
+      ],
+      "driftScore": 0.9230769230769231,
+      "passed": false,
+      "failures": [
+        "turn 0: unexpected relevant belief: b-kubernetes-entity",
+        "turn 0: unexpected relevant belief: b-dead-letter-queue",
+        "turn 0: unexpected relevant belief: b-sqlalchemy-superseded",
+        "turn 0: unexpected relevant belief: b-functional-pipeline",
+        "turn 0: unexpected relevant belief: b-mongo-raw-driver",
+        "turn 0: unexpected relevant belief: b-auth-depends-redis",
+        "turn 0: unexpected relevant belief: b-ci-parallel-decision",
+        "turn 0: unexpected relevant belief: b-protagonist-entity",
+        "turn 0: unexpected relevant belief: b-auth-open-q",
+        "turn 0: unexpected relevant belief: b-error-handling",
+        "turn 0: unexpected relevant belief: b-prose-style-user-edited",
+        "turn 0: unexpected relevant belief: b-react-entity",
+        "turn 0: noise belief surfaced: b-ci-parallel-decision"
+      ],
+      "retrievalLatencyMs": 188.35,
+      "retrievalPrecision": 0.07692307692307693,
+      "retrievalRecall": 1
+    }
+  ]
+}

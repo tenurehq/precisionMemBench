@@ -1,0 +1,25 @@
+# docker-compose.yml
+services:
+  qdrant:
+    image: qdrant/qdrant@sha256:45f8e3ddc2570a4d029877e1b5ec1045c19b3852b4e22a55c7f43b05aea0ca89
+    ports:
+      - "6333:6333"
+
+  mem0:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - qdrant
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - LLM_MODEL=us.anthropic.claude-sonnet-4-6
+      - LLM_BASE_URL=http://host.docker.internal:8000/api/v1
+      - LLM_API_KEY=API_KEY
+      - OLLAMA_URL=http://host.docker.internal:11434
+      - OLLAMA_EMBED_MODEL=mxbai-embed-large
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - QDRANT_COLLECTION=precisionMemBench
+      - EMBEDDING_DIMS=1024
