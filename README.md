@@ -1,8 +1,8 @@
 # PrecisionMemBench
 
-Every major benchmark for LLM memory systems measures whether a model answered correctly, not whether the memory system retrieved correctly. These are not the same question. A system that returns its entire belief store achieves recall of 1.0 and, at the corpus sizes current benchmarks use, a capable generative model can find the right answer in the noise and score well on F1 or LLM-as-a-Judge. Mean retrieval precision of 0.05 passes. The failure is invisible.
+Every major benchmark for LLM memory systems measures whether a model answered correctly, not whether the memory system retrieved correctly. These are not the same question. A system that returns its entire belief store achieves recall of 1.0; at the benchmark corpus sizes common today, a capable generative model can still find the right answer in the noise and score well on F1 or LLM-as-a-Judge. A system burying the right answer in ninety-five percent irrelevant context can pass. Nobody notices, because the benchmark never asked.
 
-PrecisionMemBench is the first benchmark that measures retrieval precision independently of the generative model downstream. Cases carry `mustExclude` assertions and `shouldOnlyInclude` constraints. Noise is a hard failure, not an invisible inference cost.
+PrecisionMemBench is the first benchmark that measures retrieval precision independently of the generative model downstream. Every case specifies not just what the memory system must return, but what it must not. Noise is a hard failure, not an invisible inference cost.
 
 **89 cases** covering: alias resolution · scope disambiguation · supersession chain exclusion · fuzzy matching · cross-user isolation · budget eviction · ranking stability · session-level noise isolation under multi-turn topic drift
 
@@ -18,9 +18,9 @@ Paper: [arXiv](https://arxiv.org/abs/2605.11325) — Dataset: [HuggingFace](http
 | Zep            | 0/48          | 8/77         | 0.06           | 0.81        | 99.10              | 452.3         |
 | Hindsight      | 0/48          | 8/77         | 0.04           | 0.27        | 516.21             | 102.9         |
 
-**Active passes** require a `retrievalPrecision` assertion to be satisfied — the only pass type that demonstrates verified retrieval capability. All comparison system passes are trivially empty or budget-forced. Zero comparison systems achieve a single active retrieval pass.
+**Active passes** - measure whether the memory system itself retrieved correctly, independent of what the model did with the results. Every other pass type leaves that question unanswered.
 
-The "recall 1.0" pattern for Vector, Mem0, and Hindsight is not a strength: it means those systems return the full belief corpus on every query. At 12 beliefs, a capable model can sort the noise. At thousands of beliefs, this architecture fails structurally.
+Recall of 1.0 does not imply precision. A system can return the correct belief alongside many incorrect ones and still score perfectly on recall.
 
 The live leaderboard is maintained on [HuggingFace Spaces](https://huggingface.co/spaces/tenurehq/precisionmembench).
 
@@ -34,7 +34,7 @@ Understanding the three pass types is required to interpret any results table.
 
 **Trivially empty pass** — the expected `relevantBeliefs` tier is empty by case design (empty query, `maxBeliefs: 0`, budget set to exact pinned count). Any system returning an empty set passes by construction. `retrievalPrecision` is null for these cases.
 
-Aggregate pass counts without this breakdown are misleading. Every comparison system's passes are either structural or trivially empty.
+Without this breakdown, aggregate pass counts do not distinguish verified retrieval from structural or empty-set passes.
 
 ## Baseline reports
 
