@@ -27,6 +27,7 @@ interface ProviderConfigJson {
   defaultUrl: string;
   seedDelayMs: number;
   beliefToText?: "canonical_name_aliases" | "content";
+  supportsUpdate?: boolean;
 }
 
 const CONFIG_PATH = resolve(
@@ -100,6 +101,7 @@ export class BaseAdapter {
   protected readonly baseUrl: string;
   protected readonly seedDelayMs: number;
   protected readonly beliefToTextMode: "canonical_name_aliases" | "content";
+  protected readonly supportsUpdate: boolean;
 
   protected seedIndex = new Map<string, Belief>();
 
@@ -110,6 +112,7 @@ export class BaseAdapter {
     this.baseUrl = process.env[cfg.envVar] ?? cfg.defaultUrl;
     this.seedDelayMs = cfg.seedDelayMs;
     this.beliefToTextMode = cfg.beliefToText ?? "canonical_name_aliases";
+    this.supportsUpdate = cfg.supportsUpdate ?? false;
   }
 
   loadFixture(beliefs: Belief[]): void {
