@@ -5,16 +5,16 @@
     "p50LatencyMs": 9.77,
     "p95LatencyMs": 53.99,
     "caseCount": 77,
-    "meanPrecision": 1,
-    "meanRecall": 1,
+    "meanPrecision": 1.0,
+    "meanRecall": 1.0,
     "totalPassed": 77,
     "totalCases": 77,
     "passRate": 1,
     "activeRetrievalPasses": 43,
     "passTypes": {
       "activeRetrieval": 43,
-      "structural": 0,
-      "triviallyEmpty": 34
+      "structural": 25,
+      "triviallyEmpty": 9
     },
     "categories": [
       {
@@ -169,8 +169,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -212,8 +212,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -243,8 +243,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -256,7 +256,7 @@
       "caseId": "long-query-rambling-kubernetes",
       "category": "Alias resolution",
       "description": "Verbose 400+ char query.",
-      "expandedQuery": "ok so I've been thinking about this for a while and I know we've talked about infrastructure before but I'm circling back because the team had some pushback in the last review and honestly I'm not sure what the right call is anymore Basically the question is how we should handle rolling deploys for the landing page when it lands — should we do Kubernetes native rolling updates or something more custom and does it matter that the service holds session state in memory",
+      "expandedQuery": "ok so I've been thinking about this for a while and I know we've talked about infrastructure before but I'm circling back because the team had some pushback in the last review and honestly I'm not sure what the right call is anymore Basically the question is how we should handle rolling deploys for the landing page when it lands \u2014 should we do Kubernetes native rolling updates or something more custom and does it matter that the service holds session state in memory",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -274,8 +274,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": 1,
       "questionRecall": 1,
@@ -348,8 +348,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -379,8 +379,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -391,7 +391,7 @@
     {
       "caseId": "multi-scope-redis-both-surfaces",
       "category": "Scope disambiguation",
-      "description": "With scope=['code','writing'], both Redis beliefs should surface — one per scope",
+      "description": "With scope=['code','writing'], both Redis beliefs should surface \u2014 one per scope",
       "expandedQuery": "What's Redis doing",
       "pinnedBeliefs": [
         "b-prose-style-user-edited",
@@ -420,8 +420,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -497,8 +497,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -574,8 +574,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -605,8 +605,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -617,7 +617,7 @@
     {
       "caseId": "alias-reactjs-resolves",
       "category": "Alias resolution",
-      "description": "Alias 'ReactJS' resolves to b-react-entity via text search — genuine retrieval proof",
+      "description": "Alias 'ReactJS' resolves to b-react-entity via text search \u2014 genuine retrieval proof",
       "expandedQuery": "how should I structure my ReactJS components here",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -647,8 +647,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -685,8 +685,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": 1,
       "questionPrecision": null,
       "questionRecall": null,
@@ -741,8 +741,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -778,8 +778,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -809,8 +809,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -821,7 +821,7 @@
     {
       "caseId": "filter-resolved-at-excluded",
       "category": "Type routing and open questions",
-      "description": "b-hosting-resolved has resolved_at set — query matching its aliases must not surface it",
+      "description": "b-hosting-resolved has resolved_at set \u2014 query matching its aliases must not surface it",
       "expandedQuery": "should we self-host the landing page or go with Fly.io",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -909,8 +909,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -921,7 +921,7 @@
     {
       "caseId": "edge-whitespace-query",
       "category": "Design boundary cases",
-      "description": "Whitespace-only query is treated as empty by queryExpander — no relevant beliefs",
+      "description": "Whitespace-only query is treated as empty by queryExpander \u2014 no relevant beliefs",
       "expandedQuery": "",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -967,7 +967,7 @@
     {
       "caseId": "user-edited-cross-scope-surfaces",
       "category": "Scope disambiguation",
-      "description": "user_edited belief scoped to domain:writing does NOT surface in domain:code — scope isolation takes precedence over user_edited flag",
+      "description": "user_edited belief scoped to domain:writing does NOT surface in domain:code \u2014 scope isolation takes precedence over user_edited flag",
       "expandedQuery": "summarize what you know about my preferences",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1014,7 +1014,7 @@
       "caseId": "ranking-canonical-name-over-content",
       "category": "Ranking stability",
       "description": "canonical_name match (weight 10) outranks content-only match (weight 1) in relevantBeliefs ordering",
-      "expandedQuery": "composition over inheritance — what's our pattern",
+      "expandedQuery": "composition over inheritance \u2014 what's our pattern",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1032,8 +1032,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1044,7 +1044,7 @@
     {
       "caseId": "messy-typo-blind-spot",
       "category": "Fuzzy matching and prefix guards",
-      "description": "Typo 'typscript' does NOT match 'TypeScript' — documents text search limitation",
+      "description": "Typo 'typscript' does NOT match 'TypeScript' \u2014 documents text search limitation",
       "expandedQuery": "how do I configure typscript strict mode",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1063,8 +1063,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1105,8 +1105,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1117,7 +1117,7 @@
     {
       "caseId": "messy-filler-heavy-extraction",
       "category": "Alias resolution",
-      "description": "Filler-heavy query — NLP extraction must cut through noise to find 'error handling'",
+      "description": "Filler-heavy query \u2014 NLP extraction must cut through noise to find 'error handling'",
       "expandedQuery": "ugh so like I was wondering you know about how we should think about error handling in our codebase because honestly it's been bugging me for a while and I'm not really sure what the right approach is here",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1142,8 +1142,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1154,7 +1154,7 @@
     {
       "caseId": "messy-negation-surfaces-topic",
       "category": "Alias resolution",
-      "description": "Negation 'I don't want class hierarchies' still surfaces the composition belief — text search has no semantic negation",
+      "description": "Negation 'I don't want class hierarchies' still surfaces the composition belief \u2014 text search has no semantic negation",
       "expandedQuery": "I don't want class hierarchies in this codebase what should I use instead",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1179,8 +1179,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1233,8 +1233,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1245,7 +1245,7 @@
     {
       "caseId": "cap-stress-compound-six-entities",
       "category": "Alias resolution",
-      "description": "Compound query mentions 6 entities — tests whether 12-token cap in buildSearchQuery drops non-pinned targets",
+      "description": "Compound query mentions 6 entities \u2014 tests whether 12-token cap in buildSearchQuery drops non-pinned targets",
       "expandedQuery": "When our React frontend catches error handling exceptions how should the Kubernetes pods running MongoDB TypeScript services report to GitHub Actions",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1345,8 +1345,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1357,7 +1357,7 @@
     {
       "caseId": "cap-stress-kitchen-sink-exceeds-twelve",
       "category": "Alias resolution",
-      "description": "Dense 8+ entity query that deliberately exceeds the 12-token cap — tests which non-pinned beliefs survive extraction truncation",
+      "description": "Dense 8+ entity query that deliberately exceeds the 12-token cap \u2014 tests which non-pinned beliefs survive extraction truncation",
       "expandedQuery": "Set up our React components to use composition pattern with explicit error handling wire GitHub Actions CI to deploy Kubernetes pods serving the MongoDB TypeScript API with functional pipeline transforms",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1464,8 +1464,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1476,7 +1476,7 @@
     {
       "caseId": "cap-stress-late-position-entity-at-risk",
       "category": "Alias resolution",
-      "description": "Critical alias 'exceptions' appears after 6+ proper nouns — tests whether extraction order causes late-position tokens to fall past the 12-token cap",
+      "description": "Critical alias 'exceptions' appears after 6+ proper nouns \u2014 tests whether extraction order causes late-position tokens to fall past the 12-token cap",
       "expandedQuery": "Given our React frontend the GitHub Actions CI pipeline the Kubernetes deployment and the MongoDB TypeScript backend how should we approach exceptions in the data layer",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1571,8 +1571,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1583,7 +1583,7 @@
     {
       "caseId": "fuzzy-single-edit-fires-non-pinned",
       "category": "Fuzzy matching and prefix guards",
-      "description": "1-edit deletion 'eror' fuzzy-matches alias 'error' — prefix 'er' passes",
+      "description": "1-edit deletion 'eror' fuzzy-matches alias 'error' \u2014 prefix 'er' passes",
       "expandedQuery": "eror handling patterns",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1602,8 +1602,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1614,7 +1614,7 @@
     {
       "caseId": "fuzzy-scope-filter-discriminates-after-fuzzy-fires",
       "category": "Fuzzy matching and prefix guards",
-      "description": "Typo 'Reedis' fuzzy-matches alias 'Redis' in both scopes — scope filter returns only code belief",
+      "description": "Typo 'Reedis' fuzzy-matches alias 'Redis' in both scopes \u2014 scope filter returns only code belief",
       "expandedQuery": "Reedis cache eviction strategy",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1633,8 +1633,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1645,7 +1645,7 @@
     {
       "caseId": "fuzzy-prefix-blocks-transitive-match",
       "category": "Fuzzy matching and prefix guards",
-      "description": "1-edit distance but prefix guard blocks — 'mango' shares edit distance 1 with 'mongo' but 'ma' ≠ 'mo'",
+      "description": "1-edit distance but prefix guard blocks \u2014 'mango' shares edit distance 1 with 'mongo' but 'ma' \u2260 'mo'",
       "expandedQuery": "mango connection pooling",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1668,7 +1668,7 @@
     {
       "caseId": "fuzzy-abbreviation-prefix-blind-spot",
       "category": "Fuzzy matching and prefix guards",
-      "description": "Alias 'k8s' — typo 'k9s' fails because prefix 'k9' ≠ 'k8' — single-char substitution in short aliases hits prefix guard",
+      "description": "Alias 'k8s' \u2014 typo 'k9s' fails because prefix 'k9' \u2260 'k8' \u2014 single-char substitution in short aliases hits prefix guard",
       "expandedQuery": "k9s pod scheduling",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1710,8 +1710,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1722,7 +1722,7 @@
     {
       "caseId": "fuzzy-single-term-only-signal",
       "category": "Fuzzy matching and prefix guards",
-      "description": "Query is a single misspelled term — 'mongod' is the only token, 1 edit from alias 'Mongo', prefix 'mo' passes",
+      "description": "Query is a single misspelled term \u2014 'mongod' is the only token, 1 edit from alias 'Mongo', prefix 'mo' passes",
       "expandedQuery": "mongod",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1752,8 +1752,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1782,7 +1782,7 @@
     {
       "caseId": "type-isolation-open-question-not-in-relevant",
       "category": "Type routing and open questions",
-      "description": "open_question belief with directly matched aliases must appear in openQuestions only — not in pinnedFacts or relevantBeliefs",
+      "description": "open_question belief with directly matched aliases must appear in openQuestions only \u2014 not in pinnedFacts or relevantBeliefs",
       "expandedQuery": "JWT authentication token strategy",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1805,7 +1805,7 @@
     {
       "caseId": "multi-hop-supersession-chain-all-excluded",
       "category": "Supersession chain exclusion",
-      "description": "Three-hop chain: TSLint (b-linting-v0) → ESLint (b-linting-v1) → Biome (b-linting-current). Query terms matching both superseded hops must surface neither; only the active terminal belief surfaces via pinnedFacts",
+      "description": "Three-hop chain: TSLint (b-linting-v0) \u2192 ESLint (b-linting-v1) \u2192 Biome (b-linting-current). Query terms matching both superseded hops must surface neither; only the active terminal belief surfaces via pinnedFacts",
       "expandedQuery": "ESLint rules and TSLint configuration",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1828,7 +1828,7 @@
     {
       "caseId": "cross-scope-one-empty-domain-does-not-degrade",
       "category": "Cross-user isolation",
-      "description": "Multi-scope query where one scope (domain:hobby) has zero beliefs — code-scope retrieval must be unaffected and no empty-scope error must occur",
+      "description": "Multi-scope query where one scope (domain:hobby) has zero beliefs \u2014 code-scope retrieval must be unaffected and no empty-scope error must occur",
       "expandedQuery": "What are we using Redis for",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1847,8 +1847,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1859,7 +1859,7 @@
     {
       "caseId": "ranking-orderedbefore-alias-beats-content",
       "category": "Ranking stability",
-      "description": "Rare alias 'pipe' (high IDF, short field) outranks common alias 'error' — documents Atlas Search BM25 IDF weighting behavior",
+      "description": "Rare alias 'pipe' (high IDF, short field) outranks common alias 'error' \u2014 documents Atlas Search BM25 IDF weighting behavior",
       "expandedQuery": "explicit error returns in pipe transforms",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -1896,8 +1896,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -1950,7 +1950,7 @@
     {
       "caseId": "multi-scope-prelude-uses-primary-scope-only",
       "category": "Persona prelude content",
-      "description": "With scope=['code','writing'], personaPrelude is universal only — documents that scope-specific content is not injected",
+      "description": "With scope=['code','writing'], personaPrelude is universal only \u2014 documents that scope-specific content is not injected",
       "expandedQuery": "give me an overview of what I'm working on",
       "pinnedBeliefs": [
         "b-prose-style-user-edited",
@@ -1977,7 +1977,7 @@
     {
       "caseId": "why-it-matters-not-indexed-blind-spot",
       "category": "Design boundary cases",
-      "description": "'Vue' appears only in b-react-entity.why_it_matters — not in canonical_name, aliases, or content. The query must not surface the belief.",
+      "description": "'Vue' appears only in b-react-entity.why_it_matters \u2014 not in canonical_name, aliases, or content. The query must not surface the belief.",
       "expandedQuery": "Vue component architecture",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -2000,7 +2000,7 @@
     {
       "caseId": "budget-ceiling-evicts-relevant-beliefs",
       "category": "Budget eviction and capacity",
-      "description": "maxBeliefs set to exact pinned count — no slots remain for relevantBeliefs",
+      "description": "maxBeliefs set to exact pinned count \u2014 no slots remain for relevantBeliefs",
       "expandedQuery": "How should I handle errors in my repository layer",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -2029,7 +2029,7 @@
     {
       "caseId": "negative-guidance-mongoose",
       "category": "Counter-signal retrieval",
-      "description": "Query for Mongoose schema surfaces b-mongo-raw-driver — the raw-driver preference is the counter-signal",
+      "description": "Query for Mongoose schema surfaces b-mongo-raw-driver \u2014 the raw-driver preference is the counter-signal",
       "expandedQuery": "suggest a good Mongoose schema for my user model",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -2048,8 +2048,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -2108,8 +2108,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -2168,8 +2168,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -2199,8 +2199,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -2230,8 +2230,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -2267,8 +2267,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": 1,
       "questionRecall": 1,
@@ -2310,8 +2310,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": 1,
       "questionRecall": 1,
@@ -2364,8 +2364,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -2377,7 +2377,7 @@
       "caseId": "subtype-expertise-retrieval",
       "category": "Type routing and open questions",
       "description": "Subtype 'expertise' belief surfaces on a query about React skill calibration",
-      "expandedQuery": "what's my react depth — should you explain hooks to me",
+      "expandedQuery": "what's my react depth \u2014 should you explain hooks to me",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -2395,8 +2395,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -2430,7 +2430,7 @@
     {
       "caseId": "zero-reinforcement-fresh-belief-surfaces",
       "category": "Budget eviction and capacity",
-      "description": "Brand new belief with reinforcement_count: 0 still surfaces via alias match — recency/reinforcement must not suppress it",
+      "description": "Brand new belief with reinforcement_count: 0 still surfaces via alias match \u2014 recency/reinforcement must not suppress it",
       "expandedQuery": "how is our Turborepo monorepo structured",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -2465,8 +2465,8 @@
           ]
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -2497,7 +2497,7 @@
     {
       "caseId": "budget-one-pinned-wins-over-relevant",
       "category": "Budget eviction and capacity",
-      "description": "maxBeliefs: 1 with a query matching both a pinned belief and a non-pinned belief — pinned belief gets the slot",
+      "description": "maxBeliefs: 1 with a query matching both a pinned belief and a non-pinned belief \u2014 pinned belief gets the slot",
       "expandedQuery": "MongoDB collection typing patterns",
       "pinnedBeliefs": [
         "b-db-decision"
@@ -2552,7 +2552,7 @@
     {
       "caseId": "empty-alias-belief-content-path-only",
       "category": "Design boundary cases",
-      "description": "b-comm-recommendation has aliases: [] — can only be retrieved via content path. Since content is not a scored search path, it should NOT surface.",
+      "description": "b-comm-recommendation has aliases: [] \u2014 can only be retrieved via content path. Since content is not a scored search path, it should NOT surface.",
       "expandedQuery": "should you give me one recommendation or a list of options",
       "pinnedBeliefs": [
         "b-db-decision",
@@ -2575,7 +2575,7 @@
     {
       "caseId": "universal-scope-explicit-query-no-relevant",
       "category": "Scope disambiguation",
-      "description": "Query scoped explicitly to user:universal — universal beliefs appear in personaPrelude only, not in relevantBeliefs",
+      "description": "Query scoped explicitly to user:universal \u2014 universal beliefs appear in personaPrelude only, not in relevantBeliefs",
       "expandedQuery": "how do I want you to respond to me",
       "pinnedBeliefs": [
         "b-comm-pushback",
@@ -2615,8 +2615,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": null,
       "questionRecall": null,
@@ -2681,8 +2681,8 @@
           "clauses": []
         }
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "questionPrecision": 1,
       "questionRecall": 1,

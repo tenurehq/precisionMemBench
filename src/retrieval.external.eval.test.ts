@@ -335,7 +335,7 @@ for (const tc of cases) {
       relevantIds.size === 0 && expectedRelevant.size === 0
         ? null
         : relevantIds.size === 0
-          ? null
+          ? 0.0 //
           : retrievalHits / relevantIds.size;
 
     const retrievalRecall =

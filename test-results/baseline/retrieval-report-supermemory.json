@@ -5,7 +5,7 @@
     "p50LatencyMs": 819.48,
     "p95LatencyMs": 1228.91,
     "caseCount": 77,
-    "meanPrecision": 0.6882,
+    "meanPrecision": 0.4267,
     "meanRecall": 0.5465,
     "totalPassed": 44,
     "totalCases": 77,
@@ -13,8 +13,8 @@
     "activeRetrievalPasses": 17,
     "passTypes": {
       "activeRetrieval": 17,
-      "structural": 0,
-      "triviallyEmpty": 27
+      "structural": 18,
+      "triviallyEmpty": 9
     },
     "categories": [
       {
@@ -157,8 +157,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -176,8 +176,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -198,8 +198,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -219,8 +219,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -277,8 +277,8 @@
       "retrievedQuestions": [
         "b-chapter-structure-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -301,7 +301,7 @@
         "b-auth-open-q"
       ],
       "retrievalPrecision": 0.3333333333333333,
-      "retrievalRecall": 1,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -313,7 +313,7 @@
     {
       "caseId": "multi-scope-redis-both-surfaces",
       "category": "Scope disambiguation",
-      "description": "With scope=['code','writing'], both Redis beliefs should surface — one per scope",
+      "description": "With scope=['code','writing'], both Redis beliefs should surface \u2014 one per scope",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-narrator-voice",
@@ -328,7 +328,7 @@
         "b-auth-open-q",
         "b-chapter-structure-q"
       ],
-      "retrievalPrecision": 1,
+      "retrievalPrecision": 1.0,
       "retrievalRecall": 0.5,
       "pinnedCoverage": null,
       "passed": false,
@@ -351,7 +351,7 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0,
+      "retrievalPrecision": 0.0,
       "retrievalRecall": null,
       "pinnedCoverage": 1,
       "passed": false,
@@ -393,8 +393,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -452,8 +452,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -471,8 +471,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -483,7 +483,7 @@
     {
       "caseId": "alias-reactjs-resolves",
       "category": "Alias resolution",
-      "description": "Alias 'ReactJS' resolves to b-react-entity via text search — genuine retrieval proof",
+      "description": "Alias 'ReactJS' resolves to b-react-entity via text search \u2014 genuine retrieval proof",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -492,8 +492,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -514,8 +514,8 @@
       "retrievedQuestions": [
         "b-chapter-structure-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": 1,
       "passed": false,
       "failures": [
@@ -558,8 +558,8 @@
       "retrievedQuestions": [
         "b-chapter-structure-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -577,8 +577,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -600,8 +600,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -610,7 +610,7 @@
     {
       "caseId": "filter-resolved-at-excluded",
       "category": "Type routing and open questions",
-      "description": "b-hosting-resolved has resolved_at set — query matching its aliases must not surface it",
+      "description": "b-hosting-resolved has resolved_at set \u2014 query matching its aliases must not surface it",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -621,7 +621,7 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0,
+      "retrievalPrecision": 0.0,
       "retrievalRecall": null,
       "pinnedCoverage": null,
       "passed": false,
@@ -663,7 +663,7 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0,
+      "retrievalPrecision": 0.0,
       "retrievalRecall": null,
       "pinnedCoverage": null,
       "passed": false,
@@ -684,8 +684,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -696,7 +696,7 @@
     {
       "caseId": "edge-whitespace-query",
       "category": "Design boundary cases",
-      "description": "Whitespace-only query is treated as empty by queryExpander — no relevant beliefs",
+      "description": "Whitespace-only query is treated as empty by queryExpander \u2014 no relevant beliefs",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -734,7 +734,7 @@
     {
       "caseId": "user-edited-cross-scope-surfaces",
       "category": "Scope disambiguation",
-      "description": "user_edited belief scoped to domain:writing does NOT surface in domain:code — scope isolation takes precedence over user_edited flag",
+      "description": "user_edited belief scoped to domain:writing does NOT surface in domain:code \u2014 scope isolation takes precedence over user_edited flag",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -783,8 +783,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -793,7 +793,7 @@
     {
       "caseId": "messy-typo-blind-spot",
       "category": "Fuzzy matching and prefix guards",
-      "description": "Typo 'typscript' does NOT match 'TypeScript' — documents text search limitation",
+      "description": "Typo 'typscript' does NOT match 'TypeScript' \u2014 documents text search limitation",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -804,8 +804,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -823,8 +823,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -835,7 +835,7 @@
     {
       "caseId": "messy-filler-heavy-extraction",
       "category": "Alias resolution",
-      "description": "Filler-heavy query — NLP extraction must cut through noise to find 'error handling'",
+      "description": "Filler-heavy query \u2014 NLP extraction must cut through noise to find 'error handling'",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -846,8 +846,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -856,7 +856,7 @@
     {
       "caseId": "messy-negation-surfaces-topic",
       "category": "Alias resolution",
-      "description": "Negation 'I don't want class hierarchies' still surfaces the composition belief — text search has no semantic negation",
+      "description": "Negation 'I don't want class hierarchies' still surfaces the composition belief \u2014 text search has no semantic negation",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -867,8 +867,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -886,8 +886,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -899,7 +899,7 @@
     {
       "caseId": "cap-stress-compound-six-entities",
       "category": "Alias resolution",
-      "description": "Compound query mentions 6 entities — tests whether 12-token cap in buildSearchQuery drops non-pinned targets",
+      "description": "Compound query mentions 6 entities \u2014 tests whether 12-token cap in buildSearchQuery drops non-pinned targets",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -908,8 +908,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -925,7 +925,7 @@
     {
       "caseId": "cap-stress-kitchen-sink-exceeds-twelve",
       "category": "Alias resolution",
-      "description": "Dense 8+ entity query that deliberately exceeds the 12-token cap — tests which non-pinned beliefs survive extraction truncation",
+      "description": "Dense 8+ entity query that deliberately exceeds the 12-token cap \u2014 tests which non-pinned beliefs survive extraction truncation",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -934,8 +934,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -952,7 +952,7 @@
     {
       "caseId": "cap-stress-late-position-entity-at-risk",
       "category": "Alias resolution",
-      "description": "Critical alias 'exceptions' appears after 6+ proper nouns — tests whether extraction order causes late-position tokens to fall past the 12-token cap",
+      "description": "Critical alias 'exceptions' appears after 6+ proper nouns \u2014 tests whether extraction order causes late-position tokens to fall past the 12-token cap",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -961,8 +961,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -978,7 +978,7 @@
     {
       "caseId": "fuzzy-single-edit-fires-non-pinned",
       "category": "Fuzzy matching and prefix guards",
-      "description": "1-edit deletion 'eror' fuzzy-matches alias 'error' — prefix 'er' passes",
+      "description": "1-edit deletion 'eror' fuzzy-matches alias 'error' \u2014 prefix 'er' passes",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -989,8 +989,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -999,7 +999,7 @@
     {
       "caseId": "fuzzy-scope-filter-discriminates-after-fuzzy-fires",
       "category": "Fuzzy matching and prefix guards",
-      "description": "Typo 'Reedis' fuzzy-matches alias 'Redis' in both scopes — scope filter returns only code belief",
+      "description": "Typo 'Reedis' fuzzy-matches alias 'Redis' in both scopes \u2014 scope filter returns only code belief",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1010,8 +1010,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -1020,7 +1020,7 @@
     {
       "caseId": "fuzzy-prefix-blocks-transitive-match",
       "category": "Fuzzy matching and prefix guards",
-      "description": "1-edit distance but prefix guard blocks — 'mango' shares edit distance 1 with 'mongo' but 'ma' ≠ 'mo'",
+      "description": "1-edit distance but prefix guard blocks \u2014 'mango' shares edit distance 1 with 'mongo' but 'ma' \u2260 'mo'",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1039,7 +1039,7 @@
     {
       "caseId": "fuzzy-abbreviation-prefix-blind-spot",
       "category": "Fuzzy matching and prefix guards",
-      "description": "Alias 'k8s' — typo 'k9s' fails because prefix 'k9' ≠ 'k8' — single-char substitution in short aliases hits prefix guard",
+      "description": "Alias 'k8s' \u2014 typo 'k9s' fails because prefix 'k9' \u2260 'k8' \u2014 single-char substitution in short aliases hits prefix guard",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1069,8 +1069,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -1079,7 +1079,7 @@
     {
       "caseId": "fuzzy-single-term-only-signal",
       "category": "Fuzzy matching and prefix guards",
-      "description": "Query is a single misspelled term — 'mongod' is the only token, 1 edit from alias 'Mongo', prefix 'mo' passes",
+      "description": "Query is a single misspelled term \u2014 'mongod' is the only token, 1 edit from alias 'Mongo', prefix 'mo' passes",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1088,8 +1088,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -1114,7 +1114,7 @@
     {
       "caseId": "type-isolation-open-question-not-in-relevant",
       "category": "Type routing and open questions",
-      "description": "open_question belief with directly matched aliases must appear in openQuestions only — not in pinnedFacts or relevantBeliefs",
+      "description": "open_question belief with directly matched aliases must appear in openQuestions only \u2014 not in pinnedFacts or relevantBeliefs",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1125,7 +1125,7 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0,
+      "retrievalPrecision": 0.0,
       "retrievalRecall": null,
       "pinnedCoverage": null,
       "passed": false,
@@ -1137,7 +1137,7 @@
     {
       "caseId": "multi-hop-supersession-chain-all-excluded",
       "category": "Supersession chain exclusion",
-      "description": "Three-hop chain: TSLint (b-linting-v0) → ESLint (b-linting-v1) → Biome (b-linting-current). Query terms matching both superseded hops must surface neither; only the active terminal belief surfaces via pinnedFacts",
+      "description": "Three-hop chain: TSLint (b-linting-v0) \u2192 ESLint (b-linting-v1) \u2192 Biome (b-linting-current). Query terms matching both superseded hops must surface neither; only the active terminal belief surfaces via pinnedFacts",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1149,7 +1149,7 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0,
+      "retrievalPrecision": 0.0,
       "retrievalRecall": null,
       "pinnedCoverage": 1,
       "passed": false,
@@ -1162,7 +1162,7 @@
     {
       "caseId": "cross-scope-one-empty-domain-does-not-degrade",
       "category": "Scope disambiguation",
-      "description": "Multi-scope query where one scope (domain:hobby) has zero beliefs — code-scope retrieval must be unaffected and no empty-scope error must occur",
+      "description": "Multi-scope query where one scope (domain:hobby) has zero beliefs \u2014 code-scope retrieval must be unaffected and no empty-scope error must occur",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1176,7 +1176,7 @@
         "b-auth-open-q"
       ],
       "retrievalPrecision": 0.3333333333333333,
-      "retrievalRecall": 1,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -1188,7 +1188,7 @@
     {
       "caseId": "ranking-orderedbefore-alias-beats-content",
       "category": "Ranking stability",
-      "description": "Rare alias 'pipe' (high IDF, short field) outranks common alias 'error' — documents Atlas Search BM25 IDF weighting behavior",
+      "description": "Rare alias 'pipe' (high IDF, short field) outranks common alias 'error' \u2014 documents Atlas Search BM25 IDF weighting behavior",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1200,8 +1200,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -1244,7 +1244,7 @@
     {
       "caseId": "multi-scope-prelude-uses-primary-scope-only",
       "category": "Persona prelude content",
-      "description": "With scope=['code','writing'], personaPrelude is universal only — documents that scope-specific content is not injected",
+      "description": "With scope=['code','writing'], personaPrelude is universal only \u2014 documents that scope-specific content is not injected",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-narrator-voice",
@@ -1267,7 +1267,7 @@
     {
       "caseId": "why-it-matters-not-indexed-blind-spot",
       "category": "Design boundary cases",
-      "description": "'Vue' appears only in b-react-entity.why_it_matters — not in canonical_name, aliases, or content. The query must not surface the belief.",
+      "description": "'Vue' appears only in b-react-entity.why_it_matters \u2014 not in canonical_name, aliases, or content. The query must not surface the belief.",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1286,7 +1286,7 @@
     {
       "caseId": "budget-ceiling-evicts-relevant-beliefs",
       "category": "Budget eviction and capacity",
-      "description": "maxBeliefs set to exact pinned count — no slots remain for relevantBeliefs",
+      "description": "maxBeliefs set to exact pinned count \u2014 no slots remain for relevantBeliefs",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1305,7 +1305,7 @@
     {
       "caseId": "negative-guidance-mongoose",
       "category": "Counter-signal retrieval",
-      "description": "Query for Mongoose schema surfaces b-mongo-raw-driver — the raw-driver preference is the counter-signal",
+      "description": "Query for Mongoose schema surfaces b-mongo-raw-driver \u2014 the raw-driver preference is the counter-signal",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1314,8 +1314,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -1354,8 +1354,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -1396,8 +1396,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -1415,8 +1415,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -1436,8 +1436,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -1462,7 +1462,7 @@
         "b-auth-open-q"
       ],
       "retrievalPrecision": 0.6666666666666666,
-      "retrievalRecall": 1,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -1487,7 +1487,7 @@
         "b-auth-open-q"
       ],
       "retrievalPrecision": 0.6666666666666666,
-      "retrievalRecall": 1,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -1512,7 +1512,7 @@
         "b-auth-open-q"
       ],
       "retrievalPrecision": 0.6666666666666666,
-      "retrievalRecall": 1,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -1532,8 +1532,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": null,
-      "retrievalRecall": 0,
+      "retrievalPrecision": 0.0,
+      "retrievalRecall": 0.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
@@ -1555,7 +1555,7 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0,
+      "retrievalPrecision": 0.0,
       "retrievalRecall": null,
       "pinnedCoverage": null,
       "passed": false,
@@ -1567,7 +1567,7 @@
     {
       "caseId": "zero-reinforcement-fresh-belief-surfaces",
       "category": "Budget eviction and capacity",
-      "description": "Brand new belief with reinforcement_count: 0 still surfaces via alias match — recency/reinforcement must not suppress it",
+      "description": "Brand new belief with reinforcement_count: 0 still surfaces via alias match \u2014 recency/reinforcement must not suppress it",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1578,8 +1578,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -1604,7 +1604,7 @@
     {
       "caseId": "budget-one-pinned-wins-over-relevant",
       "category": "Budget eviction and capacity",
-      "description": "maxBeliefs: 1 with a query matching both a pinned belief and a non-pinned belief — pinned belief gets the slot",
+      "description": "maxBeliefs: 1 with a query matching both a pinned belief and a non-pinned belief \u2014 pinned belief gets the slot",
       "pinnedBeliefs": [
         "b-db-decision"
       ],
@@ -1645,7 +1645,7 @@
     {
       "caseId": "empty-alias-belief-content-path-only",
       "category": "Design boundary cases",
-      "description": "b-comm-recommendation has aliases: [] — can only be retrieved via content path. Since content is not a scored search path, it should NOT surface.",
+      "description": "b-comm-recommendation has aliases: [] \u2014 can only be retrieved via content path. Since content is not a scored search path, it should NOT surface.",
       "pinnedBeliefs": [
         "b-db-decision",
         "b-linting-current"
@@ -1664,7 +1664,7 @@
     {
       "caseId": "universal-scope-explicit-query-no-relevant",
       "category": "Scope disambiguation",
-      "description": "Query scoped explicitly to user:universal — universal beliefs appear in personaPrelude only, not in relevantBeliefs",
+      "description": "Query scoped explicitly to user:universal \u2014 universal beliefs appear in personaPrelude only, not in relevantBeliefs",
       "pinnedBeliefs": [],
       "relevantBeliefs": [],
       "retrievedQuestions": [],
@@ -1689,8 +1689,8 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 1,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 1.0,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
@@ -1711,7 +1711,7 @@
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0,
+      "retrievalPrecision": 0.0,
       "retrievalRecall": null,
       "pinnedCoverage": 1,
       "passed": false,
@@ -1738,7 +1738,7 @@
         "b-auth-open-q"
       ],
       "retrievalPrecision": 0.6666666666666666,
-      "retrievalRecall": 1,
+      "retrievalRecall": 1.0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
