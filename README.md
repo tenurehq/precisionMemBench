@@ -1,6 +1,15 @@
 # PrecisionMemBench
 
-PrecisionMemBench measures retrieval precision independently of the generative model downstream. Every case specifies not just what the memory system must return, but what it must not. Noise is a hard failure, not an invisible inference cost.
+PrecisionMemBench is a multi-dimensional retrieval benchmark for LLM memory systems. It measures four orthogonal properties that single-turn answer-quality benchmarks cannot detect:
+
+- **Retrieval precision** - does the right belief surface, and only that belief, against a fixed seed corpus of 35 beliefs spanning two domain scopes, a supersession chain, and a secondary-user fixture
+- **Noise isolation** - do beliefs introduced during off-topic drift turns contaminate retrieval on subsequent unrelated turns across a 10-turn session
+- **Session-turn latency** - does retrieval latency degrade under session load relative to single-turn baselines
+- **Belief mutability** - do beliefs updated mid-session surface immediately within the same session via the alias enrichment flywheel
+
+These properties are independent. A system can pass on precision and fail on drift. A system can have clean single-turn latency and degrade 4x under session load. A system with no write-time mutation primitive cannot be scored on the fourth property at all, it is an architectural absence, not a performance difference.
+
+Every case specifies not just what the memory system must return, but what it must not. Noise is a hard failure, not an invisible inference cost.
 
 **89 cases** covering: alias resolution · scope disambiguation · supersession chain exclusion · fuzzy matching · cross-user isolation · budget eviction · ranking stability · session-level noise isolation under multi-turn topic drift
 
@@ -8,13 +17,16 @@ Paper: [arXiv](https://arxiv.org/abs/2605.11325) — Dataset: [HuggingFace](http
 
 ## Results
 
+### Retrieval Precision
+
 | System         | Active passes | Total passes | Mean precision | Mean recall | Retrieval p50 (ms) | Ingestion (s) |
 | -------------- | ------------- | ------------ | -------------- | ----------- | ------------------ | ------------- |
-| Tenure         | 48/48         | 77/77        | 1.00           | 1.00        | 8.82               | 0.98          |
-| Vector (mxbai) | 0/48          | 10/77        | 0.09           | 1.00        | 64.18              | —             |
-| Mem0           | 0/48          | 9/77         | 0.08           | 1.00        | 61.94              | 103.8         |
-| Zep            | 0/48          | 8/77         | 0.06           | 0.81        | 99.10              | 452.3         |
-| Hindsight      | 0/48          | 8/77         | 0.04           | 0.27        | 516.21             | 102.9         |
+| Tenure         | 48/48         | 77/89        | 1.00           | 1.00        | 9.77               | 0.98          |
+| SuperMemory    | 31/48         | 44/89        | 0.43           | 0.98        | 819.48             | -             |
+| Vector (mxbai) | 0/48          | 11/89        | 0.09           | 1.00        | 71.87              | -             |
+| Mem0           | 0/48          | 9/89         | 0.05           | 0.99        | 64.94              | 114.19        |
+| Zep            | 0/48          | 9/89         | 0.08           | 0.95        | 124.36             | 897.04        |
+| Hindsight      | 0/48          | 8/89         | 0.05           | 1.00        | 589.86             | 173.28        |
 
 **Active passes** are the only column that answers whether the memory system itself retrieved correctly. A system cannot accumulate active passes by returning everything or nothing.
 
@@ -43,14 +55,13 @@ Restricted to cases where `retrievalPrecision` is not null.
 | System         | Mean precision | Mean recall |
 | -------------- | -------------- | ----------- |
 | Tenure         | 1.00           | 1.00        |
+| SuperMemory    | 0.43           | 0.98        |
 | Vector (mxbai) | 0.09           | 1.00        |
 | Mem0           | 0.05           | 0.99        |
 | Zep            | 0.08           | 0.95        |
 | Hindsight      | 0.05           | 1.00        |
 
 ### Embedding model invariance
-
-Switching to a more capable embedding model does not close the precision gap. The benchmark was run against three models spanning a 20x range in scale.
 
 | Model                    | Precision | Recall | Passes | Mean (ms) | p95 (ms) |
 | ------------------------ | --------- | ------ | ------ | --------- | -------- |
@@ -62,23 +73,30 @@ All 11 passes in every configuration are structural or trivially empty. Active r
 
 ### Session-level noise isolation
 
-The 12 session cases test whether beliefs introduced during off-topic drift turns contaminate retrieval on subsequent unrelated turns. The drift score is the fraction of retrieved non-pinned beliefs originating from drift-turn topics; 0 is perfect isolation.
+The 12 session cases test three orthogonal properties: whether beliefs introduced during off-topic drift turns contaminate retrieval on subsequent unrelated turns, whether latency degrades under session load, and whether beliefs introduced mid-session surface within the same session window via the alias enrichment flywheel.
 
-| Turn                        | Tenure | Vector | Mem0 | Zep  | Hindsight |
-| --------------------------- | ------ | ------ | ---- | ---- | --------- |
-| Turn 9 (implicit re-entry)  | 0.0    | 1.0    | 1.0  | 1.0  | 1.0       |
-| Turn 10 (explicit re-entry) | 0.0    | 0.94   | 1.0  | 1.0  | 0.94      |
-| Cross-session formative     | 0.0    | 0.94   | 1.0  | 0.92 | 1.0       |
+The drift score is the fraction of retrieved non-pinned beliefs originating from drift-turn topics; 0 is perfect isolation.
+
+| Turn                        | Tenure | Vector | Mem0 | Zep  | Hindsight | SuperMemory |
+| --------------------------- | ------ | ------ | ---- | ---- | --------- | ----------- |
+| Turn 9 (implicit re-entry)  | 0.0    | 1.0    | 1.0  | 1.0  | 1.0       | 0.0         |
+| Turn 10 (explicit re-entry) | 0.0    | 0.94   | 1.0  | 1.0  | 0.94      | 0.0 ‡       |
+| Cross-session formative     | 0.0    | 0.94   | 1.0  | 0.92 | 1.0       | 0.0 ‡       |
+
+† Turn 9 uses a vague implicit re-entry query with no extractable alias tokens. Tenure and SuperMemory both return nothing and score 0.0 drift, but for different reasons. Tenure's BM25 index produces no match on the unresolvable query surface — silence by design. SuperMemory returns nothing due to retrieval absence; the correct belief was not retrieved. Neither result involves noise contamination.
+
+‡ SuperMemory scores 0.0 drift because it returned no beliefs, not because it isolated correctly. The expected belief `b-redis-code` is absent (recall 0). Comparison with Tenure's turn 10 result is not valid — Tenure retrieves `b-redis-code` via the `allkeys-lru` alias added at turn 9 via `updateBeliefAtTurn`, demonstrating the alias enrichment flywheel. No comparison system has an equivalent write-time operation; turn 10 tests a capability that is architecturally absent from all comparison systems, not merely underperforming in them.
 
 ### Retrieval and ingestion latency
 
-| System    | Mean (ms) | p50 (ms) | p95 (ms) | Ingestion total (s) |
-| --------- | --------- | -------- | -------- | ------------------- |
-| Tenure    | 13.49     | 9.77     | 53.99    | 0.98                |
-| Vector    | 96.48     | 71.87    | 257.24   | —                   |
-| Mem0      | 78.81     | 64.94    | 156.89   | 114.19              |
-| Zep       | 139.64    | 124.36   | 235.04   | 897.04              |
-| Hindsight | 672.15    | 589.86   | 1,185.33 | 173.28              |
+| System      | Mean (ms) | p50 (ms) | p95 (ms) | Ingestion total (s) |
+| ----------- | --------- | -------- | -------- | ------------------- |
+| Tenure      | 13.49     | 9.77     | 53.99    | 0.98                |
+| SuperMemory | 821.27    | 819.48   | 1,228.91 | —                   |
+| Vector      | 96.48     | 71.87    | 257.24   | —                   |
+| Mem0        | 78.81     | 64.94    | 156.89   | 114.19              |
+| Zep         | 139.64    | 124.36   | 235.04   | 897.04              |
+| Hindsight   | 672.15    | 589.86   | 1,185.33 | 173.28              |
 
 Single-turn latency understates the cost under session load. Hindsight reports 672ms mean single-turn but exceeds 2,700ms mean per session turn with p95 above 6,000ms.
 

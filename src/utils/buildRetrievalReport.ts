@@ -65,17 +65,23 @@ export interface RetrievalSummary {
   categories: CategoryBreakdown[];
 }
 
-/**
- * Classify a pass into one of three types:
- * - "activeRetrieval": case has a non-null retrievalPrecision and passed
- * - "triviallyEmpty": precision is null (empty query, budget-forced, etc.) and passed
- * - "structural": precision is null but case asserts structural properties and passed
- *
- * For comparison providers that never achieve non-null precision passes,
- * all passes collapse into "triviallyEmpty".
- */
+const STRUCTURAL_CATEGORIES = new Set([
+  "Scope disambiguation",
+  "Supersession chain exclusion",
+  "Type routing and open questions",
+  "Budget eviction and capacity",
+  "Cross-user isolation",
+  "Ranking stability",
+  "Persona prelude content",
+]);
+
 function classifyPass(entry: ReportEntryBase): keyof PassTypeBreakdown {
-  if (entry.retrievalPrecision !== null) return "activeRetrieval";
+  if (entry.retrievalPrecision !== null && entry.retrievalPrecision > 0) {
+    return "activeRetrieval";
+  }
+  if (STRUCTURAL_CATEGORIES.has(entry.category)) {
+    return "structural";
+  }
   return "triviallyEmpty";
 }
 
