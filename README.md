@@ -23,11 +23,12 @@ Paper: [arXiv](https://arxiv.org/abs/2605.11325) — Dataset: [HuggingFace](http
 | -------------- | ------------- | ------------ | -------------- | ----------- | ------------------ | ------------- |
 | Tenure         | 43            | 89/89        | 1.00           | 1.00        | 9.77               | 0.98          |
 | SuperMemory    | 17            | 46/89        | 0.43           | 0.55        | 819.48             | -             |
+| YourMemory     | 0             | 9/89         | 0.14           | 0.90        | 317.14             | 17            |
 | Zep            | 0             | 9/89         | 0.09           | 0.95        | 124.36             | 897.04        |
 | Vector (mxbai) | 0             | 11/89        | 0.09           | 1.00        | 71.87              | -             |
 | Hindsight      | 0             | 9/89         | 0.06           | 1.00        | 589.86             | 173.28        |
 | Mem0           | 0             | 9/89         | 0.05           | 0.99        | 64.94              | 114.19        |
-| YourMemory     | 0             | 9/89         | 0.05           | 0.91        | 325.92             | 16            |
+| A-mem          | 0             | 9/89         | 0.05           | 0.99        | 13.8               | 178.77        |
 
 **Active passes** are the only column that answers whether the memory system itself retrieved correctly. A system cannot accumulate active passes by returning everything or nothing.
 
@@ -40,12 +41,13 @@ Total pass counts require this breakdown to be interpreted correctly. All counts
 | System         | Active retrieval | Structural | Trivially empty |
 | -------------- | ---------------- | ---------- | --------------- |
 | Tenure         | 43               | 25         | 9               |
-| Tenure         | 17               | 18         | 9               |
+| SuperMemory    | 17               | 18         | 9               |
+| YourMemory     | 0                | 6          | 3               |
 | Vector (mxbai) | 0                | 8          | 3               |
 | Mem0           | 0                | 6          | 3               |
 | Zep            | 0                | 6          | 3               |
 | Hindsight      | 0                | 6          | 3               |
-| YourMemory     | 0                | 6          | 3               |
+| A-mem          | 0                | 6          | 3               |
 
 - **Active retrieval pass** - the case carries a `retrievalPrecision` assertion and it is satisfied. This is the only pass type that demonstrates verified retrieval capability.
 - **Structural pass** - the case asserts scope isolation, supersession exclusion, or type routing without a precision assertion, and the structural property holds.
@@ -67,11 +69,13 @@ The 12 session cases test three orthogonal properties: whether beliefs introduce
 
 The drift score is the fraction of retrieved non-pinned beliefs originating from drift-turn topics; 0 is perfect isolation.
 
-| Turn                        | Tenure | Vector | Mem0 | Zep  | Hindsight | SuperMemory | YourMemory |
-| --------------------------- | ------ | ------ | ---- | ---- | --------- | ----------- | ---------- |
-| Turn 9 (implicit re-entry)  | 0.0    | 1.0    | 1.0  | 1.0  | 1.0       | 0.0         | 1.0        |
-| Turn 10 (explicit re-entry) | 0.0    | 0.94   | 1.0  | 1.0  | 0.94      | 0.0 ‡       | 0.94       |
-| Cross-session formative     | 0.0    | 0.94   | 1.0  | 0.92 | 1.0       | 0.0 ‡       | 0.94       |
+| Turn                        | Tenure | Vector | Mem0 | Zep  | Hindsight | SuperMemory | YourMemory | A-mem |
+| --------------------------- | ------ | ------ | ---- | ---- | --------- | ----------- | ---------- | ----- |
+| Turn 9 (implicit re-entry)  | 0.0    | 1.0    | 1.0  | 1.0  | 1.0       | 0.0         | 1.0        | 1.0   |
+| Turn 10 (explicit re-entry) | 0.0    | 0.94   | 1.0  | 1.0  | 0.94      | 0.0 ‡       | 0.83       | 0.94  |
+| Cross-session formative     | 0.0    | 0.94   | 1.0  | 0.92 | 1.0       | 0.0 ‡       | 0.8        | 0.94  |
+
+‡ SuperMemory returned no results for these session cases. A drift score of 0.0 is recorded by construction; no beliefs were returned, so none could originate from drift topics. The correct belief also failed to surface, making this an empty-result failure rather than a genuine isolation pass.
 
 ### Retrieval and ingestion latency
 
@@ -79,11 +83,12 @@ The drift score is the fraction of retrieved non-pinned beliefs originating from
 | ----------- | --------- | -------- | -------- | ------------------- |
 | Tenure      | 13.49     | 9.77     | 53.99    | 0.98                |
 | SuperMemory | 821.27    | 819.48   | 1,228.91 | —                   |
+| YourMemory  | 350.78    | 317.14   | 573.35   | 17                  |
 | Vector      | 96.48     | 71.87    | 257.24   | —                   |
 | Mem0        | 78.81     | 64.94    | 156.89   | 114.19              |
 | Zep         | 139.64    | 124.36   | 235.04   | 897.04              |
 | Hindsight   | 672.15    | 589.86   | 1,185.33 | 173.28              |
-| YourMemory  | 356.24    | 325.92   | 478.9    | 16                  |
+| A-mem       | 19.34     | 13.8     | 27.92    | 178.77              |
 
 Single-turn latency understates the cost under session load. Hindsight reports 672ms mean single-turn but exceeds 2,700ms mean per session turn with p95 above 6,000ms.
 

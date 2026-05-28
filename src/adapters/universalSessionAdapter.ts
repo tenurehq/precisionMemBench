@@ -28,15 +28,42 @@ export class UniversalSessionAdapter extends BaseAdapter {
     });
   }
 
-  updateBeliefAliases(beliefId: string, addAliases: string[]): void {
+  async updateBeliefAliases(
+    beliefId: string,
+    addAliases: string[],
+  ): Promise<void> {
     const belief = this.seedIndex.get(beliefId);
     if (!belief) return;
+
     const existing = (belief.aliases as string[]) ?? [];
-    (belief as Belief).aliases = [
+    belief.aliases = [
       ...new Set([
         ...existing,
         ...addAliases.map((a) => a.trim().toLowerCase()),
       ]),
     ];
+
+    if (this.supportsUpdate) {
+      await fetch(`${this.baseUrl}/update`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          beliefId,
+          text: this.beliefToText(belief),
+          user_id: belief.user_id as string,
+          metadata: this.seedMetadata(belief),
+        }),
+      });
+    } else {
+      await fetch(`${this.baseUrl}/add`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          text: this.beliefToText(belief),
+          user_id: belief.user_id as string,
+          metadata: this.seedMetadata(belief),
+        }),
+      });
+    }
   }
 }

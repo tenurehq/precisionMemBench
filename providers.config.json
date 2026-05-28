@@ -3,30 +3,42 @@
     "envVar": "MEM0_URL",
     "defaultUrl": "http://localhost:8080",
     "seedDelayMs": 5500,
-    "beliefToText": "canonical_name_aliases"
+    "beliefToText": "canonical_name_aliases",
+    "supportsUpdate": false
   },
   "zep": {
     "envVar": "ZEP_URL",
     "defaultUrl": "http://localhost:8081",
     "seedDelayMs": 5500,
-    "beliefToText": "canonical_name_aliases"
+    "beliefToText": "canonical_name_aliases",
+    "supportsUpdate": false
   },
   "hindsight": {
     "envVar": "HINDSIGHT_URL",
     "defaultUrl": "http://localhost:8080",
     "seedDelayMs": 5500,
-    "beliefToText": "canonical_name_aliases"
+    "beliefToText": "canonical_name_aliases",
+    "supportsUpdate": false
   },
   "supermemory": {
     "envVar": "SUPERMEMORY_URL",
     "defaultUrl": "http://localhost:8080",
     "seedDelayMs": 5500,
-    "beliefToText": "canonical_name_aliases"
+    "beliefToText": "canonical_name_aliases",
+    "supportsUpdate": false
   },
   "yourmemory": {
     "envVar": "YOURMEMORY_URL",
     "defaultUrl": "http://localhost:8082",
-    "seedDelayMs": 1000,
-    "beliefToText": "canonical_name_aliases"
+    "seedDelayMs": 200,
+    "beliefToText": "canonical_name_aliases",
+    "supportsUpdate": true
+  },
+  "a-mem": {
+    "envVar": "AMEM_URL",
+    "defaultUrl": "http://localhost:8083",
+    "seedDelayMs": 500,
+    "beliefToText": "canonical_name_aliases",
+    "supportsUpdate": true
   }
 }

@@ -1,0 +1,13 @@
+services:
+  amem-wrapper:
+    build: .
+    ports:
+      - "8083:8083"
+    environment:
+      - AMEM_LLM_BACKEND=openai
+      - AMEM_LLM_MODEL=gpt-4o-mini
+      - AMEM_EMBED_MODEL=all-MiniLM-L6-v2
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL:-http://api.openai.com/v1}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
