@@ -7,7 +7,7 @@ export class UniversalSessionAdapter extends BaseAdapter {
   protected override seedMetadata(belief: Belief): Record<string, unknown> {
     return {
       beliefId: belief._id,
-      scope: belief.scope,
+      scope: belief.scope[0],
       type: belief.type,
       pinned: belief.pinned,
       superseded_by: belief.superseded_by ?? null,
