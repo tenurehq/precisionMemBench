@@ -1,0 +1,34 @@
+services:
+  infinity-reranker:
+    image: michaelf34/infinity:latest
+    ports:
+      - "7997:7997"
+    command: >
+      v2
+      --model-id mixedbread-ai/mxbai-rerank-xsmall-v1
+      --port 7997
+    volumes:
+      - infinity_cache:/app/.cache
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:7997/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+      start_period: 30s
+
+  gbrain-wrapper:
+    image: tenureai/precisionmembench-gbrain:v1.0.0
+    ports:
+      - "8082:8082"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      infinity-reranker:
+        condition: service_healthy
+    environment:
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+
+volumes:
+  infinity_cache:

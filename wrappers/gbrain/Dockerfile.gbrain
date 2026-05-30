@@ -1,0 +1,17 @@
+FROM oven/bun:1-debian
+WORKDIR /app
+
+RUN apt-get update && \
+    apt-get install -y curl git python3 python3-pip && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN bun install -g github:garrytan/gbrain
+
+RUN pip install --break-system-packages fastapi==0.136.3 uvicorn==0.47.0
+
+COPY gbrain_service.py .
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
+
+EXPOSE 8082
+CMD ["./entrypoint.sh"]

@@ -5,22 +5,15 @@ services:
       - "8888:8888"
       - "9999:9999"
     environment:
-      # LLM - use your existing OpenAI-compatible endpoint
       HINDSIGHT_API_LLM_PROVIDER: openai
       HINDSIGHT_API_LLM_API_KEY: "123456"
       HINDSIGHT_API_LLM_BASE_URL: "http://192.168.1.154:8000/api/v1"
       HINDSIGHT_API_LLM_MODEL: "us.anthropic.claude-sonnet-4-6"
-
-      # Embeddings - override to use your Ollama mxbai-embed-large
       HINDSIGHT_API_EMBEDDINGS_PROVIDER: openai
       HINDSIGHT_API_EMBEDDINGS_OPENAI_API_KEY: "unused"
       HINDSIGHT_API_EMBEDDINGS_OPENAI_BASE_URL: "http://192.168.1.154:11434/v1"
       HINDSIGHT_API_EMBEDDINGS_OPENAI_MODEL: "mxbai-embed-large"
-
-      # Reranker - use the bundled local reranker (included in full image)
       HINDSIGHT_API_RERANKER_PROVIDER: local
-
-      # Stable worker ID across restarts
       HINDSIGHT_API_WORKER_ID: hindsight-local
 
     volumes:

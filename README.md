@@ -23,6 +23,7 @@ Paper: [arXiv](https://arxiv.org/abs/2605.11325) — Dataset: [HuggingFace](http
 | -------------- | ------------- | ------------ | -------------- | ----------- | ------------------ | ------------------- |
 | `tenure`       | 43/43         | 77/77        | 1.00           | 1.00        | 9.77               | 1.00                |
 | `supermemory`  | 17/17         | 44/77        | 0.43           | 0.55        | 819.48             | 0.00                |
+| `gbrain`       | 5/5           | 34/77        | 0.14           | 0.17        | 543.84             | 28.60               |
 | `agentmemory`  | 0/0           | 7/77         | 0.17           | 0.97        | 82.28              | 1.10                |
 | `yourmemory`   | 0/0           | 21/77        | 0.17           | 0.88        | 313.39             | 16.40               |
 | `atomicmemory` | 0/0           | 9/77         | 0.15           | 0.95        | 71.01              | 658.90              |
@@ -44,6 +45,7 @@ Total pass counts require this breakdown to be interpreted correctly. All counts
 | -------------- | ---------------- | ---------- | --------------- |
 | `tenure`       | 43               | 25         | 9               |
 | `supermemory`  | 17               | 18         | 9               |
+| `gbrain`       | 5                | 20         | 9               |
 | `a-mem`        | 0                | 6          | 3               |
 | `agentmemory`  | 0                | 5          | 2               |
 | `atomicmemory` | 0                | 6          | 3               |
@@ -78,6 +80,7 @@ The drift score is the fraction of retrieved non-pinned beliefs originating from
 | `tenure`       | 12/12        | 1.00      | 0.0000     | 1.00            | 1.0000         | 47.79            |
 | `supermemory`  | 2/12         | 0.17      | 0.1667     | 0.17            | 0.6000         | 867.83           |
 | `yourmemory`   | 1/12         | 0.08      | 0.7365     | 0.08            | 0.1965         | 430.49           |
+| `gbrain`       | 1/12         | 0.08      | 0.0000 ‡   | 0.08            | —              | 535.61           |
 | `agentmemory`  | 0/12         | 0.00      | 0.8087     | 0.00            | 0.1913         | 98.49            |
 | `atomicmemory` | 0/12         | 0.00      | 0.8449     | 0.00            | 0.1551         | 355.08           |
 | `zep`          | 0/12         | 0.00      | 0.8888     | 0.00            | 0.1112         | 418.13           |
@@ -86,7 +89,7 @@ The drift score is the fraction of retrieved non-pinned beliefs originating from
 | `hindsight`    | 0/12         | 0.00      | 0.9285     | 0.00            | 0.0715         | 1880.60          |
 | `mem0`         | 0/12         | 0.00      | 0.9398     | 0.00            | 0.0602         | 377.93           |
 
-‡ SuperMemory & yourmemory returned no results for these session cases. A drift score of 0.0 is recorded by construction; no beliefs were returned, so none could originate from drift topics. The correct belief also failed to surface, making this an empty-result failure rather than a genuine isolation pass.
+‡ gbrain returned no results for these session cases. A drift score of 0.0 is recorded by construction; no beliefs were returned, so none could originate from drift topics. The correct belief also failed to surface, making this an empty-result failure rather than a genuine isolation pass.
 
 ## Pass taxonomy
 
