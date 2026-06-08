@@ -201,8 +201,8 @@ npm install
 Start the provider's stack, then:
 
 ```bash
-MEMORY_PROVIDER=mem0 npx ava retrieval.external.eval.test.ts
-MEMORY_PROVIDER=mem0 npx ava session-retrieval.external.eval.test.ts
+MEMORY_PROVIDER=mem0 npx ava src/retrieval.external.eval.test.ts --timeout 10m
+MEMORY_PROVIDER=mem0 npx ava src/session-retrieval.external.eval.test.ts --timeout 10m
 ```
 
 Reports land in `test-results/`. Valid values: `mem0`, `zep`, `hindsight`
@@ -216,8 +216,8 @@ The vector eval manages its own MongoDB Atlas Local container. Docker must be ru
 OLLAMA_URL=http://localhost:11434 npx tsx embed-seed.ts
 
 # Run the eval
-npx ava retrieval.vector.eval.test.ts
-npx ava session-retrieval.vector.eval.test.ts
+npx ava src/retrieval.vector.eval.test.ts
+npx ava src/session-retrieval.vector.eval.test.ts
 ```
 
 The Atlas Local container starts and stops automatically per run. Ports `27019` (single-turn) and `27021` (session) are used.
@@ -274,8 +274,8 @@ Add one entry to `providers.config.json`:
 ### 3. Run
 
 ```bash
-MEMORY_PROVIDER=myprovider npx ava retrieval.external.eval.test.ts
-MEMORY_PROVIDER=myprovider npx ava session-retrieval.external.eval.test.ts
+MEMORY_PROVIDER=myprovider npx ava src/retrieval.external.eval.test.ts --timeout 10m
+MEMORY_PROVIDER=myprovider npx ava src/session-retrieval.external.eval.test.ts --timeout 10m
 ```
 
 The eval files themselves never need to change.
