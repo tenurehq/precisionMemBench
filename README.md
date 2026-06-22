@@ -282,12 +282,9 @@ The eval files themselves never need to change.
 
 ## Submitting results to the leaderboard
 
-1. Fork this repo.
-2. Run the full eval suite against your provider (both `retrieval.external.eval.test.ts` and `session-retrieval.external.eval.test.ts`).
-3. Commit your report files from `test-results/` to `test-results/baseline/` using the naming convention `retrieval-report-{provider}.json`.
-4. Open a PR. Include the provider name, Docker image digest (if applicable), and any relevant configuration notes in the description.
+See [SUBMITTING.md](./SUBMITTING.md) for the full submission process.
 
-Results from merged PRs are reflected on the [live leaderboard](https://huggingface.co/spaces/tenurehq/precisionmembench).
+The short version: add a wrapper for your provider to `wrappers/` and open a PR. We run the eval against your wrapper and publish the results, you do not submit scores. Results from merged PRs are reflected on the [live leaderboard](https://huggingface.co/spaces/tenurehq/precisionmembench).
 
 ### Tenure
 
