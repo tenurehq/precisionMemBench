@@ -1,55 +1,36 @@
 # Submitting to PrecisionMemBench
 
-To appear on the leaderboard your submission must satisfy all of the
-requirements below. We run the eval against your container -- you do not
-submit scores, we produce them.
+To appear on the leaderboard, open a PR adding a wrapper for your provider to
+`wrappers/`. We run the eval against your wrapper -- you do not submit scores,
+we produce them.
 
 ---
 
-## Requirements
+## What a wrapper is
 
-### 1. Public GitHub repository
+A wrapper is a thin FastAPI service that normalizes your provider's API to the
+three-endpoint contract the eval harness expects (`/add`, `/search`, `/reset`).
+The `wrappers/mem0/` directory is the reference implementation. Use it as your
+starting point.
 
-Your full memory provider implementation must be publicly accessible at the
-time of submission and must remain public. The repository must contain at
-minimum:
+The three files are:
 
-- Your service implementation
-- A `Dockerfile` with all dependency versions pinned
-- A `docker-compose.yml` if your service requires infrastructure dependencies
-  (vector store, cache, etc.)
+- `mem0_service.py` -- the FastAPI service
+- `Dockerfile` -- with all dependency versions pinned
+- `docker-compose.yml` -- with any infrastructure dependencies (vector store,
+  cache, etc.) pinned to digests
 
-Private repos, obfuscated code, and compiled-only submissions are not accepted.
+The `wrappers/` directory contains all existing integrations. Browse them for
+patterns before writing your own -- most common problems have already been
+solved there.
 
-### 2. Docker image with a pinned digest
+---
 
-Push your image to Docker Hub or GHCR and submit it with a SHA256 digest, not
-a mutable tag:
+## API contract
 
-```
-# Good — digest is immutable
-ghcr.io/yourorg/yourprovider@sha256:abc123...
+Your wrapper must expose three endpoints on port `8080`.
 
-# Not accepted — latest can change silently
-ghcr.io/yourorg/yourprovider:latest
-```
-
-To get the digest after pushing:
-
-```bash
-docker buildx imagetools inspect ghcr.io/yourorg/yourprovider:yourtag \
-  --format '{{json .Manifest.Digest}}'
-```
-
-The digest in your PR must match the digest we pull. If they do not match the
-submission is rejected without running the eval.
-
-### 3. Implement the provider API
-
-Your container must expose three endpoints on port `8080`. This is the same
-contract the reference implementations in `providers/` follow.
-
-#### `POST /add`
+### `POST /add`
 
 Ingest a single belief into your memory store.
 
@@ -67,11 +48,10 @@ Ingest a single belief into your memory store.
 { "ok": true }
 ```
 
-The `metadata.beliefId` field is the stable identifier the eval harness uses
-to map your search results back to the belief corpus. You must persist it and
-return it in search results.
+You must persist `metadata.beliefId` and return it in search results. The eval
+harness uses it to map your results back to the belief corpus.
 
-#### `POST /search`
+### `POST /search`
 
 Search for beliefs by query text, scoped to a `user_id`.
 
@@ -97,9 +77,9 @@ Search for beliefs by query text, scoped to a `user_id`.
 
 The `id` field in each result must be the `beliefId` from the original `/add`
 metadata. Results that omit or mangle this field will score zero on all active
-retrieval cases -- the harness cannot map them back to the corpus.
+retrieval cases.
 
-#### `DELETE /reset`
+### `DELETE /reset`
 
 Clear all stored beliefs for all users. Called once before seeding begins.
 
@@ -108,24 +88,57 @@ Clear all stored beliefs for all users. Called once before seeding begins.
 { "ok": true }
 ```
 
-### 4. Reference implementation
+---
 
-The `providers/mem0/` directory contains a complete working reference:
+## Mapping beliefId when your provider doesn't support metadata round-trip
 
-- `mem0_service.py` -- the FastAPI service implementing all three endpoints
-- `Dockerfile` -- pinned dependency versions
-- `docker-compose.yml` -- Qdrant pinned to a digest as an infrastructure dependency
+The eval harness maps your search results back to the belief corpus using the
+`beliefId` value from each `/add` request. Your `/search` response must return
+it as the `id` field on every result.
 
-Use it as your starting point. The three files together are the full contract.
+If your provider supports storing and returning arbitrary metadata, persist
+`beliefId` there and read it back on search -- this is what the mem0 wrapper
+does.
 
-### 5. Environment variables
+If your provider does not support metadata round-trip, maintain an in-process
+dict in the wrapper that maps your provider's internal IDs to `beliefId` values
+at `/add` time, then resolve them on `/search`. The `wrappers/yourmemory/`
+wrapper uses this pattern and is a good reference for it.
+
+Your `/reset` endpoint must also clear this dict along with the provider's
+stored memories, or stale mappings will corrupt subsequent eval runs.
+
+---
+
+## Requirements
+
+### 1. Public GitHub repository
+
+Your provider's source code must be publicly accessible at the time of
+submission and must remain public. Link to it in your `SUBMISSION.md`.
+
+Private repos, obfuscated code, and compiled-only submissions are not accepted.
+
+### 2. Pinned dependencies
+
+Pin all dependency versions in your `Dockerfile`. If your wrapper requires
+infrastructure (e.g. Qdrant, Redis), pin those images to SHA256 digests in
+`docker-compose.yml`, as the mem0 reference does:
+
+```yaml
+image: qdrant/qdrant@sha256:45f8e3ddc2570a4d029877e1b5ec1045c19b3852b4e22a55c7f43b05aea0ca89
+```
+
+Mutable tags (`:latest`, `:main`, etc.) are not accepted.
+
+### 3. Environment variables
 
 Declare all required environment variables in your `docker-compose.yml`. The
 eval harness will not supply any credentials or configuration beyond what is
 documented in your PR.
 
-The following variables from the reference implementation are illustrative --
-your provider will have its own:
+The following variables from the mem0 reference are illustrative -- your
+provider will have its own:
 
 | Variable             | Purpose                                          |
 | -------------------- | ------------------------------------------------ |
@@ -145,23 +158,20 @@ it clearly in your PR.
 
 Create a PR against this repository with the following:
 
-1. A new directory under `providers/<your-provider-name>/` containing your
-   service files
-2. A `providers/<your-provider-name>/SUBMISSION.md` with the fields below
+1. A new directory `wrappers/<your-provider-name>/` containing:
+   - Your wrapper service (e.g. `<provider>_service.py`)
+   - `Dockerfile` with pinned dependency versions
+   - `docker-compose.yml` with any infrastructure dependencies
+2. A `wrappers/<your-provider-name>/SUBMISSION.md` with the fields below
 
 ```markdown
 ## Provider
 
 <!-- Name as it should appear on the leaderboard -->
 
-## Image
-
-<!-- Full image reference with SHA256 digest -->
-<!-- e.g. ghcr.io/yourorg/yourprovider@sha256:abc123... -->
-
 ## Repository
 
-<!-- Public GitHub URL -->
+<!-- Public GitHub URL for your provider's source code -->
 
 ## Embedding model
 
@@ -182,8 +192,8 @@ Create a PR against this repository with the following:
 
 ## What happens after you open a PR
 
-1. We verify the image digest matches the repo at the referenced commit
-2. We pull your image and run the full eval suite:
+1. We review your wrapper and `SUBMISSION.md`
+2. We bring up your stack with `docker compose up` and run the full eval suite:
    - `retrieval.external.eval.test.ts` (77 retrieval cases)
    - `session-retrieval.external.eval.test.ts` (12 session cases)
 3. We attach the results to your PR as a comment
@@ -191,21 +201,21 @@ Create a PR against this repository with the following:
    the leaderboard
 
 Results are published as-is. We do not adjust scores or re-run on different
-hardware. If your container fails to start or the API contract is not met, we
+hardware. If your wrapper fails to start or the API contract is not met, we
 will comment on the PR with the failure and you can revise.
 
 ## What we do not accept
 
-- Self-reported scores without a Docker image
-- Images that detect the eval environment and behave differently
-- Mutable image tags (`:latest`, `:main`, etc.)
-- Closed-source implementations
-- Containers that modify the eval harness or seed data
+- Self-reported scores
+- Wrappers with mutable image tags (`:latest`, `:main`, etc.)
+- Closed-source provider implementations
+- Wrappers that modify the eval harness or seed data
+- Wrappers that detect the eval environment and behave differently
 
-The public repo requirement exists precisely so that any auditor can verify
-your implementation is not special-casing the benchmark. If your code reads
-the belief IDs at startup and pre-caches responses, that will be visible and
-the submission will be removed.
+The public repo requirement exists so that any auditor can verify your
+implementation is not special-casing the benchmark. If your code reads the
+belief IDs at startup and pre-caches responses, that will be visible and the
+submission will be removed.
 
 ## Questions
 
