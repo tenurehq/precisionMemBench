@@ -1,0 +1,13 @@
+services:
+  okf-eval:
+    build: .
+    ports:
+      - "8082:8082"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:OPENAI_API_KEY}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL:-OPENAI_BASE_URL}
+      - MODEL_NAME=${MODEL_NAME:-MODEL_NAME}
+      - PORT=8082
+    volumes:
+      - ./okf-bundle:/data/okf-bundle:ro
+    command: python okf_service.py /data/okf-bundle

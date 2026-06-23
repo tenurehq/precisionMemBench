@@ -61,5 +61,12 @@
     "seedDelayMs": 2000,
     "beliefToText": "canonical_name_aliases",
     "supportsUpdate": false
+  },
+  "okf": {
+    "envVar": "OKF_URL",
+    "defaultUrl": "http://localhost:8082",
+    "seedDelayMs": 2000,
+    "beliefToText": "canonical_name_aliases",
+    "supportsUpdate": false
   }
 }

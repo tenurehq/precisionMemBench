@@ -19,19 +19,20 @@ Paper: [arXiv](https://arxiv.org/abs/2605.11325) — Dataset: [HuggingFace](http
 
 ### Retrieval Precision
 
-| Provider       | Active passes | Total passes | Mean precision | Mean recall | Retrieval p50 (ms) | Ingestion total (s) |
-| -------------- | ------------- | ------------ | -------------- | ----------- | ------------------ | ------------------- |
-| `tenure`       | 43/43         | 77/77        | 1.00           | 1.00        | 9.77               | 1.00                |
-| `supermemory`  | 17/17         | 44/77        | 0.43           | 0.55        | 819.48             | 0.00                |
-| `gbrain`       | 5/5           | 34/77        | 0.14           | 0.17        | 543.84             | 28.60               |
-| `agentmemory`  | 0/0           | 7/77         | 0.17           | 0.97        | 82.28              | 1.10                |
-| `yourmemory`   | 0/0           | 21/77        | 0.17           | 0.88        | 313.39             | 16.40               |
-| `atomicmemory` | 0/0           | 9/77         | 0.15           | 0.95        | 71.01              | 658.90              |
-| `zep`          | 0/0           | 9/77         | 0.09           | 0.95        | 124.36             | 897.00              |
-| `vector`       | 0/0           | 11/77        | 0.09           | 1.00        | 71.87              | —                   |
-| `hindsight`    | 0/0           | 9/77         | 0.06           | 1.00        | 589.86             | 173.30              |
-| `mem0`         | 0/0           | 9/77         | 0.06           | 0.99        | 64.94              | 111.30              |
-| `a-mem`        | 0/0           | 9/77         | 0.06           | 0.99        | 13.80              | 178.80              |
+| Provider                | Active passes | Total passes | Mean precision | Mean recall | Retrieval p50 (ms) | Ingestion total (s) |
+| ----------------------- | ------------- | ------------ | -------------- | ----------- | ------------------ | ------------------- |
+| `tenure`                | 43/43         | 77/77        | 1.00           | 1.00        | 9.77               | 1.00                |
+| `open-knowledge-format` | 18/18         | 36/77        | 0.47           | 0.91        | 3534.53            | 0.00                |
+| `supermemory`           | 17/17         | 44/77        | 0.43           | 0.55        | 819.48             | 0.00                |
+| `agentmemory`           | 0/0           | 7/77         | 0.17           | 0.97        | 82.28              | 1.10                |
+| `yourmemory`            | 0/0           | 21/77        | 0.17           | 0.88        | 313.39             | 16.40               |
+| `atomicmemory`          | 0/0           | 9/77         | 0.15           | 0.95        | 71.01              | 658.90              |
+| `gbrain`                | 5/5           | 34/77        | 0.14           | 0.17        | 543.84             | 28.60               |
+| `zep`                   | 0/0           | 9/77         | 0.09           | 0.95        | 124.36             | 897.00              |
+| `vector`                | 0/0           | 11/77        | 0.09           | 1.00        | 71.87              | ---                 |
+| `hindsight`             | 0/0           | 9/77         | 0.06           | 1.00        | 589.86             | 173.30              |
+| `mem0`                  | 0/0           | 9/77         | 0.06           | 0.99        | 64.94              | 111.30              |
+| `a-mem`                 | 0/0           | 9/77         | 0.06           | 0.99        | 13.80              | 178.80              |
 
 **Active passes** are the only column that answers whether the memory system itself retrieved correctly. A system cannot accumulate active passes by returning everything or nothing.
 
@@ -41,19 +42,20 @@ Recall of 1.0 does not imply precision. Every comparison system returns the corr
 
 Total pass counts require this breakdown to be interpreted correctly. All counts are over the 77 non-session cases.
 
-| Provider       | Active retrieval | Structural | Trivially empty |
-| -------------- | ---------------- | ---------- | --------------- |
-| `tenure`       | 43               | 25         | 9               |
-| `supermemory`  | 17               | 18         | 9               |
-| `gbrain`       | 5                | 20         | 9               |
-| `a-mem`        | 0                | 6          | 3               |
-| `agentmemory`  | 0                | 5          | 2               |
-| `atomicmemory` | 0                | 6          | 3               |
-| `hindsight`    | 0                | 6          | 3               |
-| `mem0`         | 0                | 6          | 3               |
-| `vector`       | 0                | 8          | 3               |
-| `yourmemory`   | 0                | 15         | 6               |
-| `zep`          | 0                | 6          | 3               |
+| Provider                | Active retrieval | Structural | Trivially empty |
+| ----------------------- | ---------------- | ---------- | --------------- |
+| `tenure`                | 43               | 25         | 9               |
+| `open-knowledge-format` | 18               | 13         | 5               |
+| `supermemory`           | 17               | 18         | 9               |
+| `gbrain`                | 5                | 20         | 9               |
+| `a-mem`                 | 0                | 6          | 3               |
+| `agentmemory`           | 0                | 5          | 2               |
+| `atomicmemory`          | 0                | 6          | 3               |
+| `hindsight`             | 0                | 6          | 3               |
+| `mem0`                  | 0                | 6          | 3               |
+| `vector`                | 0                | 8          | 3               |
+| `yourmemory`            | 0                | 15         | 6               |
+| `zep`                   | 0                | 6          | 3               |
 
 - **Active retrieval pass** - the case carries a `retrievalPrecision` assertion and it is satisfied. This is the only pass type that demonstrates verified retrieval capability.
 - **Structural pass** - the case asserts scope isolation, supersession exclusion, or type routing without a precision assertion, and the structural property holds.
@@ -75,21 +77,26 @@ The 12 session cases test three orthogonal properties: whether beliefs introduce
 
 The drift score is the fraction of retrieved non-pinned beliefs originating from drift-turn topics; 0 is perfect isolation.
 
-| Provider       | Turns passed | Pass rate | Mean drift | Noise isolation | Mean precision | Session p50 (ms) |
-| -------------- | ------------ | --------- | ---------- | --------------- | -------------- | ---------------- |
-| `tenure`       | 12/12        | 1.00      | 0.0000     | 1.00            | 1.0000         | 47.79            |
-| `supermemory`  | 2/12         | 0.17      | 0.1667     | 0.17            | 0.6000         | 867.83           |
-| `yourmemory`   | 1/12         | 0.08      | 0.7365     | 0.08            | 0.1965         | 430.49           |
-| `gbrain`       | 1/12         | 0.08      | 0.0000 ‡   | 0.08            | —              | 535.61           |
-| `agentmemory`  | 0/12         | 0.00      | 0.8087     | 0.00            | 0.1913         | 98.49            |
-| `atomicmemory` | 0/12         | 0.00      | 0.8449     | 0.00            | 0.1551         | 355.08           |
-| `zep`          | 0/12         | 0.00      | 0.8888     | 0.00            | 0.1112         | 418.13           |
-| `vector`       | 0/12         | 0.00      | 0.9142     | 0.00            | 0.0858         | 256.75           |
-| `a-mem`        | 0/12         | 0.00      | 0.9259     | 0.00            | 0.0741         | 25.66            |
-| `hindsight`    | 0/12         | 0.00      | 0.9285     | 0.00            | 0.0715         | 1880.60          |
-| `mem0`         | 0/12         | 0.00      | 0.9398     | 0.00            | 0.0602         | 377.93           |
+| Provider                | Turns passed | Pass rate | Mean drift | Noise isolation | Mean precision | Session p50 (ms) |
+| ----------------------- | ------------ | --------- | ---------- | --------------- | -------------- | ---------------- |
+| `tenure`                | 12/12        | 1.00      | 0.0000     | 1.00            | 1.0000         | 47.79            |
+| `supermemory`           | 2/12         | 0.17      | 0.1667     | 0.17            | 0.6000         | 867.83           |
+| `open-knowledge-format` | 2/12         | 0.17      | 0.2153     | 0.17            | 0.5694         | 3349.45          |
+| `yourmemory`            | 1/12         | 0.08      | 0.7365     | 0.08            | 0.1965         | 430.49           |
+| `gbrain`                | 1/12         | 0.08      | 0.0000     | 0.08            | ---            | 535.61           |
+| `agentmemory`           | 0/12         | 0.00      | 0.8087     | 0.00            | 0.1913         | 98.49            |
+| `atomicmemory`          | 0/12         | 0.00      | 0.8449     | 0.00            | 0.1551         | 355.08           |
+| `zep`                   | 0/12         | 0.00      | 0.8888     | 0.00            | 0.1112         | 418.13           |
+| `vector`                | 0/12         | 0.00      | 0.9142     | 0.00            | 0.0858         | 256.75           |
+| `a-mem`                 | 0/12         | 0.00      | 0.9259     | 0.00            | 0.0741         | 25.66            |
+| `hindsight`             | 0/12         | 0.00      | 0.9285     | 0.00            | 0.0715         | 1880.60          |
+| `mem0`                  | 0/12         | 0.00      | 0.9398     | 0.00            | 0.0602         | 377.93           |
 
 ‡ gbrain returned no results for these session cases. A drift score of 0.0 is recorded by construction; no beliefs were returned, so none could originate from drift topics. The correct belief also failed to surface, making this an empty-result failure rather than a genuine isolation pass.
+
+## Open Knowledge Format Run
+
+The Open Knowledge Format run is not a test of markdown as a storage format. It evaluates the runtime access pattern implied by the OKF spec when a bundle is placed into an AI tool today: files are available, the model may inspect them, and PMB scores the belief IDs corresponding to the files the model actually retrieves.
 
 ## Pass taxonomy
 
