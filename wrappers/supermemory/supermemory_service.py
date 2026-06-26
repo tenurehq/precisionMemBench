@@ -1,17 +1,11 @@
 """
-supermemory_service.py — PrecisionMemBench wrapper for Supermemory
+supermemory_service.py - PrecisionMemBench wrapper for Supermemory
 Implements the three-endpoint contract on port 8080:
-  POST   /add     — ingest a belief
-  POST   /search  — retrieve beliefs by query
-  DELETE /reset   — wipe all stored beliefs
-
-Supermemory API mapping:
-  /add    → POST   https://api.supermemory.ai/v3/documents
-  /search → POST   https://api.supermemory.ai/v4/search
-  /reset  → POST   https://api.supermemory.ai/v3/settings/reset
+  POST   /add     - ingest a belief
+  POST   /search  - retrieve beliefs by query
+  DELETE /reset   - wipe all stored beliefs
 
 Environment variables:
-  SUPERMEMORY_API_KEY   required — API key from console.supermemory.ai
   SEED_DELAY_MS         extra wait after /add  (default: 0)
   POLL_TIMEOUT_S        max seconds to poll    (default: 30)
   PORT                  HTTP port              (default: 8080)
@@ -32,32 +26,34 @@ logging.basicConfig(level=logging.INFO)
 log = logging.getLogger("supermemory_service")
 
 
-API_KEY = os.environ["SUPERMEMORY_API_KEY"]         
-BASE_URL = "https://api.supermemory.ai"
+BASE_URL = "http://localhost:6767"
 SEED_DELAY_MS = int(os.getenv("SEED_DELAY_MS", "0"))
 POLL_TIMEOUT_S = int(os.getenv("POLL_TIMEOUT_S", "30"))
 PORT = int(os.getenv("PORT", "8080"))
 
+SUPERMEMORY_API_KEY = os.getenv("SUPERMEMORY_API_KEY", "")
 HEADERS = {
-    "Authorization": f"Bearer {API_KEY}",
+    "Authorization": f"Bearer {SUPERMEMORY_API_KEY}",
     "Content-Type": "application/json",
 }
 
 app = FastAPI(title="supermemory-bench-wrapper")
 
 
-
 class Metadata(BaseModel):
     beliefId: str
     scope: str
+
 
 class AddRequest(BaseModel):
     text: str
     user_id: str
     metadata: Metadata
 
+
 class AddResponse(BaseModel):
     ok: bool
+
 
 class SearchRequest(BaseModel):
     query: str
@@ -65,13 +61,16 @@ class SearchRequest(BaseModel):
     limit: int = 20
     scope: str
 
+
 class SearchResult(BaseModel):
-    id: str        
+    id: str
     memory: str
     score: float
 
+
 class SearchResponse(BaseModel):
     results: list[SearchResult]
+
 
 class ResetResponse(BaseModel):
     ok: bool
@@ -100,7 +99,6 @@ async def _poll_until_ready(client: httpx.AsyncClient, doc_id: str) -> None:
     log.warning("Poll timeout for doc %s after %ss", doc_id, POLL_TIMEOUT_S)
 
 
-
 @app.post("/add", response_model=AddResponse)
 async def add(req: AddRequest):
     """
@@ -115,7 +113,7 @@ async def add(req: AddRequest):
         "content": req.text,
         "containerTag": req.user_id,
         "metadata": {"beliefId": belief_id, "scope": req.metadata.scope},
-        "filterByMetadata": {"scope": req.metadata.scope}
+        "filterByMetadata": {"scope": req.metadata.scope},
     }
     if belief_id:
         payload["customId"] = belief_id
@@ -130,7 +128,9 @@ async def add(req: AddRequest):
             )
             r.raise_for_status()
         except httpx.HTTPStatusError as exc:
-            log.error("add failed: %s — %s", exc.response.status_code, exc.response.text)
+            log.error(
+                "add failed: %s - %s", exc.response.status_code, exc.response.text
+            )
             raise HTTPException(status_code=502, detail=exc.response.text) from exc
 
         doc_id = r.json().get("id", "")
@@ -150,21 +150,14 @@ async def search(req: SearchRequest):
     Search Supermemory for beliefs matching the query.
 
     We use searchMode='memories' (not hybrid) so results are purely the
-    extracted memory entries — the same unit the benchmark scored on ingest.
-
-    threshold=0.0 returns all results ranked by similarity; the harness
-    already handles precision by checking which beliefIds are present,
-    so we don't want the API to pre-filter based on score.
+    extracted memory entries - the same unit the benchmark scored on ingest.
     """
     payload: dict[str, Any] = {
         "q": req.query,
         "containerTag": req.user_id,
         "limit": req.limit,
         "searchMode": "memories",
-        "threshold": 0.69,
-        "filters": {
-        "AND": [{"key": "scope", "value": req.scope}]
-        }
+        "filters": {"AND": [{"key": "scope", "value": req.scope}]},
     }
 
     async with httpx.AsyncClient() as client:
@@ -177,7 +170,9 @@ async def search(req: SearchRequest):
             )
             r.raise_for_status()
         except httpx.HTTPStatusError as exc:
-            log.error("search failed: %s — %s", exc.response.status_code, exc.response.text)
+            log.error(
+                "search failed: %s - %s", exc.response.status_code, exc.response.text
+            )
             raise HTTPException(status_code=502, detail=exc.response.text) from exc
 
     raw = r.json().get("results", [])
@@ -194,7 +189,7 @@ async def search(req: SearchRequest):
 @app.delete("/reset", response_model=ResetResponse)
 async def reset():
     """
-    Wipe all data in the Supermemory organisation.
+    Wipe all data in the Supermemory organization.
     POST /v3/settings/reset requires a `confirmation` string.
     """
     async with httpx.AsyncClient() as client:
@@ -207,12 +202,13 @@ async def reset():
             )
             r.raise_for_status()
         except httpx.HTTPStatusError as exc:
-            log.error("reset failed: %s — %s", exc.response.status_code, exc.response.text)
+            log.error(
+                "reset failed: %s - %s", exc.response.status_code, exc.response.text
+            )
             raise HTTPException(status_code=502, detail=exc.response.text) from exc
 
-    log.info("Organisation reset: %s", r.json())
+    log.info("Organization reset: %s", r.json())
     return ResetResponse(ok=True)
-
 
 
 if __name__ == "__main__":

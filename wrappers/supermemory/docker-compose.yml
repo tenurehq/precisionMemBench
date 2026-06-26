@@ -1,10 +1,12 @@
 services:
   supermemory:
-    build: .
+    image: tenurehq/precisionmembench-supermemory@sha256:b4ef936e7b03bea8882d590bd2ab91097c74e155695675a48a1b1baab33e17e5
     ports:
       - "8080:8080"
     environment:
-      SUPERMEMORY_API_KEY: INSERT_KEY_HERE
+      OPENAI_API_KEY: ""
+      OPENAI_BASE_URL: ""
+      OPENAI_MODEL: ""
       POLL_TIMEOUT_S: "30"
       SEED_DELAY_MS: "0"
       PORT: "8080"
