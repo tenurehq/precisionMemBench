@@ -4,8 +4,6 @@ To appear on the leaderboard, open a PR adding a wrapper for your provider to
 `wrappers/`. We run the eval against your wrapper -- you do not submit scores,
 we produce them.
 
----
-
 ## What a wrapper is
 
 A wrapper is a thin FastAPI service that normalizes your provider's API to the
@@ -23,8 +21,6 @@ The three files are:
 The `wrappers/` directory contains all existing integrations. Browse them for
 patterns before writing your own -- most common problems have already been
 solved there.
-
----
 
 ## API contract
 
@@ -88,8 +84,6 @@ Clear all stored beliefs for all users. Called once before seeding begins.
 { "ok": true }
 ```
 
----
-
 ## Mapping beliefId when your provider doesn't support metadata round-trip
 
 The eval harness maps your search results back to the belief corpus using the
@@ -107,8 +101,6 @@ wrapper uses this pattern and is a good reference for it.
 
 Your `/reset` endpoint must also clear this dict along with the provider's
 stored memories, or stale mappings will corrupt subsequent eval runs.
-
----
 
 ## Requirements
 
@@ -131,7 +123,32 @@ image: qdrant/qdrant@sha256:45f8e3ddc2570a4d029877e1b5ec1045c19b3852b4e22a55c7f4
 
 Mutable tags (`:latest`, `:main`, etc.) are not accepted.
 
-### 3. Environment variables
+### 3. Compiled local artifacts
+
+Most leaderboard submissions must be built from public source. A compiled-only provider submission is not accepted when the compiled artifact is the only thing a submitter provides.
+
+There is one narrow exception: PrecisionMemBench may evaluate an official local/self-hosted binary released by a provider when that binary is the normal artifact available to users and the run can be pinned and reproduced.
+
+For compiled local artifacts, the wrapper must document:
+
+- The upstream release URL
+- The provider version
+- The binary filename
+- The binary SHA256 digest
+- The Docker image name and SHA256 digest used for the eval
+- The benchmark commit used for the published run
+- Whether the wrapper injects any retrieval thresholds, ranking parameters, or provider-specific tuning
+- Any required external services, including LLM endpoints, embedding endpoints, telemetry endpoints, or hosted APIs observed during setup or execution
+
+The Dockerfile should download the exact release artifact and verify its SHA256 digest during build. The final `docker-compose.yml` should pin the published benchmark image by digest.
+
+A compiled artifact exception does not allow benchmark-specific behavior. The wrapper may adapt `/add`, `/search`, and `/reset`, but it must not modify provider ranking behavior, inject hidden thresholds, special-case benchmark belief IDs, or change seed data.
+
+For compiled local artifacts, the provider binary may be opaque, but the PrecisionMemBench wrapper may not be. The wrapper service source file, usually `<provider>_service.py`, must be committed to the repository alongside the Dockerfile and docker-compose.yml.
+
+The published Docker image may contain the wrapper source, but that is not sufficient for submission review. Reviewers must be able to inspect the wrapper directly in the PR to verify that it only adapts `/add`, `/search`, and `/reset`, and does not inject hidden thresholds, alter ranking behavior, special-case benchmark IDs, precompute answers, or modify the benchmark corpus.
+
+### 4. Environment variables
 
 Declare all required environment variables in your `docker-compose.yml`. The
 eval harness will not supply any credentials or configuration beyond what is
@@ -140,19 +157,17 @@ documented in your PR.
 The following variables from the mem0 reference are illustrative -- your
 provider will have its own:
 
-| Variable             | Purpose                                          |
-| -------------------- | ------------------------------------------------ |
-| `LLM_MODEL`          | The LLM your provider uses for memory extraction |
-| `LLM_BASE_URL`       | Base URL for LLM inference                       |
-| `LLM_API_KEY`        | API key for LLM inference                        |
-| `OLLAMA_EMBED_MODEL` | Embedding model name (if using Ollama)           |
-| `OLLAMA_URL`         | Ollama base URL (if using Ollama)                |
+| Variable | Purpose |
+| -- | |
+| `LLM_MODEL` | The LLM your provider uses for memory extraction |
+| `LLM_BASE_URL` | Base URL for LLM inference |
+| `LLM_API_KEY` | API key for LLM inference |
+| `OLLAMA_EMBED_MODEL` | Embedding model name (if using Ollama) |
+| `OLLAMA_URL` | Ollama base URL (if using Ollama) |
 
 The embedding model you use will be included in your leaderboard display name,
 e.g. `mem0 (mxbai-embed-large)`. If you use a proprietary embedder, document
 it clearly in your PR.
-
----
 
 ## Opening a submission PR
 
@@ -183,12 +198,19 @@ Create a PR against this repository with the following:
 <!-- If your provider uses an LLM for memory extraction, name it here -->
 <!-- This will be noted alongside your results -->
 
+## Artifact reproducibility
+
+<!-- Required for compiled local artifacts only -->
+<!-- Include upstream release URL, binary SHA256, Docker image digest, and benchmark commit -->
+
+## Network behavior
+
+<!-- Document required or observed outbound traffic: LLM endpoints, embedding services, telemetry, hosted APIs, or "none observed" -->
+
 ## Notes
 
 <!-- Anything relevant to reproducing your results -->
 ```
-
----
 
 ## What happens after you open a PR
 
@@ -208,7 +230,9 @@ will comment on the PR with the failure and you can revise.
 
 - Self-reported scores
 - Wrappers with mutable image tags (`:latest`, `:main`, etc.)
-- Closed-source provider implementations
+- Closed-source provider implementations submitted as unverifiable wrappers
+- Compiled-only submissions unless they are official local/self-hosted release artifacts pinned by upstream binary digest and Docker image digest
+- Docker images that contain wrapper behavior not represented by source files committed under `wrappers/<provider>/`
 - Wrappers that modify the eval harness or seed data
 - Wrappers that detect the eval environment and behave differently
 

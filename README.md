@@ -23,7 +23,7 @@ Paper: [arXiv](https://arxiv.org/abs/2605.11325) — Dataset: [HuggingFace](http
 | ----------------------- | ------------- | ------------ | -------------- | ----------- | ------------------ | ------------------- |
 | `tenure`                | 43/43         | 77/77        | 1.00           | 1.00        | 9.77               | 1.00                |
 | `open-knowledge-format` | 18/18         | 36/77        | 0.47           | 0.91        | 3534.53            | 0.00                |
-| `supermemory`           | 17/17         | 44/77        | 0.43           | 0.55        | 819.48             | 0.00                |
+| `supermemory`           | 4/4           | 21/77        | 0.22           | 0.71        | 69.41              | 5.20                |
 | `agentmemory`           | 0/0           | 7/77         | 0.17           | 0.97        | 82.28              | 1.10                |
 | `yourmemory`            | 0/0           | 21/77        | 0.17           | 0.88        | 313.39             | 16.40               |
 | `atomicmemory`          | 0/0           | 9/77         | 0.15           | 0.95        | 71.01              | 658.90              |
@@ -46,8 +46,8 @@ Total pass counts require this breakdown to be interpreted correctly. All counts
 | ----------------------- | ---------------- | ---------- | --------------- |
 | `tenure`                | 43               | 25         | 9               |
 | `open-knowledge-format` | 18               | 13         | 5               |
-| `supermemory`           | 17               | 18         | 9               |
 | `gbrain`                | 5                | 20         | 9               |
+| `supermemory`           | 4                | 14         | 3               |
 | `a-mem`                 | 0                | 6          | 3               |
 | `agentmemory`           | 0                | 5          | 2               |
 | `atomicmemory`          | 0                | 6          | 3               |
@@ -80,9 +80,9 @@ The drift score is the fraction of retrieved non-pinned beliefs originating from
 | Provider                | Turns passed | Pass rate | Mean drift | Noise isolation | Mean precision | Session p50 (ms) |
 | ----------------------- | ------------ | --------- | ---------- | --------------- | -------------- | ---------------- |
 | `tenure`                | 12/12        | 1.00      | 0.0000     | 1.00            | 1.0000         | 47.79            |
-| `supermemory`           | 2/12         | 0.17      | 0.1667     | 0.17            | 0.6000         | 867.83           |
 | `open-knowledge-format` | 2/12         | 0.17      | 0.2153     | 0.17            | 0.5694         | 3349.45          |
 | `yourmemory`            | 1/12         | 0.08      | 0.7365     | 0.08            | 0.1965         | 430.49           |
+| `supermemory`           | 1/12         | 0.08      | 0.7493     | 0.08            | 0.1825         | 172.32           |
 | `gbrain`                | 1/12         | 0.08      | 0.0000     | 0.08            | ---            | 535.61           |
 | `agentmemory`           | 0/12         | 0.00      | 0.8087     | 0.00            | 0.1913         | 98.49            |
 | `atomicmemory`          | 0/12         | 0.00      | 0.8449     | 0.00            | 0.1551         | 355.08           |
