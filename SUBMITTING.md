@@ -235,11 +235,13 @@ will comment on the PR with the failure and you can revise.
 - Docker images that contain wrapper behavior not represented by source files committed under `wrappers/<provider>/`
 - Wrappers that modify the eval harness or seed data
 - Wrappers that detect the eval environment and behave differently
+- Hosted cloud APIs are not accepted for the main leaderboard track unless PrecisionMemBench defines a separate hosted-provider track. The main track requires a reproducible local/self-hosted artifact pinned by source commit, binary digest, Docker image digest, or equivalent immutable release artifact.
 
-The public repo requirement exists so that any auditor can verify your
-implementation is not special-casing the benchmark. If your code reads the
-belief IDs at startup and pre-caches responses, that will be visible and the
-submission will be removed.
+The reproducibility and auditability requirements exist so reviewers can verify the benchmark boundary. Provider behavior must be pinned through an accepted artifact: public source, an official local/self-hosted binary with a verified digest, or a Docker image pinned by digest. The PrecisionMemBench wrapper itself must always be committed as readable source under `wrappers/<provider>/`.
+
+Reviewers must be able to confirm that the wrapper only adapts `/add`, `/search`, and `/reset`. It must not special-case benchmark IDs, pre-cache answers, inject hidden thresholds, alter ranking behavior, modify seed data, or behave differently when it detects the eval environment.
+
+Compiled provider binaries are allowed only as pinned local release artifacts. The wrapper remains fully auditable source, and the submission must document artifact digests, network behavior, and required external services.
 
 ## Questions
 
