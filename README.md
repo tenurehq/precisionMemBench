@@ -33,6 +33,7 @@ Paper: [arXiv](https://arxiv.org/abs/2605.11325) — Dataset: [HuggingFace](http
 | `hindsight`             | 0/0           | 9/77         | 0.06           | 1.00        | 589.86             | 173.30              |
 | `mem0`                  | 0/0           | 9/77         | 0.06           | 0.99        | 64.94              | 111.30              |
 | `a-mem`                 | 0/0           | 9/77         | 0.06           | 0.99        | 13.80              | 178.80              |
+| `cognee`                | 0/0           | 11/77        | 0.05           | 0.92        | 2891.04            | 369.20              |
 
 **Active passes** are the only column that answers whether the memory system itself retrieved correctly. A system cannot accumulate active passes by returning everything or nothing.
 
@@ -51,6 +52,7 @@ Total pass counts require this breakdown to be interpreted correctly. All counts
 | `a-mem`                 | 0                | 6          | 3               |
 | `agentmemory`           | 0                | 5          | 2               |
 | `atomicmemory`          | 0                | 6          | 3               |
+| `cognee`                | 0                | 7          | 4               |
 | `hindsight`             | 0                | 6          | 3               |
 | `mem0`                  | 0                | 6          | 3               |
 | `vector`                | 0                | 8          | 3               |
@@ -83,6 +85,7 @@ The drift score is the fraction of retrieved non-pinned beliefs originating from
 | `open-knowledge-format` | 2/12         | 0.17      | 0.2153     | 0.17            | 0.5694         | 3349.45          |
 | `yourmemory`            | 1/12         | 0.08      | 0.7365     | 0.08            | 0.1965         | 430.49           |
 | `supermemory`           | 1/12         | 0.08      | 0.7493     | 0.08            | 0.1825         | 172.32           |
+| `cognee`                | 1/12         | 0.08      | 0.8459     | 0.08            | 0.0772         | 4222.62          |
 | `gbrain`                | 1/12         | 0.08      | 0.0000     | 0.08            | ---            | 535.61           |
 | `agentmemory`           | 0/12         | 0.00      | 0.8087     | 0.00            | 0.1913         | 98.49            |
 | `atomicmemory`          | 0/12         | 0.00      | 0.8449     | 0.00            | 0.1551         | 355.08           |
@@ -183,6 +186,7 @@ test-results/baseline/
   retrieval-report-mem0.json
   retrieval-report-zep.json
   retrieval-report-hindsight.json
+  ...
 ```
 
 Each report contains per-case results including `passed`, `failures`, `retrievalPrecision`, `retrievalRecall`, and `retrievalLatencyMs`, plus aggregate `p50`/`p95` latency and mean precision/recall at the top level.
