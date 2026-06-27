@@ -1,0 +1,61 @@
+services:
+  postgres:
+    image: pgvector/pgvector@sha256:be400b50812ab2cc908ed78593fda2e51e3b45fe774fa637f1c7b16e68531d95
+    environment:
+      - POSTGRES_USER=cognee
+      - POSTGRES_PASSWORD=cognee
+      - POSTGRES_DB=cognee_db
+    volumes:
+      - cognee-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cognee -d cognee_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  cognee:
+    image: cognee/cognee@sha256:fd1d2b9cea2c22746da93b9e084433627c9c028c58b58530fada82014e6759f1
+    ports:
+      - "8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - cognee-data:/app/.cognee_system
+    environment:
+      - HOST=0.0.0.0
+      - REQUIRE_AUTHENTICATION=false
+      - ENABLE_BACKEND_ACCESS_CONTROL=false
+      - COGNEE_SKIP_CONNECTION_TEST=true
+      - LLM_PROVIDER=custom
+      - LLM_MODEL=openai/LLM_MODEL
+      - LLM_ENDPOINT=LLM_ENDPOINT
+      - LLM_API_KEY=LLM_API_KEY
+      - EMBEDDING_PROVIDER=ollama
+      - EMBEDDING_MODEL=mxbai-embed-large:latest
+      - EMBEDDING_ENDPOINT=http://192.168.1.154:11434/api/embed
+      - EMBEDDING_DIMENSIONS=1024
+      - HUGGINGFACE_TOKENIZER=mixedbread-ai/mxbai-embed-large-v1
+      - DB_PROVIDER=postgres
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USERNAME=cognee
+      - DB_PASSWORD=cognee
+      - DB_NAME=cognee_db
+      - VECTOR_DB_PROVIDER=pgvector
+      - GRAPH_DATABASE_PROVIDER=kuzu
+
+  cognee-wrapper:
+    build: .
+    ports:
+      - "8082:8082"
+    depends_on:
+      - cognee
+    environment:
+      - COGNEE_URL=http://cognee:8000
+
+volumes:
+  cognee-postgres-data:
+  cognee-data:
