@@ -7,37 +7,35 @@ PrecisionMemBench is a multi-dimensional retrieval benchmark for LLM memory syst
 - **Session-turn latency** - does retrieval latency degrade under session load relative to single-turn baselines
 - **Belief mutability** - do beliefs updated mid-session surface immediately within the same session via the alias enrichment flywheel
 
-These properties are independent. A system can pass on precision and fail on drift. A system can have clean single-turn latency and degrade 4x under session load. A system with no write-time mutation primitive cannot be scored on the fourth property at all, it is an architectural absence, not a performance difference.
-
 Every case specifies not just what the memory system must return, but what it must not. Noise is a hard failure, not an invisible inference cost.
 
-**89 cases** covering: alias resolution · scope disambiguation · supersession chain exclusion · fuzzy matching · cross-user isolation · budget eviction · ranking stability · session-level noise isolation under multi-turn topic drift
+**89 scored cases**, comprising 77 single-turn cases and 12 turn-level session assertions, covering alias resolution · scope disambiguation · supersession chain exclusion · fuzzy matching · cross-user isolation · budget eviction · ranking stability · session-level noise isolation under multi-turn topic drift
 
 Paper: [arXiv](https://arxiv.org/abs/2605.11325) — Dataset: [HuggingFace](https://huggingface.co/datasets/tenurehq/precisionmembench) — Leaderboard: [HuggingFace Spaces](https://huggingface.co/spaces/tenurehq/precisionmembench)
 
 ## Results
 
-### Retrieval Precision
+### Single-turn results
 
 | Provider                | Active passes | Total passes | Mean precision | Mean recall | Retrieval p50 (ms) | Ingestion total (s) |
 | ----------------------- | ------------- | ------------ | -------------- | ----------- | ------------------ | ------------------- |
 | `tenure`                | 43/43         | 77/77        | 1.00           | 1.00        | 9.77               | 1.00                |
-| `open-knowledge-format` | 18/18         | 36/77        | 0.47           | 0.91        | 3534.53            | 0.00                |
-| `supermemory`           | 4/4           | 21/77        | 0.22           | 0.71        | 69.41              | 5.20                |
-| `agentmemory`           | 0/0           | 7/77         | 0.17           | 0.97        | 82.28              | 1.10                |
-| `yourmemory`            | 0/0           | 21/77        | 0.17           | 0.88        | 313.39             | 16.40               |
-| `atomicmemory`          | 0/0           | 9/77         | 0.15           | 0.95        | 71.01              | 658.90              |
-| `gbrain`                | 5/5           | 34/77        | 0.14           | 0.17        | 543.84             | 28.60               |
-| `zep`                   | 0/0           | 9/77         | 0.09           | 0.95        | 124.36             | 897.00              |
-| `vector`                | 0/0           | 11/77        | 0.09           | 1.00        | 71.87              | ---                 |
-| `hindsight`             | 0/0           | 9/77         | 0.06           | 1.00        | 589.86             | 173.30              |
-| `mem0`                  | 0/0           | 9/77         | 0.06           | 0.99        | 64.94              | 111.30              |
-| `a-mem`                 | 0/0           | 9/77         | 0.06           | 0.99        | 13.80              | 178.80              |
-| `cognee`                | 0/0           | 11/77        | 0.05           | 0.92        | 2891.04            | 369.20              |
+| `open-knowledge-format` | 18/43         | 36/77        | 0.47           | 0.91        | 3534.53            | 0.00                |
+| `supermemory`           | 4/43          | 21/77        | 0.22           | 0.71        | 69.41              | 5.20                |
+| `agentmemory`           | 0/43          | 7/77         | 0.17           | 0.97        | 82.28              | 1.10                |
+| `yourmemory`            | 0/43          | 21/77        | 0.17           | 0.88        | 313.39             | 16.40               |
+| `atomicmemory`          | 0/43          | 9/77         | 0.15           | 0.95        | 71.01              | 658.90              |
+| `gbrain`                | 5/43          | 34/77        | 0.14           | 0.17        | 543.84             | 28.60               |
+| `zep`                   | 0/43          | 9/77         | 0.09           | 0.95        | 124.36             | 897.00              |
+| `vector`                | 0/43          | 11/77        | 0.09           | 1.00        | 71.87              | ---                 |
+| `hindsight`             | 0/43          | 9/77         | 0.06           | 1.00        | 589.86             | 173.30              |
+| `mem0`                  | 0/43          | 9/77         | 0.06           | 0.99        | 64.94              | 111.30              |
+| `a-mem`                 | 0/43          | 9/77         | 0.06           | 0.99        | 13.80              | 178.80              |
+| `cognee`                | 0/43          | 11/77        | 0.05           | 0.92        | 2891.04            | 369.20              |
 
-**Active passes** are the only column that answers whether the memory system itself retrieved correctly. A system cannot accumulate active passes by returning everything or nothing.
+Mean precision and recall are computed over the 43 cases that require active query-dependent retrieval. The single-turn pass count includes active, structural, and trivially empty cases.
 
-Recall of 1.0 does not imply precision. Every comparison system returns the correct belief alongside many incorrect ones and scores perfectly on recall as a result. Mean precision of 0.05 to 0.09 means roughly 10 to 18 irrelevant beliefs are returned alongside each correct one.
+High recall does not imply precise retrieval. Most comparison systems frequently return the correct belief alongside many unrelated beliefs, preserving recall while reducing precision. Other systems exhibit a different failure mode by returning few or no results and omitting the required belief. Mean precision of 0.05 to 0.09 indicates that, when relevant beliefs are retrieved, they are often accompanied by substantial unrelated state.
 
 ### Pass type breakdown
 
@@ -59,9 +57,9 @@ Total pass counts require this breakdown to be interpreted correctly. All counts
 | `yourmemory`            | 0                | 15         | 6               |
 | `zep`                   | 0                | 6          | 3               |
 
-- **Active retrieval pass** - the case carries a `retrievalPrecision` assertion and it is satisfied. This is the only pass type that demonstrates verified retrieval capability.
-- **Structural pass** - the case asserts scope isolation, supersession exclusion, or type routing without a precision assertion, and the structural property holds.
-- **Trivially empty pass** - the expected `relevantBeliefs` tier is empty by case design (empty query, `maxBeliefs: 0`, budget set to exact pinned count). Any system returning an empty set passes by construction.
+- **Active retrieval pass**: The case requires query-dependent belief IDs to be returned, and all asserted constraints are satisfied.
+- **Structural pass**: The case tests a constraint such as scope isolation, supersession exclusion, or type routing without requiring successful query-dependent retrieval.
+- **Trivially empty pass**: The case expects an empty `relevantBeliefs` tier because of its query or budget configuration.
 
 ### Embedding model invariance
 
@@ -71,51 +69,43 @@ Total pass counts require this breakdown to be interpreted correctly. All counts
 | mxbai-embed-large (1024) | 0.09      | 1.0    | 11/77  | 96.48     | 257.24   |
 | qwen3-8b (4096)          | 0.09      | 1.0    | 11/77  | 1130.95   | 2604.84  |
 
-All 11 passes in every configuration are structural or trivially empty. Active retrieval passes are 0 across all three models.
+Each configuration records 11 single-turn passes and 0 active retrieval passes.
 
-### Session eval — noise isolation under multi-turn drift
+### Session results
 
-The 12 session cases test three orthogonal properties: whether beliefs introduced during off-topic drift turns contaminate retrieval on subsequent unrelated turns, whether latency degrades under session load, and whether beliefs introduced mid-session surface within the same session window via the alias enrichment flywheel.
+The session evaluation contains 12 scored turn-level assertions across two scenarios. It records returned belief IDs, drift contamination, retrieval precision, and retrieval latency as session state changes.
 
-The drift score is the fraction of retrieved non-pinned beliefs originating from drift-turn topics; 0 is perfect isolation.
+The drift score is the fraction of retrieved beliefs originating from off-topic turns. A score of 0 means that no returned belief originated from an off-topic turn.
 
-| Provider                | Turns passed | Pass rate | Mean drift | Noise isolation | Mean precision | Session p50 (ms) |
-| ----------------------- | ------------ | --------- | ---------- | --------------- | -------------- | ---------------- |
-| `tenure`                | 12/12        | 1.00      | 0.0000     | 1.00            | 1.0000         | 47.79            |
-| `open-knowledge-format` | 2/12         | 0.17      | 0.2153     | 0.17            | 0.5694         | 3349.45          |
-| `yourmemory`            | 1/12         | 0.08      | 0.7365     | 0.08            | 0.1965         | 430.49           |
-| `supermemory`           | 1/12         | 0.08      | 0.7493     | 0.08            | 0.1825         | 172.32           |
-| `cognee`                | 1/12         | 0.08      | 0.8459     | 0.08            | 0.0772         | 4222.62          |
-| `gbrain`                | 1/12         | 0.08      | 0.0000     | 0.08            | ---            | 535.61           |
-| `agentmemory`           | 0/12         | 0.00      | 0.8087     | 0.00            | 0.1913         | 98.49            |
-| `atomicmemory`          | 0/12         | 0.00      | 0.8449     | 0.00            | 0.1551         | 355.08           |
-| `zep`                   | 0/12         | 0.00      | 0.8888     | 0.00            | 0.1112         | 418.13           |
-| `vector`                | 0/12         | 0.00      | 0.9142     | 0.00            | 0.0858         | 256.75           |
-| `a-mem`                 | 0/12         | 0.00      | 0.9259     | 0.00            | 0.0741         | 25.66            |
-| `hindsight`             | 0/12         | 0.00      | 0.9285     | 0.00            | 0.0715         | 1880.60          |
-| `mem0`                  | 0/12         | 0.00      | 0.9398     | 0.00            | 0.0602         | 377.93           |
+| Provider                | Turns passed | Pass rate | Mean drift | Mean precision | Session p50 (ms) |
+| ----------------------- | ------------ | --------- | ---------- | -------------- | ---------------- |
+| `tenure`                | 12/12        | 1.00      | 0.0000     | 1.0000         | 47.79            |
+| `open-knowledge-format` | 2/12         | 0.17      | 0.2153     | 0.5694         | 3349.45          |
+| `yourmemory`            | 1/12         | 0.08      | 0.7365     | 0.1965         | 430.49           |
+| `supermemory`           | 1/12         | 0.08      | 0.7493     | 0.1825         | 172.32           |
+| `cognee`                | 1/12         | 0.08      | 0.8459     | 0.0772         | 4222.62          |
+| `gbrain`                | 1/12         | 0.08      | 0.0000     | ---            | 535.61           |
+| `agentmemory`           | 0/12         | 0.00      | 0.8087     | 0.1913         | 98.49            |
+| `atomicmemory`          | 0/12         | 0.00      | 0.8449     | 0.1551         | 355.08           |
+| `zep`                   | 0/12         | 0.00      | 0.8888     | 0.1112         | 418.13           |
+| `vector`                | 0/12         | 0.00      | 0.9142     | 0.0858         | 256.75           |
+| `a-mem`                 | 0/12         | 0.00      | 0.9259     | 0.0741         | 25.66            |
+| `hindsight`             | 0/12         | 0.00      | 0.9285     | 0.0715         | 1880.60          |
+| `mem0`                  | 0/12         | 0.00      | 0.9398     | 0.0602         | 377.93           |
 
-‡ gbrain returned no results for these session cases. A drift score of 0.0 is recorded by construction; no beliefs were returned, so none could originate from drift topics. The correct belief also failed to surface, making this an empty-result failure rather than a genuine isolation pass.
+‡ For `gbrain`, the drift score is 0 because no beliefs were returned. The required belief was also absent, so the corresponding cases did not pass.
 
 ## Open Knowledge Format Run
 
 The Open Knowledge Format run is not a test of markdown as a storage format. It evaluates the runtime access pattern implied by the OKF spec when a bundle is placed into an AI tool today: files are available, the model may inspect them, and PMB scores the belief IDs corresponding to the files the model actually retrieves.
 
-## Pass taxonomy
-
-Understanding the three pass types is required to interpret any results table.
-
-**Active retrieval pass** — the case carries a `retrievalPrecision` assertion and it is satisfied. This is the only pass type that demonstrates verified retrieval capability. A system cannot accumulate active passes by returning everything or nothing.
-
-**Structural pass** — the case asserts scope isolation, supersession exclusion, or type routing without a precision assertion, and the structural property holds.
-
-**Trivially empty pass** — the expected `relevantBeliefs` tier is empty by case design (empty query, `maxBeliefs: 0`, budget set to exact pinned count). Any system returning an empty set passes by construction. `retrievalPrecision` is null for these cases.
-
-Without this breakdown, aggregate pass counts do not distinguish verified retrieval from structural or empty-set passes.
-
 ## Case categories
 
-The 89 cases cover the following categories. Session cases extend the corpus dynamically — beliefs are created and alias sets updated mid-session — validating that retrieval reflects the live store state rather than a snapshot.
+The benchmark contains 77 single-turn cases and 12 scored turn-level assertions across two session scenarios, for 89 scored cases in total. Session evaluation extends the corpus dynamically, with beliefs created and alias sets updated during the session.
+
+The categories define practical correctness requirements rather than prescribing a retrieval architecture. Providers may satisfy them through filtering, indexing, ranking, graph traversal, model-based selection, or another mechanism. The benchmark evaluates only whether the resulting belief set contains the required state and excludes state that would be misleading, obsolete, irrelevant, or unauthorized.
+
+Benchmark categories are expressed as practical correctness requirements. Scoring examines required and prohibited belief IDs without requiring providers to adopt the proposed belief schema, retrieval pipeline, or output organization.
 
 | Category                         | Cases  |
 | -------------------------------- | ------ |
@@ -135,45 +125,62 @@ The 89 cases cover the following categories. Session cases extend the corpus dyn
 | Cold start behavior              | 1      |
 | **Total**                        | **89** |
 
-**Alias resolution** — whether variant surface forms (short-form, natural-language, multi-word) resolve to the correct belief.
+**Alias resolution**  
+Whether users can refer to a stored concept through shorthand, abbreviations, or natural variations without receiving unrelated memories that must be disambiguated downstream.
 
-**Scope disambiguation** — whether scope alone correctly discriminates between beliefs sharing an alias across different domain scopes.
+**Scope disambiguation**  
+Whether the same name can be used in different projects or domains without information from one context appearing in another.
 
-**Supersession chain exclusion** — whether superseded beliefs are excluded at depth in a multi-hop chain. A query matching both a superseded and a superseding term must surface neither superseded belief; the active terminal belief surfaces via the pinned facts tier.
+**Supersession chain exclusion**  
+Whether changed decisions and preferences stop influencing current behavior while the historical record remains available for audit. Queries using outdated terminology must not restore obsolete guidance.
 
-**Fuzzy matching and prefix guards** — whether the retrieval layer correctly handles transpositions and near-miss terms while blocking prefix mismatches that edit distance alone would permit. Both pass and fail behaviors are documented as intentional design properties.
+**Fuzzy matching and prefix guards**  
+Whether ordinary misspellings and transpositions still reach the intended memory without allowing similarly spelled but unrelated terms to produce false matches.
 
-**Counter-signal retrieval** — whether a query referencing a rejected or superseded term surfaces the active replacement belief via a counter-signal alias. Both cases carry an active retrieval precision assertion.
+**Counter-signal retrieval**  
+Whether asking about a rejected or replaced option surfaces the current decision that should govern the response, rather than obsolete guidance or an empty result.
 
-**Relation expansion** — whether relation-type beliefs correctly surface and expand their participants via a one-hop join, with participant type routing and scope filters applied during expansion.
+**Relation expansion**  
+Whether a query about a dependency or relationship returns enough associated state to make the relationship useful, without introducing participants that are irrelevant or outside the active context.
 
-**Session-level noise isolation** — whether beliefs introduced during off-topic drift turns contaminate retrieval on subsequent unrelated turns. The primary case is a 10-turn session with topic drift across 8 turns followed by an implicit return; per-turn assertions verify isolation at re-entry.
+**Session-level noise isolation**  
+Whether a conversation can move through unrelated topics and later return to an earlier topic without memories from the intervening discussion contaminating the returned context.
 
-**Budget eviction and capacity** — whether the retrieval layer handles slot constraints correctly, including graceful empty returns, single-slot priority, and resistance to high-reinforcement flooding at the budget ceiling.
+**Budget eviction and capacity**  
+Whether limited context capacity is allocated to the state that must be present, including when no slots are available, only one slot remains, or several memories compete for a full budget.
 
-**Design boundary cases** — cases where both pass and fail behaviors are documented as intentional design properties.
+**Design boundary cases**  
+Whether empty, weakly related, ambiguous, or intentionally unsupported queries produce predictable results instead of filling the context with low-confidence or misleading memories.
 
-**Type routing and open questions** — whether open questions are retrieved by a separate path that returns only pinned open questions for the active scope and are never returned by text search.
+**Type routing and open questions**  
+Whether downstream consumers can distinguish unsettled questions from established state, and whether resolved questions cease to appear as current uncertainty.
 
-**Ranking stability** — whether retrieval results remain stable across equivalent queries without score-driven reordering artifacts.
+**Ranking stability**  
+Whether specific and unambiguous queries produce a stable, useful ordering rather than allowing weaker matches or incidental scoring differences to displace the intended belief.
 
-**Cross-user isolation** — whether beliefs belonging to a second user are structurally excluded from a primary user's retrieval regardless of semantic proximity.
+**Cross-user isolation**  
+Whether one user's stored information remains inaccessible to another user regardless of textual or semantic similarity.
 
-**Cold start behavior** — whether a new user with zero seeded beliefs returns a fully empty context without error.
+**Cold-start behavior**  
+Whether a user with no stored state receives a clean empty result rather than an error, fabricated context, or information inherited from another user.
 
-**Persona prelude content** — whether the persona prelude generated from the accumulated belief state is injected correctly and reflects the live belief store.
+**Persona prelude content**  
+Whether durable user preferences and communication guidance remain consistently available across topics without depending on incidental similarity to the current query.
 
 ## Metrics
 
-Four metrics are recorded per case:
+Cases are scored against the belief IDs they require and prohibit.
 
-- **Retrieval precision and recall** — computed over the `relevantBeliefs` tier on cases where that tier carries an active assertion. Cases where this metric is structurally inapplicable record null and are excluded from aggregate computation.
-- **Pinned coverage** — recorded on cases where the `pinnedFacts` tier is asserted.
-- **Question precision and recall** — recorded on cases where the `openQuestions` tier is asserted.
+A case passes when every required belief ID is returned and no prohibited belief ID is returned. If a case requires an empty result, it passes only when no belief IDs are returned.
 
-A pass requires all asserted tiers to be simultaneously satisfied. A case with `retrievalPrecision: 1.0` that also carries an unmet `pinnedCoverage` assertion fails.
+The benchmark reports:
 
-**Drift score** is reported for session cases: the fraction of retrieved non-pinned beliefs originating from drift-turn topics. 0 is perfect isolation.
+- **Retrieval precision and recall** for the `relevantBeliefs` tier.
+- **Pinned coverage** for the `pinnedFacts` tier.
+- **Question precision and recall** for the `openQuestions` tier.
+- **Drift score** for session cases, measured as the fraction of retrieved non-pinned beliefs originating from drift-turn topics. A score of 0 indicates perfect isolation.
+
+Metrics that do not apply to a case are recorded as null and excluded from aggregate calculations.
 
 ## Baseline reports
 
@@ -311,27 +318,6 @@ npm run test:eval
 ## Provider wrappers
 
 Each comparison provider is wrapped with a thin FastAPI service that normalises the `/add` / `/search` / `/reset` contract. Wrappers are in `wrappers/`.
-
-### Mem0
-
-```bash
-cd wrappers && docker compose up
-```
-
-Requires `MEM0_URL`, an Ollama instance for embeddings, and a running Qdrant container (included in `docker-compose.yml`).
-
-### Hindsight
-
-```bash
-cd wrappers
-HINDSIGHT_URL=http://localhost:8888 python hindsight_wrapper.py
-```
-
-### Zep
-
-```bash
-cd wrappers && docker compose up
-```
 
 ## Citation
 
