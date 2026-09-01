@@ -7,11 +7,13 @@ PrecisionMemBench is a multi-dimensional retrieval benchmark for LLM memory syst
 - **Session-turn latency** - does retrieval latency degrade under session load relative to single-turn baselines
 - **Belief mutability** - do beliefs updated mid-session surface immediately within the same session via the alias enrichment flywheel
 
-Every case specifies not just what the memory system must return, but what it must not. Noise is a hard failure, not an invisible inference cost.
+Each case specifies what memory must be returned and shouldn't be returned. Any memory that is included that shouldn't be returned results in a failure for that case.
 
 **89 scored cases**, comprising 77 single-turn cases and 12 turn-level session assertions, covering alias resolution · scope disambiguation · supersession chain exclusion · fuzzy matching · cross-user isolation · budget eviction · ranking stability · session-level noise isolation under multi-turn topic drift
 
 Paper: [arXiv](https://arxiv.org/abs/2605.11325) — Dataset: [HuggingFace](https://huggingface.co/datasets/tenurehq/precisionmembench) — Leaderboard: [HuggingFace Spaces](https://huggingface.co/spaces/tenurehq/precisionmembench)
+
+**_Memory and belief are used interchangably._**
 
 ## Results
 
@@ -35,11 +37,11 @@ Paper: [arXiv](https://arxiv.org/abs/2605.11325) — Dataset: [HuggingFace](http
 
 Mean precision and recall are computed over the 43 cases that require active query-dependent retrieval. The single-turn pass count includes active, structural, and trivially empty cases.
 
-High recall does not imply precise retrieval. Most comparison systems frequently return the correct belief alongside many unrelated beliefs, preserving recall while reducing precision. Other systems exhibit a different failure mode by returning few or no results and omitting the required belief. Mean precision of 0.05 to 0.09 indicates that, when relevant beliefs are retrieved, they are often accompanied by substantial unrelated state.
+A high recall score doesn't mean the retrieval is precise. Most comparison systems frequently return the correct belief alongside many unrelated beliefs, preserving recall while reducing precision. Other systems exhibit a different failure mode by returning few or no results and omitting the required belief. A low precision score indicates that, when relevant memories are retrieved, they are often accompanied by substantial memories unrelated to the query.
 
 ### Pass type breakdown
 
-Total pass counts require this breakdown to be interpreted correctly. All counts are over the 77 non-session cases.
+The counts bloew represent the 77 single-turn cases.
 
 | Provider                | Active retrieval | Structural | Trivially empty |
 | ----------------------- | ---------------- | ---------- | --------------- |
@@ -73,7 +75,7 @@ Each configuration records 11 single-turn passes and 0 active retrieval passes.
 
 ### Session results
 
-The session evaluation contains 12 scored turn-level assertions across two scenarios. It records returned belief IDs, drift contamination, retrieval precision, and retrieval latency as session state changes.
+The session evaluation contains 12 scored turn-level assertions across two sessions. It records returned belief IDs, drift contamination, retrieval precision, and retrieval latency as session state changes.
 
 The drift score is the fraction of retrieved beliefs originating from off-topic turns. A score of 0 means that no returned belief originated from an off-topic turn.
 
@@ -97,7 +99,7 @@ The drift score is the fraction of retrieved beliefs originating from off-topic 
 
 ## Open Knowledge Format Run
 
-The Open Knowledge Format run is not a test of markdown as a storage format. It evaluates the runtime access pattern implied by the OKF spec when a bundle is placed into an AI tool today: files are available, the model may inspect them, and PMB scores the belief IDs corresponding to the files the model actually retrieves.
+The Open Knowledge Format run is not a test of markdown as a storage format. It evaluates the runtime access pattern implied by the OKF spec when a bundle is placed into an AI tool today: files are available, the model may inspect them, and PMB scores the belief IDs corresponding to the files the model retrieves.
 
 ## Case categories
 
@@ -211,7 +213,13 @@ When you run against your own provider, compare your output in `test-results/` d
 ### 1. Install dependencies
 
 ```bash
-npm install
+npm i
+```
+
+If you want to run the raw embedding model runs:
+
+```bash
+npm i mongodb
 ```
 
 ### 2. Run against a comparison provider

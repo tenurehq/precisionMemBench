@@ -1,7 +1,7 @@
 {
   "name": "precisionmembench",
   "version": "1.0.0",
-  "description": "**The first retrieval-precision benchmark for LLM memory systems.**",
+  "description": "Retrieval-precision benchmark for LLM memory systems.",
   "license": "MIT",
   "author": "tenurehq",
   "type": "module",
@@ -13,11 +13,8 @@
   },
   "devDependencies": {
     "@types/node": "25.9.1",
-    "ava": "8.0.0",
-    "tsx": "4.22.3"
-  },
-  "dependencies": {
-    "mongodb": "7.2.0"
+    "ava": "8.0.1",
+    "tsx": "4.23.13"
   },
   "ava": {
     "timeout": "120s",
