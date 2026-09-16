@@ -1,11 +1,11 @@
 {
   "provider": "yourmemory",
   "retrieval": {
-    "meanLatencyMs": 361.81,
-    "p50LatencyMs": 313.39,
-    "p95LatencyMs": 548.07,
+    "meanLatencyMs": 495.25,
+    "p50LatencyMs": 464.08,
+    "p95LatencyMs": 713.3,
     "caseCount": 77,
-    "meanPrecision": 0.1669,
+    "meanPrecision": 0.169,
     "meanRecall": 0.8782,
     "totalPassed": 21,
     "totalCases": 77,
@@ -22,7 +22,7 @@
         "caseCount": 23,
         "passed": 0,
         "failed": 23,
-        "meanPrecision": 0.2248,
+        "meanPrecision": 0.229,
         "meanRecall": 0.8528
       },
       {
@@ -38,7 +38,7 @@
         "caseCount": 7,
         "passed": 2,
         "failed": 5,
-        "meanPrecision": 0.1019,
+        "meanPrecision": 0.1067,
         "meanRecall": 0.6
       },
       {
@@ -141,7 +141,7 @@
       "pinnedCoverage": 1,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 428.2
+      "retrievalLatencyMs": 640.48
     },
     {
       "caseId": "happy-alias-match-kubernetes",
@@ -157,13 +157,12 @@
         "b-zero-reinforcement-fresh",
         "b-redis-code",
         "b-auth-depends-redis",
-        "b-react-entity",
-        "b-auth-open-q"
+        "b-react-entity"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.14285714285714285,
+      "retrievalPrecision": 0.16666666666666666,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
@@ -172,10 +171,9 @@
         "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
         "unexpected belief in relevantBeliefs: b-redis-code",
         "unexpected belief in relevantBeliefs: b-auth-depends-redis",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "unexpected belief in relevantBeliefs: b-react-entity"
       ],
-      "retrievalLatencyMs": 548.07
+      "retrievalLatencyMs": 444.53
     },
     {
       "caseId": "alias-kube-resolves",
@@ -191,13 +189,12 @@
         "b-hosting-resolved",
         "b-zero-reinforcement-fresh",
         "b-redis-code",
-        "b-auth-depends-redis",
-        "b-auth-open-q"
+        "b-auth-depends-redis"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.2857142857142857,
+      "retrievalPrecision": 0.3333333333333333,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
@@ -205,10 +202,9 @@
         "unexpected belief in relevantBeliefs: b-hosting-resolved",
         "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
         "unexpected belief in relevantBeliefs: b-redis-code",
-        "unexpected belief in relevantBeliefs: b-auth-depends-redis",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "unexpected belief in relevantBeliefs: b-auth-depends-redis"
       ],
-      "retrievalLatencyMs": 328.23
+      "retrievalLatencyMs": 446.01
     },
     {
       "caseId": "alias-gha-resolves",
@@ -229,7 +225,7 @@
       "failures": [
         "missing expected belief: b-ci-gha-entity"
       ],
-      "retrievalLatencyMs": 448.66
+      "retrievalLatencyMs": 651.9
     },
     {
       "caseId": "long-query-rambling-kubernetes",
@@ -245,13 +241,12 @@
         "b-zero-reinforcement-fresh",
         "b-redis-code",
         "b-auth-depends-redis",
-        "b-react-entity",
-        "b-auth-open-q"
+        "b-react-entity"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.14285714285714285,
+      "retrievalPrecision": 0.16666666666666666,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
@@ -260,10 +255,9 @@
         "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
         "unexpected belief in relevantBeliefs: b-redis-code",
         "unexpected belief in relevantBeliefs: b-auth-depends-redis",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "unexpected belief in relevantBeliefs: b-react-entity"
       ],
-      "retrievalLatencyMs": 344.64
+      "retrievalLatencyMs": 485.84
     },
     {
       "caseId": "out-of-scope-coin-collecting",
@@ -277,7 +271,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 443.35
+      "retrievalLatencyMs": 643.67
     },
     {
       "caseId": "happy-writing-scope",
@@ -307,7 +301,7 @@
         "unexpected belief in relevantBeliefs: b-auth-depends-redis",
         "unexpected belief in relevantBeliefs: b-pov-shift-entity"
       ],
-      "retrievalLatencyMs": 309.61
+      "retrievalLatencyMs": 990.41
     },
     {
       "caseId": "conflict-scope-disambiguation-redis-writing",
@@ -338,7 +332,7 @@
         "unexpected belief in relevantBeliefs: b-react-entity",
         "unexpected belief in relevantBeliefs: b-kubernetes-entity"
       ],
-      "retrievalLatencyMs": 782.13
+      "retrievalLatencyMs": 446.57
     },
     {
       "caseId": "conflict-scope-disambiguation-redis-code",
@@ -370,7 +364,7 @@
         "unexpected belief in relevantBeliefs: b-auth-open-q",
         "unexpected belief in relevantBeliefs: b-protagonist-entity"
       ],
-      "retrievalLatencyMs": 300.68
+      "retrievalLatencyMs": 463.91
     },
     {
       "caseId": "multi-scope-redis-both-surfaces",
@@ -403,7 +397,7 @@
         "unexpected belief in relevantBeliefs: b-authorship-mode",
         "unexpected belief in relevantBeliefs: b-auth-open-q"
       ],
-      "retrievalLatencyMs": 303.59
+      "retrievalLatencyMs": 447.8
     },
     {
       "caseId": "conflict-mongodb-supersedes-sqlalchemy",
@@ -434,7 +428,7 @@
         "unexpected belief in relevantBeliefs: b-pinned-resolved-interaction",
         "unexpected belief in relevantBeliefs: b-hosting-resolved"
       ],
-      "retrievalLatencyMs": 304.26
+      "retrievalLatencyMs": 450.14
     },
     {
       "caseId": "edge-empty-query",
@@ -453,7 +447,7 @@
       "pinnedCoverage": 1,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 0.07
+      "retrievalLatencyMs": 0.06
     },
     {
       "caseId": "edge-short-query-raw-passthrough",
@@ -485,7 +479,7 @@
         "unexpected belief in relevantBeliefs: b-vitest-pref",
         "unexpected belief in relevantBeliefs: b-react-entity"
       ],
-      "retrievalLatencyMs": 295.69
+      "retrievalLatencyMs": 446.99
     },
     {
       "caseId": "isolation-user-scoping",
@@ -511,7 +505,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 434.69
+      "retrievalLatencyMs": 713.3
     },
     {
       "caseId": "questions-pinned-active-only",
@@ -530,7 +524,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 438.43
+      "retrievalLatencyMs": 628.82
     },
     {
       "caseId": "alias-ts-resolves",
@@ -562,7 +556,7 @@
         "unexpected belief in relevantBeliefs: b-comm-recommendation",
         "unexpected belief in relevantBeliefs: b-authorship-mode"
       ],
-      "retrievalLatencyMs": 645.52
+      "retrievalLatencyMs": 464.22
     },
     {
       "caseId": "alias-mongo-resolves",
@@ -592,7 +586,7 @@
         "unexpected belief in relevantBeliefs: b-fastify-pref",
         "unexpected belief in relevantBeliefs: b-pov-shift-entity"
       ],
-      "retrievalLatencyMs": 303.83
+      "retrievalLatencyMs": 464.08
     },
     {
       "caseId": "alias-reactjs-resolves",
@@ -624,7 +618,7 @@
         "unexpected belief in relevantBeliefs: b-ts-pref",
         "unexpected belief in relevantBeliefs: b-fastify-pref"
       ],
-      "retrievalLatencyMs": 305.06
+      "retrievalLatencyMs": 544.5
     },
     {
       "caseId": "alias-protagonist-resolves",
@@ -655,7 +649,7 @@
         "unexpected belief in relevantBeliefs: b-comm-recommendation",
         "unexpected belief in relevantBeliefs: b-authorship-mode"
       ],
-      "retrievalLatencyMs": 500.61
+      "retrievalLatencyMs": 663.8
     },
     {
       "caseId": "canonical-name-match-mara",
@@ -685,7 +679,7 @@
         "unexpected belief in relevantBeliefs: b-auth-depends-redis",
         "unexpected belief in relevantBeliefs: b-pov-shift-entity"
       ],
-      "retrievalLatencyMs": 334.36
+      "retrievalLatencyMs": 462.78
     },
     {
       "caseId": "alias-pov-shift-resolves",
@@ -718,7 +712,7 @@
         "unexpected belief in relevantBeliefs: b-authorship-mode",
         "unexpected belief in relevantBeliefs: b-ts-pref"
       ],
-      "retrievalLatencyMs": 302.44
+      "retrievalLatencyMs": 504.46
     },
     {
       "caseId": "alias-base-class-retrieves-composition",
@@ -750,7 +744,7 @@
         "unexpected belief in relevantBeliefs: b-comm-response-length",
         "unexpected belief in relevantBeliefs: b-ts-pref"
       ],
-      "retrievalLatencyMs": 312.03
+      "retrievalLatencyMs": 464.63
     },
     {
       "caseId": "alias-exceptions-retrieves-error-handling",
@@ -782,7 +776,7 @@
         "unexpected belief in relevantBeliefs: b-composition-inheritance",
         "unexpected belief in relevantBeliefs: b-dead-letter-queue"
       ],
-      "retrievalLatencyMs": 308.79
+      "retrievalLatencyMs": 472.91
     },
     {
       "caseId": "filter-resolved-at-excluded",
@@ -815,7 +809,7 @@
         "unexpected belief in relevantBeliefs: b-auth-open-q",
         "unexpected belief in relevantBeliefs: b-redis-code"
       ],
-      "retrievalLatencyMs": 303.08
+      "retrievalLatencyMs": 460.55
     },
     {
       "caseId": "scope-bleed-questions-code-excludes-writing",
@@ -828,10 +822,10 @@
       "relevantBeliefs": [
         "b-hosting-resolved",
         "b-protagonist-entity",
-        "b-auth-open-q",
         "b-kubernetes-entity",
         "b-redis-writing",
         "b-auth-depends-redis",
+        "b-auth-open-q",
         "b-redis-code"
       ],
       "retrievedQuestions": [
@@ -844,13 +838,13 @@
       "failures": [
         "unexpected belief in relevantBeliefs: b-hosting-resolved",
         "unexpected belief in relevantBeliefs: b-protagonist-entity",
-        "unexpected belief in relevantBeliefs: b-auth-open-q",
         "unexpected belief in relevantBeliefs: b-kubernetes-entity",
         "unexpected belief in relevantBeliefs: b-redis-writing",
         "unexpected belief in relevantBeliefs: b-auth-depends-redis",
+        "unexpected belief in relevantBeliefs: b-auth-open-q",
         "unexpected belief in relevantBeliefs: b-redis-code"
       ],
-      "retrievalLatencyMs": 436.54
+      "retrievalLatencyMs": 680.46
     },
     {
       "caseId": "persona-prelude-content-present",
@@ -881,7 +875,7 @@
         "unexpected belief in relevantBeliefs: b-pinned-resolved-interaction",
         "unexpected belief in relevantBeliefs: b-hosting-resolved"
       ],
-      "retrievalLatencyMs": 447.33
+      "retrievalLatencyMs": 671.39
     },
     {
       "caseId": "edge-short-query-score-clears",
@@ -902,7 +896,7 @@
       "failures": [
         "missing expected belief: b-kubernetes-entity"
       ],
-      "retrievalLatencyMs": 284.52
+      "retrievalLatencyMs": 443.25
     },
     {
       "caseId": "edge-whitespace-query",
@@ -940,7 +934,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 417.68
+      "retrievalLatencyMs": 643.06
     },
     {
       "caseId": "user-edited-cross-scope-surfaces",
@@ -959,7 +953,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 305.2
+      "retrievalLatencyMs": 443.22
     },
     {
       "caseId": "user-edited-absent-without-flag",
@@ -978,7 +972,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 291.25
+      "retrievalLatencyMs": 443.54
     },
     {
       "caseId": "ranking-canonical-name-over-content",
@@ -1010,7 +1004,7 @@
         "unexpected belief in relevantBeliefs: b-comm-response-length",
         "unexpected belief in relevantBeliefs: b-ts-pref"
       ],
-      "retrievalLatencyMs": 531.86
+      "retrievalLatencyMs": 471.53
     },
     {
       "caseId": "messy-typo-blind-spot",
@@ -1040,7 +1034,7 @@
         "unexpected belief in relevantBeliefs: b-comm-recommendation",
         "unexpected belief in relevantBeliefs: b-react-entity"
       ],
-      "retrievalLatencyMs": 301.49
+      "retrievalLatencyMs": 460.69
     },
     {
       "caseId": "messy-all-caps-case-insensitive",
@@ -1072,7 +1066,7 @@
         "unexpected belief in relevantBeliefs: b-ts-pref",
         "unexpected belief in relevantBeliefs: b-fastify-pref"
       ],
-      "retrievalLatencyMs": 317.55
+      "retrievalLatencyMs": 471.46
     },
     {
       "caseId": "messy-filler-heavy-extraction",
@@ -1104,7 +1098,7 @@
         "unexpected belief in relevantBeliefs: b-composition-inheritance",
         "unexpected belief in relevantBeliefs: b-dead-letter-queue"
       ],
-      "retrievalLatencyMs": 311.9
+      "retrievalLatencyMs": 475.19
     },
     {
       "caseId": "messy-negation-surfaces-topic",
@@ -1136,7 +1130,7 @@
         "unexpected belief in relevantBeliefs: b-comm-response-length",
         "unexpected belief in relevantBeliefs: b-ts-pref"
       ],
-      "retrievalLatencyMs": 318.48
+      "retrievalLatencyMs": 458.62
     },
     {
       "caseId": "messy-compound-surfaces-two-beliefs",
@@ -1167,7 +1161,7 @@
         "unexpected belief in relevantBeliefs: b-ts-pref",
         "unexpected belief in relevantBeliefs: b-react-expertise"
       ],
-      "retrievalLatencyMs": 439.1
+      "retrievalLatencyMs": 654.86
     },
     {
       "caseId": "cap-stress-compound-six-entities",
@@ -1198,7 +1192,7 @@
         "missing expected belief: b-mongo-raw-driver",
         "missing expected belief: b-ts-pref"
       ],
-      "retrievalLatencyMs": 438.7
+      "retrievalLatencyMs": 660.98
     },
     {
       "caseId": "cap-stress-kitchen-sink-exceeds-twelve",
@@ -1232,7 +1226,7 @@
         "missing expected belief: b-mongo-raw-driver",
         "missing expected belief: b-ts-pref"
       ],
-      "retrievalLatencyMs": 310.4
+      "retrievalLatencyMs": 461.24
     },
     {
       "caseId": "cap-stress-late-position-entity-at-risk",
@@ -1245,9 +1239,9 @@
       "relevantBeliefs": [
         "b-ci-gha-entity",
         "b-react-entity",
-        "b-error-handling",
         "b-kubernetes-entity",
-        "b-sqlalchemy-superseded"
+        "b-error-handling",
+        "b-functional-pipeline"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -1257,11 +1251,11 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded",
+        "unexpected belief in relevantBeliefs: b-functional-pipeline",
         "missing expected belief: b-mongo-raw-driver",
         "missing expected belief: b-ts-pref"
       ],
-      "retrievalLatencyMs": 467.95
+      "retrievalLatencyMs": 664.18
     },
     {
       "caseId": "fuzzy-single-edit-fires-non-pinned",
@@ -1293,7 +1287,7 @@
         "unexpected belief in relevantBeliefs: b-composition-inheritance",
         "unexpected belief in relevantBeliefs: b-dead-letter-queue"
       ],
-      "retrievalLatencyMs": 447.91
+      "retrievalLatencyMs": 651.97
     },
     {
       "caseId": "fuzzy-scope-filter-discriminates-after-fuzzy-fires",
@@ -1309,13 +1303,12 @@
         "b-auth-depends-redis",
         "b-react-entity",
         "b-kubernetes-entity",
-        "b-protagonist-entity",
-        "b-auth-open-q"
+        "b-protagonist-entity"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.14285714285714285,
+      "retrievalPrecision": 0.16666666666666666,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
@@ -1324,10 +1317,9 @@
         "unexpected belief in relevantBeliefs: b-auth-depends-redis",
         "unexpected belief in relevantBeliefs: b-react-entity",
         "unexpected belief in relevantBeliefs: b-kubernetes-entity",
-        "unexpected belief in relevantBeliefs: b-protagonist-entity",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "unexpected belief in relevantBeliefs: b-protagonist-entity"
       ],
-      "retrievalLatencyMs": 441.98
+      "retrievalLatencyMs": 643.11
     },
     {
       "caseId": "fuzzy-prefix-blocks-transitive-match",
@@ -1346,7 +1338,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 444.62
+      "retrievalLatencyMs": 656.88
     },
     {
       "caseId": "fuzzy-abbreviation-prefix-blind-spot",
@@ -1365,7 +1357,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 423.07
+      "retrievalLatencyMs": 635.97
     },
     {
       "caseId": "fuzzy-two-edit-transposition-blocked",
@@ -1386,7 +1378,7 @@
       "failures": [
         "missing expected belief: b-ts-pref"
       ],
-      "retrievalLatencyMs": 295.19
+      "retrievalLatencyMs": 437.76
     },
     {
       "caseId": "fuzzy-single-term-only-signal",
@@ -1407,7 +1399,7 @@
       "failures": [
         "missing expected belief: b-mongo-raw-driver"
       ],
-      "retrievalLatencyMs": 502.41
+      "retrievalLatencyMs": 635.02
     },
     {
       "caseId": "universal-scope-belief-content-in-persona-prelude",
@@ -1421,7 +1413,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 444.44
+      "retrievalLatencyMs": 851.92
     },
     {
       "caseId": "type-isolation-open-question-not-in-relevant",
@@ -1454,7 +1446,7 @@
         "unexpected belief in relevantBeliefs: b-redis-code",
         "unexpected belief in relevantBeliefs: b-hosting-resolved"
       ],
-      "retrievalLatencyMs": 299.64
+      "retrievalLatencyMs": 444.55
     },
     {
       "caseId": "multi-hop-supersession-chain-all-excluded",
@@ -1485,7 +1477,7 @@
         "unexpected belief in relevantBeliefs: b-react-entity",
         "unexpected belief in relevantBeliefs: b-pov-shift-entity"
       ],
-      "retrievalLatencyMs": 310.64
+      "retrievalLatencyMs": 437.11
     },
     {
       "caseId": "cross-scope-one-empty-domain-does-not-degrade",
@@ -1517,7 +1509,7 @@
         "unexpected belief in relevantBeliefs: b-auth-open-q",
         "unexpected belief in relevantBeliefs: b-protagonist-entity"
       ],
-      "retrievalLatencyMs": 301.16
+      "retrievalLatencyMs": 449.25
     },
     {
       "caseId": "ranking-orderedbefore-alias-beats-content",
@@ -1548,7 +1540,7 @@
         "unexpected belief in relevantBeliefs: b-ts-pref",
         "unexpected belief in relevantBeliefs: b-comm-pushback"
       ],
-      "retrievalLatencyMs": 437.83
+      "retrievalLatencyMs": 641.25
     },
     {
       "caseId": "cold-start-user-no-beliefs",
@@ -1562,7 +1554,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 422.88
+      "retrievalLatencyMs": 118.32
     },
     {
       "caseId": "narrator-voice-pinned-in-own-scope",
@@ -1605,7 +1597,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 308.85
+      "retrievalLatencyMs": 429.75
     },
     {
       "caseId": "why-it-matters-not-indexed-blind-spot",
@@ -1638,7 +1630,7 @@
         "unexpected belief in relevantBeliefs: b-ts-pref",
         "unexpected belief in relevantBeliefs: b-fastify-pref"
       ],
-      "retrievalLatencyMs": 302.21
+      "retrievalLatencyMs": 441.66
     },
     {
       "caseId": "budget-ceiling-evicts-relevant-beliefs",
@@ -1657,7 +1649,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 438.72
+      "retrievalLatencyMs": 641.08
     },
     {
       "caseId": "negative-guidance-mongoose",
@@ -1687,7 +1679,7 @@
         "unexpected belief in relevantBeliefs: b-fastify-pref",
         "unexpected belief in relevantBeliefs: b-pov-shift-entity"
       ],
-      "retrievalLatencyMs": 435.52
+      "retrievalLatencyMs": 639.64
     },
     {
       "caseId": "recency-tiebreak-reinforcement",
@@ -1738,7 +1730,7 @@
         "unexpected belief in relevantBeliefs: b-auth-open-q",
         "unexpected belief in relevantBeliefs: b-hosting-resolved"
       ],
-      "retrievalLatencyMs": 444.65
+      "retrievalLatencyMs": 650.93
     },
     {
       "caseId": "cross-scope-non-user-edited-blocked",
@@ -1754,8 +1746,7 @@
         "b-redis-code",
         "b-auth-depends-redis",
         "b-narrator-voice",
-        "b-pov-shift-entity",
-        "b-auth-open-q"
+        "b-pov-shift-entity"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -1771,10 +1762,9 @@
         "unexpected belief in relevantBeliefs: b-redis-code",
         "unexpected belief in relevantBeliefs: b-auth-depends-redis",
         "unexpected belief in relevantBeliefs: b-narrator-voice",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "unexpected belief in relevantBeliefs: b-pov-shift-entity"
       ],
-      "retrievalLatencyMs": 1155.47
+      "retrievalLatencyMs": 447.54
     },
     {
       "caseId": "alias-two-word-shingle-dead-letter",
@@ -1804,7 +1794,7 @@
         "unexpected belief in relevantBeliefs: b-redis-code",
         "unexpected belief in relevantBeliefs: b-redis-writing"
       ],
-      "retrievalLatencyMs": 300.33
+      "retrievalLatencyMs": 476.09
     },
     {
       "caseId": "alias-dlq-abbreviation-resolves",
@@ -1834,7 +1824,7 @@
         "unexpected belief in relevantBeliefs: b-redis-code",
         "unexpected belief in relevantBeliefs: b-redis-writing"
       ],
-      "retrievalLatencyMs": 297.1
+      "retrievalLatencyMs": 447.38
     },
     {
       "caseId": "counter-signal-jest-surfaces-vitest",
@@ -1864,7 +1854,7 @@
         "unexpected belief in relevantBeliefs: b-ts-pref",
         "unexpected belief in relevantBeliefs: b-react-entity"
       ],
-      "retrievalLatencyMs": 313.96
+      "retrievalLatencyMs": 446.91
     },
     {
       "caseId": "relation-type-expands-participants",
@@ -1895,7 +1885,7 @@
         "unexpected belief in relevantBeliefs: b-redis-writing",
         "unexpected belief in relevantBeliefs: b-hosting-resolved"
       ],
-      "retrievalLatencyMs": 314.93
+      "retrievalLatencyMs": 445.82
     },
     {
       "caseId": "relation-participant-open-question-routes-correctly",
@@ -1926,7 +1916,7 @@
         "unexpected belief in relevantBeliefs: b-redis-writing",
         "unexpected belief in relevantBeliefs: b-hosting-resolved"
       ],
-      "retrievalLatencyMs": 300.69
+      "retrievalLatencyMs": 452.36
     },
     {
       "caseId": "relation-expansion-respects-scope-filter",
@@ -1958,7 +1948,7 @@
         "unexpected belief in relevantBeliefs: b-redis-writing",
         "unexpected belief in relevantBeliefs: b-hosting-resolved"
       ],
-      "retrievalLatencyMs": 313.39
+      "retrievalLatencyMs": 448.14
     },
     {
       "caseId": "subtype-expertise-retrieval",
@@ -1990,7 +1980,7 @@
         "unexpected belief in relevantBeliefs: b-comm-response-length",
         "unexpected belief in relevantBeliefs: b-ts-pref"
       ],
-      "retrievalLatencyMs": 308.09
+      "retrievalLatencyMs": 468.35
     },
     {
       "caseId": "pinned-plus-resolved-excluded-from-questions",
@@ -2023,7 +2013,7 @@
         "unexpected belief in relevantBeliefs: b-narrator-superseded",
         "unexpected belief in relevantBeliefs: b-comm-recommendation"
       ],
-      "retrievalLatencyMs": 300.69
+      "retrievalLatencyMs": 439.03
     },
     {
       "caseId": "zero-reinforcement-fresh-belief-surfaces",
@@ -2055,7 +2045,7 @@
         "unexpected belief in relevantBeliefs: b-ci-gha-entity",
         "unexpected belief in relevantBeliefs: b-redis-code"
       ],
-      "retrievalLatencyMs": 305.25
+      "retrievalLatencyMs": 446.16
     },
     {
       "caseId": "budget-zero-graceful-empty",
@@ -2071,7 +2061,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 0.04
+      "retrievalLatencyMs": 0.05
     },
     {
       "caseId": "budget-one-pinned-wins-over-relevant",
@@ -2089,7 +2079,7 @@
       "pinnedCoverage": 1,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 303.2
+      "retrievalLatencyMs": 459.89
     },
     {
       "caseId": "multi-scope-code-writing-dedup-no-double-surface",
@@ -2112,7 +2102,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 423.34
+      "retrievalLatencyMs": 628.54
     },
     {
       "caseId": "empty-alias-belief-content-path-only",
@@ -2145,7 +2135,7 @@
         "unexpected belief in relevantBeliefs: b-linting-v1",
         "unexpected belief in relevantBeliefs: b-authorship-mode"
       ],
-      "retrievalLatencyMs": 299.79
+      "retrievalLatencyMs": 448.3
     },
     {
       "caseId": "universal-scope-explicit-query-no-relevant",
@@ -2162,7 +2152,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 421.97
+      "retrievalLatencyMs": 726.92
     },
     {
       "caseId": "negation-query-still-surfaces-rejected-tool",
@@ -2194,7 +2184,7 @@
         "unexpected belief in relevantBeliefs: b-vitest-pref",
         "unexpected belief in relevantBeliefs: b-react-entity"
       ],
-      "retrievalLatencyMs": 301.25
+      "retrievalLatencyMs": 460.05
     },
     {
       "caseId": "superseded-chain-query-terminal-only",
@@ -2225,7 +2215,7 @@
         "unexpected belief in relevantBeliefs: b-react-entity",
         "unexpected belief in relevantBeliefs: b-pov-shift-entity"
       ],
-      "retrievalLatencyMs": 306.47
+      "retrievalLatencyMs": 515.36
     },
     {
       "caseId": "relation-does-not-appear-as-entity",
@@ -2256,154 +2246,166 @@
         "unexpected belief in relevantBeliefs: b-redis-writing",
         "unexpected belief in relevantBeliefs: b-hosting-resolved"
       ],
-      "retrievalLatencyMs": 545.94
+      "retrievalLatencyMs": 465.07
     }
   ],
   "ingestion": {
     "beliefCount": 35,
-    "totalMs": 16375.7,
-    "meanPerBeliefMs": 467.88,
+    "totalMs": 24841.8,
+    "meanPerBeliefMs": 709.77,
     "perBelief": [
       {
         "beliefId": "b-comm-response-length",
-        "latencyMs": 450.52
+        "latencyMs": 596
       },
       {
         "beliefId": "b-comm-pushback",
-        "latencyMs": 441.22
+        "latencyMs": 658.33
       },
       {
         "beliefId": "b-comm-recommendation",
-        "latencyMs": 435.64
+        "latencyMs": 621.51
       },
       {
         "beliefId": "b-authorship-mode",
-        "latencyMs": 473.68
+        "latencyMs": 639.82
       },
       {
         "beliefId": "b-ts-pref",
-        "latencyMs": 663.96
+        "latencyMs": 628.94
       },
       {
         "beliefId": "b-fastify-pref",
-        "latencyMs": 441.95
+        "latencyMs": 640.71
       },
       {
         "beliefId": "b-mongo-raw-driver",
-        "latencyMs": 465.1
+        "latencyMs": 645.33
       },
       {
         "beliefId": "b-composition-inheritance",
-        "latencyMs": 467.61
+        "latencyMs": 1606.05
       },
       {
         "beliefId": "b-error-handling",
-        "latencyMs": 467.04
+        "latencyMs": 640.41
       },
       {
         "beliefId": "b-db-decision",
-        "latencyMs": 448.33
+        "latencyMs": 642.38
       },
       {
         "beliefId": "b-sqlalchemy-superseded",
-        "latencyMs": 458.02
+        "latencyMs": 646.59
       },
       {
         "beliefId": "b-kubernetes-entity",
-        "latencyMs": 459.21
+        "latencyMs": 641.88
       },
       {
         "beliefId": "b-react-entity",
-        "latencyMs": 450.97
+        "latencyMs": 639.98
       },
       {
         "beliefId": "b-auth-open-q",
-        "latencyMs": 517.97
+        "latencyMs": 986.12
       },
       {
         "beliefId": "b-narrator-voice",
-        "latencyMs": 432.34
+        "latencyMs": 1221.13
       },
       {
         "beliefId": "b-narrator-superseded",
-        "latencyMs": 433.32
+        "latencyMs": 954.85
       },
       {
         "beliefId": "b-protagonist-entity",
-        "latencyMs": 446.18
+        "latencyMs": 652.76
       },
       {
         "beliefId": "b-redis-writing",
-        "latencyMs": 438.25
+        "latencyMs": 637.75
       },
       {
         "beliefId": "b-redis-code",
-        "latencyMs": 471.13
+        "latencyMs": 638.98
       },
       {
         "beliefId": "b-chapter-structure-q",
-        "latencyMs": 444.81
+        "latencyMs": 636.3
       },
       {
         "beliefId": "b-other-user-leak-check",
-        "latencyMs": 442.7
+        "latencyMs": 649.1
       },
       {
         "beliefId": "b-ci-gha-entity",
-        "latencyMs": 457.69
+        "latencyMs": 661.14
       },
       {
         "beliefId": "b-pov-shift-entity",
-        "latencyMs": 472.67
+        "latencyMs": 652.25
       },
       {
         "beliefId": "b-hosting-resolved",
-        "latencyMs": 458.3
+        "latencyMs": 653.72
       },
       {
         "beliefId": "b-prose-style-user-edited",
-        "latencyMs": 472.98
+        "latencyMs": 636.66
       },
       {
         "beliefId": "b-functional-pipeline",
-        "latencyMs": 438.67
+        "latencyMs": 640.37
       },
       {
         "beliefId": "b-linting-v0",
-        "latencyMs": 442.94
+        "latencyMs": 638.47
       },
       {
         "beliefId": "b-linting-v1",
-        "latencyMs": 599.33
+        "latencyMs": 816.38
       },
       {
         "beliefId": "b-linting-current",
-        "latencyMs": 454.22
+        "latencyMs": 647.23
       },
       {
         "beliefId": "b-vitest-pref",
-        "latencyMs": 509.95
+        "latencyMs": 647.78
       },
       {
         "beliefId": "b-dead-letter-queue",
-        "latencyMs": 456.43
+        "latencyMs": 650.57
       },
       {
         "beliefId": "b-react-expertise",
-        "latencyMs": 492.31
+        "latencyMs": 645.15
       },
       {
         "beliefId": "b-auth-depends-redis",
-        "latencyMs": 467.85
+        "latencyMs": 655.27
       },
       {
         "beliefId": "b-pinned-resolved-interaction",
-        "latencyMs": 450.23
+        "latencyMs": 630.5
       },
       {
         "beliefId": "b-zero-reinforcement-fresh",
-        "latencyMs": 452.18
+        "latencyMs": 641.39
       }
+    ]
+  },
+  "provenance": {
+    "provider": "yourmemory",
+    "generatedAt": "2026-09-12T09:34:42.851Z",
+    "benchmarkCommit": "85b48d5fd1b38babc7fe922f3beb0308cf3aa6cb",
+    "workingTreeClean": false,
+    "composeFile": "wrappers/yourmemory/docker-compose.yml",
+    "resolvedComposeSha256": "5be0fdd55d64a0fd28e5256490247da8a15686ee953f96d06f1db34720e012b7",
+    "composeImages": [
+      "yourmemory-yourmemory-wrapper",
+      "ghcr.io/sachitrafa/yourmemory:latest"
     ]
   }
 }

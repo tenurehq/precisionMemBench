@@ -1,0 +1,522 @@
+{
+  "provider": "tenure",
+  "retrieval": {
+    "meanLatencyMs": 49.02,
+    "p50LatencyMs": 47.79,
+    "p95LatencyMs": 134.63,
+    "caseCount": 2,
+    "meanPrecision": 1,
+    "meanRecall": 1,
+    "totalPassed": 12,
+    "totalCases": 12,
+    "passRate": 1,
+    "activeRetrievalPasses": 11,
+    "passTypes": {
+      "activeRetrieval": 11,
+      "structural": 0,
+      "triviallyEmpty": 1
+    },
+    "categories": [
+      {
+        "category": "Session-level noise isolation",
+        "caseCount": 12,
+        "passed": 12,
+        "failed": 0,
+        "meanPrecision": 1,
+        "meanRecall": 1
+      }
+    ],
+    "turnCount": 12
+  },
+  "cases": [
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 0,
+      "label": "establishes_topic",
+      "expandedQuery": "I'm seeing high cache miss rates on our Redis instance The hit ratio dropped from % to about % over the last week and I'm not sure if it's a traffic pattern change or if we need to rethink our key structure We're using the single-node setup with the default eviction policy Can you help me think through what might be happening",
+      "retrievedBeliefIds": [
+        "b-redis-code"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0,
+      "passed": true,
+      "failures": [],
+      "searchScores": [
+        {
+          "id": "b-redis-code",
+          "score": 7.69,
+          "clauses": [
+            {
+              "path": "aliases",
+              "term": "redis",
+              "score": 7.69
+            }
+          ]
+        }
+      ],
+      "retrievalPrecision": 1,
+      "retrievalRecall": 1,
+      "retrievalLatencyMs": 134.63
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 1,
+      "label": "drift",
+      "expandedQuery": "Actually before we go deeper on that — quick context switch We had a production incident last night where one of our Kubernetes pods got stuck in CrashLoopBackOff and the team spent minutes debugging it before realizing the liveness probe was hitting an endpoint that depended on an external service being up I want to rethink our probe strategy Right now we have liveness and readiness probes on every service pointing at /health which does a full dependency check Should we split those",
+      "retrievedBeliefIds": [
+        "b-kubernetes-entity"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0,
+      "passed": true,
+      "failures": [],
+      "searchScores": [
+        {
+          "id": "b-kubernetes-entity",
+          "score": 20.22,
+          "clauses": [
+            {
+              "path": "canonical_name",
+              "term": "kubernetes",
+              "score": 20.22
+            }
+          ]
+        }
+      ],
+      "retrievalPrecision": 1,
+      "retrievalRecall": 1,
+      "retrievalLatencyMs": 62.77
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 2,
+      "label": "drift",
+      "expandedQuery": "Yeah let's do that later Related question though — on the React side we have a dashboard that shows pod health status in real-time via a WebSocket connection The problem is when the WebSocket drops the UI just shows stale data with no indication that it's disconnected I want to add a connection-state indicator and automatic reconnection with exponential backoff We're using TanStack Query for everything else but I'm not sure if it handles WebSocket lifecycle or if I need something separate",
+      "retrievedBeliefIds": [
+        "b-react-entity"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0,
+      "passed": true,
+      "failures": [],
+      "searchScores": [
+        {
+          "id": "b-react-entity",
+          "score": 20.22,
+          "clauses": [
+            {
+              "path": "canonical_name",
+              "term": "react",
+              "score": 20.22
+            }
+          ]
+        }
+      ],
+      "retrievalPrecision": 1,
+      "retrievalRecall": 1,
+      "retrievalLatencyMs": 51.48
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 3,
+      "label": "drift",
+      "expandedQuery": "Good approach Switching topics again — we're having a debate on the team about error handling in our data access layer Some people want to use try/catch everywhere and let exceptions bubble up to a global error handler in Fastify Others (including me) want explicit Result types that force callers to handle the error case The argument against Result types is that they're verbose and TypeScript doesn't have pattern matching The argument for them is that you can't accidentally forget to handle an error Where do you land on this for our stack",
+      "retrievedBeliefIds": [
+        "b-error-handling",
+        "b-ts-pref",
+        "b-fastify-pref"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0,
+      "passed": true,
+      "failures": [],
+      "searchScores": [
+        {
+          "id": "b-error-handling",
+          "score": 44.04,
+          "clauses": [
+            {
+              "path": "aliases",
+              "term": "try-catch",
+              "score": 4.51
+            },
+            {
+              "path": "aliases",
+              "term": "exceptions",
+              "score": 5.07
+            },
+            {
+              "path": "aliases",
+              "term": "error",
+              "score": 20.27
+            },
+            {
+              "path": "aliases.shingle",
+              "term": "error handling",
+              "score": 14.19
+            }
+          ]
+        },
+        {
+          "id": "b-ts-pref",
+          "score": 7.67,
+          "clauses": [
+            {
+              "path": "aliases",
+              "term": "typescript",
+              "score": 7.67
+            }
+          ]
+        },
+        {
+          "id": "b-fastify-pref",
+          "score": 7.67,
+          "clauses": [
+            {
+              "path": "aliases",
+              "term": "fastify",
+              "score": 7.67
+            }
+          ]
+        }
+      ],
+      "retrievalPrecision": 1,
+      "retrievalRecall": 1,
+      "retrievalLatencyMs": 84.41
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 4,
+      "label": "drift",
+      "expandedQuery": "No that's good I'll share that with the team Different thing — our GitHub Actions CI pipeline is taking minutes on average and the team is complaining The main bottleneck seems to be the test suite which runs all integration tests sequentially We have about integration tests that each spin up a test database I'm thinking about parallelizing them but I'm worried about port conflicts and shared state We're on GitHub-hosted runners What's the best approach",
+      "retrievedBeliefIds": [
+        "b-ci-gha-entity"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0,
+      "passed": true,
+      "failures": [],
+      "searchScores": [
+        {
+          "id": "b-ci-gha-entity",
+          "score": 56.89,
+          "clauses": [
+            {
+              "path": "canonical_name.phrase",
+              "term": "github actions",
+              "score": 20.22
+            },
+            {
+              "path": "aliases.shingle",
+              "term": "github actions",
+              "score": 18.33
+            },
+            {
+              "path": "aliases.shingle",
+              "term": "ci pipeline",
+              "score": 18.33
+            }
+          ]
+        }
+      ],
+      "retrievalPrecision": 1,
+      "retrievalRecall": 1,
+      "retrievalLatencyMs": 35.83
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 5,
+      "label": "drift",
+      "expandedQuery": "That's great I'll try the matrix approach Hey one more unrelated thing — we're about to start building the auth service and I need to make a decision on the session token format I know we've been going back and forth on JWT vs opaque session tokens The new constraint is that we need to support token revocation within seconds (compliance requirement) JWTs are stateless which is their whole point so revocation means either short-lived tokens with refresh rotation or a revocation list that every service checks Opaque tokens are naturally revocable since they're just a lookup key But then every API call requires a round-trip to the session store Given our setup which way should we lean",
+      "retrievedBeliefIds": [
+        "b-auth-depends-redis",
+        "b-redis-code"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0,
+      "passed": true,
+      "failures": [],
+      "searchScores": [
+        {
+          "id": "b-auth-depends-redis",
+          "score": 6.66,
+          "clauses": [
+            {
+              "path": "aliases",
+              "term": "auth",
+              "score": 6.66
+            }
+          ]
+        },
+        {
+          "id": "b-redis-code",
+          "score": 0,
+          "clauses": []
+        }
+      ],
+      "retrievalPrecision": 1,
+      "retrievalRecall": 1,
+      "retrievalLatencyMs": 47.79
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 6,
+      "label": "drift",
+      "expandedQuery": "Good analysis I'm leaning opaque too Let me sit on it over the weekend Completely different topic — I've been thinking about our data transformation pipeline We have a bunch of ETL-style jobs that read from MongoDB transform the data and write it back Right now they're written as imperative for-loops with a lot of intermediate variables I want to refactor them to be more functional The transforms are things like filter out inactive users enrich with external data compute aggregates format for the downstream API Each step is independent What's the cleanest way to compose these with our pipe() pattern",
+      "retrievedBeliefIds": [
+        "b-functional-pipeline",
+        "b-mongo-raw-driver"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0,
+      "passed": true,
+      "failures": [],
+      "searchScores": [
+        {
+          "id": "b-functional-pipeline",
+          "score": 6.66,
+          "clauses": [
+            {
+              "path": "aliases",
+              "term": "compose",
+              "score": 6.66
+            }
+          ]
+        },
+        {
+          "id": "b-mongo-raw-driver",
+          "score": 6.66,
+          "clauses": [
+            {
+              "path": "aliases",
+              "term": "mongodb",
+              "score": 6.66
+            }
+          ]
+        }
+      ],
+      "retrievalPrecision": 1,
+      "retrievalRecall": 1,
+      "retrievalLatencyMs": 54.7
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 7,
+      "label": "drift",
+      "expandedQuery": "Pattern's enough thanks Oh wait — I forgot to ask We got a Biome update notification and it's introducing a new rule that conflicts with one of our existing overrides The rule is which we already enforce via TypeScript's strict mode Biome wants to flag it separately with its own error message Should we disable the Biome rule since TS already catches it or keep both for defense in depth Also is there a way to suppress Biome warnings inline without the ugly ignore comments the test suite is still slow even after we split the jobs — should we add caching for the database containers",
+      "retrievedBeliefIds": [
+        "b-ts-pref",
+        "b-error-handling"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0,
+      "passed": true,
+      "failures": [],
+      "searchScores": [
+        {
+          "id": "b-ts-pref",
+          "score": 15.58,
+          "clauses": [
+            {
+              "path": "aliases",
+              "term": "ts",
+              "score": 7.79
+            },
+            {
+              "path": "aliases",
+              "term": "typescript",
+              "score": 7.79
+            }
+          ]
+        },
+        {
+          "id": "b-error-handling",
+          "score": 5.17,
+          "clauses": [
+            {
+              "path": "aliases",
+              "term": "error",
+              "score": 5.17
+            }
+          ]
+        }
+      ],
+      "retrievalPrecision": 1,
+      "retrievalRecall": 1,
+      "retrievalLatencyMs": 53.37
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 8,
+      "label": "drift",
+      "expandedQuery": "Makes sense I'll disable it Last thing before I circle back to something from earlier — we're thinking about adding a base class for all our repository implementations The idea is to put common methods like findById insertOne updateOne into an abstract base class and have each concrete repository extend it The team likes it because it reduces boilerplate I'm skeptical What do you think",
+      "retrievedBeliefIds": [
+        "b-composition-inheritance"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0,
+      "passed": true,
+      "failures": [],
+      "searchScores": [
+        {
+          "id": "b-composition-inheritance",
+          "score": 32.6,
+          "clauses": [
+            {
+              "path": "aliases.shingle",
+              "term": "base class",
+              "score": 32.6
+            }
+          ]
+        }
+      ],
+      "retrievalPrecision": 1,
+      "retrievalRecall": 1,
+      "retrievalLatencyMs": 27.83
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 9,
+      "label": "implicit_continuation",
+      "expandedQuery": "Ok circling back to what we were talking about at the start",
+      "retrievedBeliefIds": [],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0,
+      "passed": true,
+      "failures": [],
+      "searchScores": [],
+      "retrievalPrecision": null,
+      "retrievalRecall": null,
+      "retrievalLatencyMs": 7.92
+    },
+    {
+      "caseId": "session-drift-noise-10-turns-implicit-redis",
+      "category": "Session-level noise isolation",
+      "turnIndex": 10,
+      "label": "re_entry",
+      "expandedQuery": "One more thing on the allkeys-lru decision — what is the difference between allkeys-lru and allkeys-lfu and when would you prefer lfu",
+      "retrievedBeliefIds": [
+        "b-redis-code"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0,
+      "passed": true,
+      "failures": [],
+      "searchScores": [
+        {
+          "id": "b-redis-code",
+          "score": 13.96,
+          "clauses": [
+            {
+              "path": "aliases",
+              "term": "allkeys-lru",
+              "score": 13.96
+            }
+          ]
+        }
+      ],
+      "retrievalPrecision": 1,
+      "retrievalRecall": 1,
+      "retrievalLatencyMs": 13.87
+    },
+    {
+      "caseId": "cross-session-formative-turn-surfaces-via-belief-join",
+      "category": "Session-level noise isolation",
+      "turnIndex": 0,
+      "label": "implicit_continuation",
+      "expandedQuery": "Hey remember that eviction issue we were debugging I want to switch to allkeys-lru What should I set maxmemory to given we have 2GB available",
+      "retrievedBeliefIds": [
+        "b-redis-code"
+      ],
+      "pinnedBeliefIds": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "noiseBeliefIds": [],
+      "driftScore": 0,
+      "passed": true,
+      "failures": [],
+      "searchScores": [
+        {
+          "id": "b-redis-code",
+          "score": 9.6,
+          "clauses": [
+            {
+              "path": "aliases",
+              "term": "allkeys-lru",
+              "score": 4.8
+            },
+            {
+              "path": "aliases",
+              "term": "maxmemory",
+              "score": 4.8
+            }
+          ]
+        }
+      ],
+      "retrievalPrecision": 1,
+      "retrievalRecall": 1,
+      "retrievalLatencyMs": 13.66
+    }
+  ],
+  "ingestion": {
+    "beliefCount": 35,
+    "totalMs": 1120.72,
+    "meanPerBeliefMs": 32.02,
+    "perBelief": []
+  }
+}

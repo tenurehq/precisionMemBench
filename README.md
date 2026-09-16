@@ -1,13 +1,13 @@
 # PrecisionMemBench
 
-PrecisionMemBench is a multi-dimensional retrieval benchmark for LLM memory systems. It measures four orthogonal properties that single-turn answer-quality benchmarks cannot detect:
+PrecisionMemBench is a multi-dimensional retrieval benchmark for LLM memory systems, designed primarily as a diagnostic tool for exposing concrete retrieval failure modes rather than as a leaderboard. It measures four orthogonal properties that single-turn answer-quality benchmarks cannot detect:
 
 - **Retrieval precision** - does the right belief surface, and only that belief, against a fixed seed corpus of 35 beliefs spanning two domain scopes, a supersession chain, and a secondary-user fixture
 - **Noise isolation** - do beliefs introduced during off-topic drift turns contaminate retrieval on subsequent unrelated turns across a 10-turn session
 - **Session-turn latency** - does retrieval latency degrade under session load relative to single-turn baselines
-- **Belief mutability** - do beliefs updated mid-session surface immediately within the same session via the alias enrichment flywheel
+- **Belief mutability** - do beliefs updated mid-session surface immediately within the same session
 
-Each case specifies what memory must be returned and shouldn't be returned. Any memory that is included that shouldn't be returned results in a failure for that case.
+Any memory that is included that shouldn't be returned results in a failure for that case.
 
 **89 scored cases**, comprising 77 single-turn cases and 12 turn-level session assertions, covering alias resolution · scope disambiguation · supersession chain exclusion · fuzzy matching · cross-user isolation · budget eviction · ranking stability · session-level noise isolation under multi-turn topic drift
 
@@ -15,25 +15,29 @@ Paper: [arXiv](https://arxiv.org/abs/2605.11325) — Dataset: [HuggingFace](http
 
 **_Memory and belief are used interchangably._**
 
+## Recent Change
+
+The external-provider adapter was corrected to forward all active scopes and to keep open questions out of relation-expanded `relevantBeliefs`. Earlier reports are preserved in `test-results/baseline/original/`. All providers were subsequently evaluated using their latest deployed code, so differences from the original reports may reflect both the adapter correction and provider changes. The results shouldn't be interpreted as an isolated measurement of either.
+
 ## Results
 
 ### Single-turn results
 
-| Provider                | Active passes | Total passes | Mean precision | Mean recall | Retrieval p50 (ms) | Ingestion total (s) |
-| ----------------------- | ------------- | ------------ | -------------- | ----------- | ------------------ | ------------------- |
-| `tenure`                | 43/43         | 77/77        | 1.00           | 1.00        | 9.77               | 1.00                |
-| `open-knowledge-format` | 18/43         | 36/77        | 0.47           | 0.91        | 3534.53            | 0.00                |
-| `supermemory`           | 4/43          | 21/77        | 0.22           | 0.71        | 69.41              | 5.20                |
-| `agentmemory`           | 0/43          | 7/77         | 0.17           | 0.97        | 82.28              | 1.10                |
-| `yourmemory`            | 0/43          | 21/77        | 0.17           | 0.88        | 313.39             | 16.40               |
-| `atomicmemory`          | 0/43          | 9/77         | 0.15           | 0.95        | 71.01              | 658.90              |
-| `gbrain`                | 5/43          | 34/77        | 0.14           | 0.17        | 543.84             | 28.60               |
-| `zep`                   | 0/43          | 9/77         | 0.09           | 0.95        | 124.36             | 897.00              |
-| `vector`                | 0/43          | 11/77        | 0.09           | 1.00        | 71.87              | ---                 |
-| `hindsight`             | 0/43          | 9/77         | 0.06           | 1.00        | 589.86             | 173.30              |
-| `mem0`                  | 0/43          | 9/77         | 0.06           | 0.99        | 64.94              | 111.30              |
-| `a-mem`                 | 0/43          | 9/77         | 0.06           | 0.99        | 13.80              | 178.80              |
-| `cognee`                | 0/43          | 11/77        | 0.05           | 0.92        | 2891.04            | 369.20              |
+| Provider                | Active passes | Total passes | Mean precision | Mean recall | Retrieval p50 (ms) | Ingestion total (s) | Evaluated (UTC) |
+| ----------------------- | ------------- | ------------ | -------------- | ----------- | ------------------ | ------------------- | --------------- |
+| `tenure`                | 43/43         | 77/77        | 1              | 1           | 9.25               | 0.80                | 09-16-2026      |
+| `open-knowledge-format` | 18/43         | 36/77        | 0.47           | 0.91        | 3534.53            | 0.00                | ---             |
+| `atomicmemory`          | 5/43          | 16/77        | 0.23           | 0.54        | 163.85             | 664.80              | 09-15-2026      |
+| `supermemory`           | 4/43          | 21/77        | 0.22           | 0.71        | 69.41              | 5.20                | ---             |
+| `yourmemory`            | 0/43          | 21/77        | 0.17           | 0.88        | 464.08             | 24.80               | 09-12-2026      |
+| `vector`                | 0/43          | 11/77        | 0.09           | 1.00        | 71.87              | ---                 | ---             |
+| `gbrain`                | 0/43          | 11/77        | 0.07           | 1           | 1455.98            | 52.60               | 09-13-2026      |
+| `hindsight`             | 0/43          | 11/77        | 0.07           | 1           | 610.36             | 173.00              | 09-12-2026      |
+| `zep`                   | 0/43          | 9/77         | 0.06           | 0.66        | 146.41             | 485.80              | 09-15-2026      |
+| `agentmemory`           | 0/43          | 9/77         | 0.06           | 0.99        | 148.30             | 8.50                | 09-15-2026      |
+| `cognee`                | 0/43          | 9/77         | 0.06           | 0.98        | 293.18             | 495.00              | 09-15-2026      |
+| `mem0`                  | 0/43          | 9/77         | 0.06           | 0.99        | 61.15              | 132.80              | 09-15-2026      |
+| `a-mem`                 | 0/43          | 7/77         | 0.05           | 0.99        | 12.44              | 46.80               | 09-16-2026      |
 
 Mean precision and recall are computed over the 43 cases that require active query-dependent retrieval. The single-turn pass count includes active, structural, and trivially empty cases.
 
@@ -41,19 +45,19 @@ A high recall score doesn't mean the retrieval is precise. Most comparison syste
 
 ### Pass type breakdown
 
-The counts bloew represent the 77 single-turn cases.
+The counts below represent the 77 single-turn cases.
 
 | Provider                | Active retrieval | Structural | Trivially empty |
 | ----------------------- | ---------------- | ---------- | --------------- |
 | `tenure`                | 43               | 25         | 9               |
 | `open-knowledge-format` | 18               | 13         | 5               |
-| `gbrain`                | 5                | 20         | 9               |
+| `atomicmemory`          | 5                | 8          | 3               |
 | `supermemory`           | 4                | 14         | 3               |
 | `a-mem`                 | 0                | 6          | 3               |
-| `agentmemory`           | 0                | 5          | 2               |
-| `atomicmemory`          | 0                | 6          | 3               |
-| `cognee`                | 0                | 7          | 4               |
-| `hindsight`             | 0                | 6          | 3               |
+| `agentmemory`           | 0                | 6          | 3               |
+| `cognee`                | 0                | 6          | 3               |
+| `gbrain`                | 0                | 8          | 3               |
+| `hindsight`             | 0                | 8          | 3               |
 | `mem0`                  | 0                | 6          | 3               |
 | `vector`                | 0                | 8          | 3               |
 | `yourmemory`            | 0                | 15         | 6               |
@@ -79,23 +83,21 @@ The session evaluation contains 12 scored turn-level assertions across two sessi
 
 The drift score is the fraction of retrieved beliefs originating from off-topic turns. A score of 0 means that no returned belief originated from an off-topic turn.
 
-| Provider                | Turns passed | Pass rate | Mean drift | Mean precision | Session p50 (ms) |
-| ----------------------- | ------------ | --------- | ---------- | -------------- | ---------------- |
-| `tenure`                | 12/12        | 1.00      | 0.0000     | 1.0000         | 47.79            |
-| `open-knowledge-format` | 2/12         | 0.17      | 0.2153     | 0.5694         | 3349.45          |
-| `yourmemory`            | 1/12         | 0.08      | 0.7365     | 0.1965         | 430.49           |
-| `supermemory`           | 1/12         | 0.08      | 0.7493     | 0.1825         | 172.32           |
-| `cognee`                | 1/12         | 0.08      | 0.8459     | 0.0772         | 4222.62          |
-| `gbrain`                | 1/12         | 0.08      | 0.0000     | ---            | 535.61           |
-| `agentmemory`           | 0/12         | 0.00      | 0.8087     | 0.1913         | 98.49            |
-| `atomicmemory`          | 0/12         | 0.00      | 0.8449     | 0.1551         | 355.08           |
-| `zep`                   | 0/12         | 0.00      | 0.8888     | 0.1112         | 418.13           |
-| `vector`                | 0/12         | 0.00      | 0.9142     | 0.0858         | 256.75           |
-| `a-mem`                 | 0/12         | 0.00      | 0.9259     | 0.0741         | 25.66            |
-| `hindsight`             | 0/12         | 0.00      | 0.9285     | 0.0715         | 1880.60          |
-| `mem0`                  | 0/12         | 0.00      | 0.9398     | 0.0602         | 377.93           |
-
-‡ For `gbrain`, the drift score is 0 because no beliefs were returned. The required belief was also absent, so the corresponding cases did not pass.
+| Provider                | Turns passed | Pass rate | Mean drift | Mean precision | Session p50 (ms) | Evaluated (UTC) |
+| ----------------------- | ------------ | --------- | ---------- | -------------- | ---------------- | --------------- |
+| `tenure`                | 12/12        | 1.00      | 0.0000     | 1.0000         | 49.74            | 09-16-2026      |
+| `open-knowledge-format` | 2/12         | 0.17      | 0.2153     | 0.5694         | 3349.45          | ---             |
+| `supermemory`           | 1/12         | 0.08      | 0.7493     | 0.1825         | 172.32           | ---             |
+| `yourmemory`            | 0/12         | 0.00      | 0.7444     | 0.1879         | 568.08           | 09-12-2026      |
+| `atomicmemory`          | 0/12         | 0.00      | 0.8611     | 0.1389         | 403.97           | 09-15-2026      |
+| `vector`                | 0/12         | 0.00      | 0.9142     | 0.0858         | 256.75           | ---             |
+| `a-mem`                 | 0/12         | 0.00      | 0.9259     | 0.0741         | 22.36            | 09-14-2026      |
+| `gbrain`                | 0/12         | 0.00      | 0.9259     | 0.0741         | 2001.14          | 09-14-2026      |
+| `hindsight`             | 0/12         | 0.00      | 0.9259     | 0.0741         | 1217.50          | 09-12-2026      |
+| `mem0`                  | 0/12         | 0.00      | 0.9259     | 0.0741         | 259.26           | 09-15-2026      |
+| `cognee`                | 0/12         | 0.00      | 0.9295     | 0.0705         | 483.71           | 09-15-2026      |
+| `zep`                   | 0/12         | 0.00      | 0.9320     | 0.0680         | 357.21           | 09-15-2026      |
+| `agentmemory`           | 0/12         | 0.00      | 0.9398     | 0.0602         | 339.12           | 09-15-2026      |
 
 ## Open Knowledge Format Run
 
@@ -107,7 +109,7 @@ The benchmark contains 77 single-turn cases and 12 scored turn-level assertions 
 
 The categories define practical correctness requirements rather than prescribing a retrieval architecture. Providers may satisfy them through filtering, indexing, ranking, graph traversal, model-based selection, or another mechanism. The benchmark evaluates only whether the resulting belief set contains the required state and excludes state that would be misleading, obsolete, irrelevant, or unauthorized.
 
-Benchmark categories are expressed as practical correctness requirements. Scoring examines required and prohibited belief IDs without requiring providers to adopt the proposed belief schema, retrieval pipeline, or output organization.
+Scoring examines required and prohibited belief IDs without requiring providers to adopt a certain schema, retrieval pipeline, or output organization.
 
 | Category                         | Cases  |
 | -------------------------------- | ------ |
@@ -171,10 +173,6 @@ Whether durable user preferences and communication guidance remain consistently 
 
 ## Metrics
 
-Cases are scored against the belief IDs they require and prohibit.
-
-A case passes when every required belief ID is returned and no prohibited belief ID is returned. If a case requires an empty result, it passes only when no belief IDs are returned.
-
 The benchmark reports:
 
 - **Retrieval precision and recall** for the `relevantBeliefs` tier.
@@ -187,16 +185,6 @@ Metrics that do not apply to a case are recorded as null and excluded from aggre
 ## Baseline reports
 
 Pre-run reports for all reference systems are committed at `test-results/baseline/`:
-
-```
-test-results/baseline/
-  retrieval-report.json
-  retrieval-report-vector.json
-  retrieval-report-mem0.json
-  retrieval-report-zep.json
-  retrieval-report-hindsight.json
-  ...
-```
 
 Each report contains per-case results including `passed`, `failures`, `retrievalPrecision`, `retrievalRecall`, and `retrievalLatencyMs`, plus aggregate `p50`/`p95` latency and mean precision/recall at the top level.
 
@@ -248,13 +236,6 @@ npx ava src/session-retrieval.vector.eval.test.ts
 
 The Atlas Local container starts and stops automatically per run. Ports `27019` (single-turn) and `27021` (session) are used.
 
-### 4. Export results to HuggingFace format
-
-```bash
-python export_to_hf.py
-# Output: hf_export/leaderboard.json + hf_export/README.md
-```
-
 ## Adding your provider
 
 ### 1. Write a wrapper
@@ -300,11 +281,9 @@ Add one entry to `providers.config.json`:
 ### 3. Run
 
 ```bash
-MEMORY_PROVIDER=myprovider npx ava src/retrieval.external.eval.test.ts --timeout 10m
+MEMORY_PROVIDER=myprovider RESEED=true npx ava src/retrieval.external.eval.test.ts --timeout 10m
 MEMORY_PROVIDER=myprovider npx ava src/session-retrieval.external.eval.test.ts --timeout 10m
 ```
-
-The eval files themselves never need to change.
 
 ## Submitting results to the leaderboard
 
@@ -325,7 +304,7 @@ npm run test:eval
 
 ## Provider wrappers
 
-Each comparison provider is wrapped with a thin FastAPI service that normalises the `/add` / `/search` / `/reset` contract. Wrappers are in `wrappers/`.
+Each comparison provider is wrapped with a thin FastAPI service that normalizes the `/add` / `/search` / `/reset` contract. Wrappers are in `wrappers/`.
 
 ## Citation
 

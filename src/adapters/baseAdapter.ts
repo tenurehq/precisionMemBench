@@ -27,6 +27,7 @@ interface ProviderConfigJson {
   beliefToText?: "canonical_name_aliases" | "content";
   supportsUpdate?: boolean;
   waitAfterSeed?: boolean;
+  supportsMultiScope?: boolean;
 }
 
 const CONFIG_PATH = resolve(
@@ -104,6 +105,7 @@ export class BaseAdapter {
   protected readonly beliefToTextMode: "canonical_name_aliases" | "content";
   protected readonly supportsUpdate: boolean;
   protected readonly waitAfterSeed: boolean;
+  protected readonly supportsMultiScope: boolean;
   protected seedIndex = new Map<string, Belief>();
 
   ingestionReport: { beliefId: string; latencyMs: number }[] = [];
@@ -115,6 +117,7 @@ export class BaseAdapter {
     this.beliefToTextMode = cfg.beliefToText ?? "canonical_name_aliases";
     this.supportsUpdate = cfg.supportsUpdate ?? false;
     this.waitAfterSeed = cfg.waitAfterSeed ?? false;
+    this.supportsMultiScope = cfg.supportsMultiScope ?? false;
   }
 
   loadFixture(beliefs: Belief[]): void {
@@ -199,14 +202,55 @@ export class BaseAdapter {
 
     const pinnedIds = new Set(pinnedFacts.map((f) => f._id as string));
 
-    const rawResults =
-      rawQuery.trim() && b.maxBeliefs > 0
-        ? await this.searchText(userId, rawQuery, {
-            limit: b.maxBeliefs,
-            excludeIds: pinnedIds,
-            scope: scope[0],
-          })
-        : [];
+    let rawResults: Belief[] = [];
+
+    if (rawQuery.trim() && b.maxBeliefs > 0) {
+      if (scope.length > 1 && !this.supportsMultiScope) {
+        const scopedResults = await Promise.all(
+          scope.map((scopeValue) =>
+            this.searchText(userId, rawQuery, {
+              limit: b.maxBeliefs,
+              excludeIds: pinnedIds,
+              scope: scopeValue,
+            }),
+          ),
+        );
+
+        const seen = new Set<string>();
+        const maxLength = Math.max(
+          0,
+          ...scopedResults.map((results) => results.length),
+        );
+
+        for (
+          let rank = 0;
+          rank < maxLength && rawResults.length < b.maxBeliefs;
+          rank++
+        ) {
+          for (const results of scopedResults) {
+            const belief = results[rank];
+            if (!belief) continue;
+
+            const beliefId = belief._id as string;
+            if (seen.has(beliefId)) continue;
+
+            seen.add(beliefId);
+            rawResults.push(belief);
+
+            if (rawResults.length >= b.maxBeliefs) break;
+          }
+        }
+      } else {
+        const searchScope =
+          scope.length > 1 && this.supportsMultiScope ? scope : scope[0];
+
+        rawResults = await this.searchText(userId, rawQuery, {
+          limit: b.maxBeliefs,
+          excludeIds: pinnedIds,
+          ...(searchScope === undefined ? {} : { scope: searchScope }),
+        });
+      }
+    }
 
     const expansions =
       rawResults.length > 0
@@ -241,7 +285,11 @@ export class BaseAdapter {
   async searchText(
     userId: string,
     query: string,
-    opts?: { limit?: number; excludeIds?: Set<string>; scope?: string },
+    opts?: {
+      limit?: number;
+      excludeIds?: Set<string>;
+      scope?: string | string[];
+    },
   ): Promise<Belief[]> {
     if (!query.trim()) return [];
 
@@ -292,6 +340,7 @@ export class BaseAdapter {
         if (opts?.excludeIds?.has(id)) continue;
         const belief = this.seedIndex.get(id);
         if (!belief) continue;
+        if (belief.type === "open_question") continue;
         if (belief.user_id !== userId) continue;
         if (
           scope?.length &&

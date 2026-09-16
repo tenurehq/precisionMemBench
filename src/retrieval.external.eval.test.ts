@@ -32,6 +32,7 @@ import {
 } from "./adapters/baseAdapter.js";
 import { fileURLToPath } from "node:url";
 import { buildReportPayload } from "./utils/buildRetrievalReport.js";
+import { collectRunProvenance } from "./utils/runProvenance.js";
 
 const rawProvider = process.env.MEMORY_PROVIDER?.trim().toLowerCase();
 if (!rawProvider) {
@@ -178,24 +179,31 @@ test.after.always(() => {
       ? Math.round((totalIngestionMs / ingestionLatencies.length) * 100) / 100
       : 0;
 
+  const payload = buildReportPayload(
+    {
+      provider: PROVIDER,
+      entries: report,
+      caseCount: cases.length,
+      ingestion: {
+        beliefCount: adapter.ingestionReport.length,
+        totalMs: Math.round(totalIngestionMs * 100) / 100,
+        meanPerBeliefMs: meanIngestionMs,
+        perBelief: adapter.ingestionReport,
+      },
+    },
+    report,
+  );
+
+  const repositoryRoot = resolve(__dirname, "..");
+
   mkdirSync(REPORT_DIR, { recursive: true });
   writeFileSync(
     REPORT_PATH,
     JSON.stringify(
-      buildReportPayload(
-        {
-          provider: PROVIDER,
-          entries: report,
-          caseCount: cases.length,
-          ingestion: {
-            beliefCount: adapter.ingestionReport.length,
-            totalMs: Math.round(totalIngestionMs * 100) / 100,
-            meanPerBeliefMs: meanIngestionMs,
-            perBelief: adapter.ingestionReport,
-          },
-        },
-        report,
-      ),
+      {
+        ...payload,
+        provenance: collectRunProvenance(PROVIDER, repositoryRoot),
+      },
       null,
       2,
     ),

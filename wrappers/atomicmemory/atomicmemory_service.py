@@ -1,8 +1,12 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
-import httpx
-import uvicorn
+import logging
 import os
+
+import httpx2
+import uvicorn
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+
+logger = logging.getLogger("uvicorn.error")
 
 ATOMICMEMORY_URL = os.getenv("ATOMICMEMORY_URL", "http://localhost:17350")
 API_KEY = os.getenv("ATOMICMEMORY_API_KEY", "local-dev-key")
@@ -12,25 +16,92 @@ HEADERS = {
     "Content-Type": "application/json",
 }
 
-TIMEOUT = httpx.Timeout(120.0)
+TIMEOUT = httpx2.Timeout(120.0)
 
 app = FastAPI()
 id_map: dict[str, str] = {}
 
+
 class Metadata(BaseModel):
     beliefId: str
     scope: str
+
 
 class AddRequest(BaseModel):
     text: str
     user_id: str
     metadata: Metadata
 
+
 class SearchRequest(BaseModel):
     query: str
     user_id: str
     limit: int = 20
     scope: str
+
+
+def atomicmemory_request(method: str, path: str, **kwargs) -> httpx2.Response:
+    url = f"{ATOMICMEMORY_URL}{path}"
+    try:
+        with httpx2.Client(
+            headers=HEADERS,
+            timeout=TIMEOUT,
+            trust_env=False,
+        ) as client:
+            response = client.request(method, url, **kwargs)
+        response.raise_for_status()
+        return response
+    except httpx2.TimeoutException as exc:
+        logger.exception(
+            "AtomicMemory request timed out: %s %s",
+            method,
+            url,
+        )
+        raise HTTPException(
+            status_code=504,
+            detail="AtomicMemory request timed out",
+        ) from exc
+    except httpx2.HTTPStatusError as exc:
+        logger.error(
+            "AtomicMemory returned HTTP %s for %s %s: %s",
+            exc.response.status_code,
+            method,
+            url,
+            exc.response.text[:2000],
+        )
+        raise HTTPException(
+            status_code=502,
+            detail=f"AtomicMemory returned HTTP {exc.response.status_code}",
+        ) from exc
+    except httpx2.RequestError as exc:
+        logger.exception(
+            "AtomicMemory request failed: %s %s: %r",
+            method,
+            url,
+            exc,
+        )
+        raise HTTPException(
+            status_code=502,
+            detail="AtomicMemory request failed",
+        ) from exc
+
+
+def atomicmemory_json(method: str, path: str, **kwargs) -> dict:
+    response = atomicmemory_request(method, path, **kwargs)
+    try:
+        data = response.json()
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=502,
+            detail="AtomicMemory returned an invalid JSON response",
+        ) from exc
+    if not isinstance(data, dict):
+        raise HTTPException(
+            status_code=502,
+            detail="AtomicMemory returned an unexpected JSON response",
+        )
+    return data
+
 
 @app.post("/add")
 def add(req: AddRequest):
@@ -39,12 +110,9 @@ def add(req: AddRequest):
         "user_id": req.user_id,
         "conversation": f"user: {req.text}",
         "source_site": "precisionmembench",
-        "agent_scope": req.metadata.scope
+        "agent_scope": req.metadata.scope,
     }
-    response = httpx.post(
-        f"{ATOMICMEMORY_URL}/v1/memories/ingest", json=payload, headers=HEADERS, timeout=TIMEOUT,
-    )
-    data = response.json()
+    data = atomicmemory_json("POST", "/v1/memories/ingest", json=payload)
     if belief_id:
         for internal_id in data.get("stored_memory_ids", []):
             id_map[internal_id] = belief_id
@@ -52,18 +120,16 @@ def add(req: AddRequest):
             id_map[internal_id] = belief_id
     return {"ok": True}
 
+
 @app.post("/search")
 def search(req: SearchRequest):
     payload = {
         "user_id": req.user_id,
         "query": req.query,
         "limit": req.limit,
-        "agent_scope": req.scope
+        "agent_scope": req.scope,
     }
-    response = httpx.post(
-        f"{ATOMICMEMORY_URL}/v1/memories/search", json=payload, headers=HEADERS, timeout=TIMEOUT,
-    )
-    data = response.json()
+    data = atomicmemory_json("POST", "/v1/memories/search", json=payload)
     memories = data.get("memories", [])
 
     normalized = []
@@ -87,18 +153,17 @@ def search(req: SearchRequest):
 
 @app.delete("/reset")
 def reset():
-    response = httpx.post(
-        f"{ATOMICMEMORY_URL}/v1/memories/search",
+
+    data = atomicmemory_json(
+        "POST",
+        "/v1/memories/search",
         json={"query": "*", "limit": 1000},
-        headers=HEADERS,
     )
-    memories = response.json().get("memories", [])
+    memories = data.get("memories", [])
     for m in memories:
         memory_id = m.get("id")
         if memory_id:
-            httpx.delete(
-                f"{ATOMICMEMORY_URL}/v1/memories/{memory_id}", headers=HEADERS
-            )
+            atomicmemory_request("DELETE", f"/v1/memories/{memory_id}")
     return {"ok": True}
 
 

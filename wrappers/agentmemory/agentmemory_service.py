@@ -1,8 +1,11 @@
+import os
+
 import httpx
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
-BASE = "http://iii-engine:3111"
+BASE = os.getenv("AGENTMEMORY_URL", "http://127.0.0.1:3111").rstrip("/")
+TIMEOUT = float(os.getenv("AGENTMEMORY_TIMEOUT_SECONDS", "180"))
 
 app = FastAPI()
 _belief_map: dict[str, str] = {}
@@ -10,123 +13,141 @@ _belief_map: dict[str, str] = {}
 
 class Metadata(BaseModel):
     beliefId: str
-    scope: str
+    scope: str = ""
 
 
 class AddRequest(BaseModel):
     text: str
     user_id: str
     metadata: Metadata
-    aliases: list[str] = []
+    aliases: list[str] = Field(default_factory=list)
 
 
 class SearchRequest(BaseModel):
     query: str
     user_id: str
     limit: int = 20
-    scope: str
+    scope: str = ""
 
 
 class UpdateRequest(BaseModel):
     beliefId: str
     text: str
     user_id: str
-    metadata: dict = {}
+    metadata: dict = Field(default_factory=dict)
+
+
+def post(path: str, payload: dict) -> dict:
+    try:
+        response = httpx.post(f"{BASE}{path}", json=payload, timeout=TIMEOUT)
+        response.raise_for_status()
+        return response.json() if response.content else {}
+    except httpx.HTTPError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=502, detail="AgentMemory returned invalid JSON"
+        ) from exc
+
+
+def memory_id(data: dict) -> str | None:
+    value = (
+        (data.get("memory") or {}).get("id") or data.get("id") or data.get("memoryId")
+    )
+    return str(value) if value is not None else None
 
 
 @app.post("/add")
 def add(req: AddRequest):
-    r = httpx.post(
-        f"{BASE}/agentmemory/remember",
-        json={
+
+    print(f"{BASE}")
+
+    data = post(
+        "/agentmemory/remember",
+        {
             "content": req.text,
             "project": req.metadata.scope,
-            "userId": req.user_id,
+            "agentId": req.user_id,
             "title": req.metadata.beliefId,
-            "metadata": {"beliefId": req.metadata.beliefId},
+            "metadata": {
+                "beliefId": req.metadata.beliefId,
+                "scope": req.metadata.scope,
+            },
             "concepts": req.aliases,
         },
-        timeout=30,
     )
-    if not r.text:
-        return {"ok": True}
-    data = r.json()
-    mem_id = (
-        (data.get("memory") or {}).get("id") or data.get("id") or data.get("memoryId")
-    )
-    if mem_id and req.metadata.beliefId:
-        _belief_map[str(mem_id)] = req.metadata.beliefId
+    mem_id = memory_id(data)
+    if mem_id:
+        _belief_map[mem_id] = req.metadata.beliefId
     return {"ok": True}
 
 
 @app.put("/update")
 def update(req: UpdateRequest):
-    mem_id = next((k for k, v in _belief_map.items() if v == req.beliefId), None)
+    mem_id = next(
+        (key for key, value in _belief_map.items() if value == req.beliefId), None
+    )
     if mem_id is None:
         raise HTTPException(
             status_code=404, detail=f"beliefId {req.beliefId} not in belief map"
         )
 
-    httpx.post(
-        f"{BASE}/agentmemory/forget",
-        json={
-            "memoryId": mem_id,
-        },
-        timeout=30,
-    )
+    post("/agentmemory/forget", {"memoryId": mem_id})
     _belief_map.pop(mem_id, None)
 
-    r = httpx.post(
-        f"{BASE}/agentmemory/remember",
-        json={
+    scope = str(req.metadata.get("scope", ""))
+    data = post(
+        "/agentmemory/remember",
+        {
             "content": req.text,
-            "project": req.metadata.get("scope", ""),
-            "userId": req.user_id,
-            "metadata": {"beliefId": req.beliefId},
+            "project": scope,
+            "agentId": req.user_id,
+            "title": req.beliefId,
+            "metadata": {
+                "beliefId": req.beliefId,
+                "scope": scope,
+            },
         },
-        timeout=30,
     )
-    data = r.json()
-    new_id = (
-        (data.get("memory") or {}).get("id") or data.get("id") or data.get("memoryId")
-    )
+    new_id = memory_id(data)
     if new_id:
-        _belief_map[str(new_id)] = req.beliefId
-
+        _belief_map[new_id] = req.beliefId
     return {"ok": True}
 
 
 @app.post("/search")
 def search(req: SearchRequest):
-    r = httpx.post(
-        f"{BASE}/agentmemory/smart-search",
-        json={
+    data = post(
+        "/agentmemory/smart-search",
+        {
             "query": req.query,
             "project": req.scope,
-            "userId": req.user_id,
+            "agentId": req.user_id,
             "limit": req.limit,
         },
-        timeout=30,
     )
-
-    memories = r.json().get("results") or r.json().get("memories", [])
+    memories = data.get("results") or data.get("memories") or []
     results = []
     seen = set()
-    for m in memories:
-        obs = m.get("observation", m)
-        meta_bid = (obs.get("metadata") or {}).get("beliefId")
-        bid = meta_bid or _belief_map.get(str(m.get("obsId") or m.get("id", "")))
-        if not bid or bid in seen:
+    for item in memories:
+        observation = item.get("observation") or item
+        belief_id = (observation.get("metadata") or {}).get("beliefId")
+        if not belief_id:
+            source_id = (
+                item.get("obsId") or item.get("id") or observation.get("id") or ""
+            )
+            belief_id = _belief_map.get(str(source_id))
+        if not belief_id or belief_id in seen:
             continue
-        seen.add(bid)
+        seen.add(belief_id)
         results.append(
             {
-                "id": bid,
-                "memory": obs.get("content")
-                or obs.get("narrative")
-                or obs.get("memory", ""),
-                "score": m.get("score", 1.0),
-                "metadata": {"beliefId": bid},
+                "id": belief_id,
+                "memory": observation.get("content")
+                or observation.get("narrative")
+                or observation.get("memory", ""),
+                "score": item.get("score", 1.0),
+                "metadata": {"beliefId": belief_id},
             }
         )
     return {"results": results}
@@ -135,16 +156,5 @@ def search(req: SearchRequest):
 @app.delete("/reset")
 def reset():
     _belief_map.clear()
-    httpx.post(
-        f"{BASE}/agentmemory/governance/bulk-delete",
-        json={"all": True},
-        timeout=30,
-    )
-
+    post("/agentmemory/governance/bulk-delete", {"all": True})
     return {"ok": True}
-
-
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="0.0.0.0", port=8084)

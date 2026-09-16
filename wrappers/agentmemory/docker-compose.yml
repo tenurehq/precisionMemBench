@@ -1,56 +1,62 @@
 services:
-  iii-init:
-    image: busybox:1.36
-    user: "0:0"
-    volumes:
-      - iii-data:/data
-    entrypoint: ["sh", "-c", "chown -R 65532:65532 /data && chmod 755 /data"]
-    restart: "no"
-
-  iii-engine:
-    image: iiidev/iii@sha256:3d005602abcafa8bff7ddcbd9d3af78169cf89b619b615405e6908be55ed5254
-    user: "65532:65532"
-    depends_on:
-      iii-init:
-        condition: service_completed_successfully
+  agentmemory:
+    image: node:22@sha256:8a34c4ab3ea2c5cd194f07e317b2a8f09461d3c8b05c4e34c8ccd56d56024c4d
+    init: true
+    working_dir: /data/runtime
+    command:
+      - npx
+      - -y
+      - "@agentmemory/agentmemory@0.9.29"
     ports:
-      - "49134:49134"
-      - "3111:3111"
-      - "3112:3112"
-      - "9464:9464"
+      - "127.0.0.1:8084:8084"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
-      - iii-data:/data
-      - ./iii-config.docker.yaml:/app/config.yaml:ro
+      - agentmemory-data:/data
+    environment:
+      HOME: /data
+      AGENTMEMORY_DATA_DIR: /data/agentmemory
+      npm_config_cache: /data/npm-cache
+      EMBEDDING_PROVIDER: openai
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-ollama}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-http://host.docker.internal:11434/v1}
+      OPENAI_MODEL: ${OPENAI_MODEL:-openai/us.anthropic.claude-sonnet-4-6}
+      OPENAI_EMBEDDING_MODEL: ${OPENAI_EMBEDDING_MODEL:-mxbai-embed-large:latest}
+      OPENAI_EMBEDDING_DIMENSIONS: 1024
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3111/agentmemory/livez').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      start_period: 60s
+      retries: 12
     restart: unless-stopped
     logging:
       driver: json-file
       options:
         max-size: "10m"
         max-file: "3"
-    environment:
-      - EMBEDDING_PROVIDER=local
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - OPENAI_BASE_URL=http://192.168.1.154:11434/v1
-      - OPENAI_MODEL=openai/us.anthropic.claude-sonnet-4-6
-      - OPENAI_EMBEDDING_MODEL=mxbai-embed-large:latest
-      - OPENAI_EMBEDDING_DIMENSIONS=1024
-      - AGENTMEMORY_AUTO_COMPRESS=true
-      - AGENTMEMORY_SLOTS=true
-      - AGENTMEMORY_REFLECT=true
-      - AGENTMEMORY_INJECT_CONTEXT=true
-      - GRAPH_EXTRACTION_ENABLED=true
-      - CONSOLIDATION_ENABLED=true
 
   agentmemory-wrapper:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "8084:8084"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    network_mode: service:agentmemory
+    depends_on:
+      agentmemory:
+        condition: service_healthy
     environment:
-      - AGENTMEMORY_URL=http://agentmemory:3111
+      AGENTMEMORY_URL: http://127.0.0.1:3111
+      AGENTMEMORY_TIMEOUT_SECONDS: "180"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 volumes:
-  iii-data:
+  agentmemory-data:

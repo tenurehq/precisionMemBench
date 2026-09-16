@@ -1,20 +1,23 @@
 services:
   hindsight:
-    image: ghcr.io/vectorize-io/hindsight@sha256:f0f9e9a73d6aedde9eaf4010ab604c3e015494e494318b26f1011144856b8112
+    image: ghcr.io/vectorize-io/hindsight@sha256:84ab276b8f501546deb6ea9c64a57291718b4e16a59dd9e02a02fdd5adfe9028
     ports:
       - "8888:8888"
       - "9999:9999"
     environment:
       HINDSIGHT_API_LLM_PROVIDER: openai
       HINDSIGHT_API_LLM_API_KEY: "123456"
-      HINDSIGHT_API_LLM_BASE_URL: "http://192.168.1.154:8000/api/v1"
+      HINDSIGHT_API_LLM_BASE_URL: "http://host.docker.internal:8000/api/v1"
       HINDSIGHT_API_LLM_MODEL: "us.anthropic.claude-sonnet-4-6"
       HINDSIGHT_API_EMBEDDINGS_PROVIDER: openai
       HINDSIGHT_API_EMBEDDINGS_OPENAI_API_KEY: "unused"
-      HINDSIGHT_API_EMBEDDINGS_OPENAI_BASE_URL: "http://192.168.1.154:11434/v1"
+      HINDSIGHT_API_EMBEDDINGS_OPENAI_BASE_URL: "http://host.docker.internal:11434/v1"
       HINDSIGHT_API_EMBEDDINGS_OPENAI_MODEL: "mxbai-embed-large"
+      HINDSIGHT_API_EMBEDDINGS_OPENAI_DIMENSIONS: 1024
       HINDSIGHT_API_RERANKER_PROVIDER: local
       HINDSIGHT_API_WORKER_ID: hindsight-local
+      HINDSIGHT_API_MCP_ENABLED: false
+      HINDSIGHT_API_LLM_TEMPERATURE: none
 
     volumes:
       - hindsight_data:/home/hindsight/.pg0
