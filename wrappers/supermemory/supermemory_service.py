@@ -1,14 +1,15 @@
 """
 supermemory_service.py - PrecisionMemBench wrapper for Supermemory
-Implements the three-endpoint contract on port 8080:
+Implements the wrapper contract on port 8082:
   POST   /add     - ingest a belief
+  PUT    /update  - update an ingested belief
   POST   /search  - retrieve beliefs by query
   DELETE /reset   - wipe all stored beliefs
 
 Environment variables:
   SEED_DELAY_MS         extra wait after /add  (default: 0)
   POLL_TIMEOUT_S        max seconds to poll    (default: 30)
-  PORT                  HTTP port              (default: 8080)
+  PORT                  HTTP port              (default: 8082)
 """
 
 import asyncio
@@ -26,7 +27,7 @@ logging.basicConfig(level=logging.INFO)
 log = logging.getLogger("supermemory_service")
 
 
-BASE_URL = "http://localhost:6767"
+BASE_URL = os.getenv("SUPERMEMORY_BASE_URL", "http://localhost:6767")
 SEED_DELAY_MS = int(os.getenv("SEED_DELAY_MS", "0"))
 POLL_TIMEOUT_S = int(os.getenv("POLL_TIMEOUT_S", "30"))
 PORT = int(os.getenv("PORT", "8080"))
@@ -38,6 +39,9 @@ HEADERS = {
 }
 
 app = FastAPI(title="supermemory-bench-wrapper")
+DOCUMENT_IDS: dict[str, str] = {}
+
+print(f"Supermemory wrapper module loaded, port={PORT}", flush=True)
 
 
 class Metadata(BaseModel):
@@ -55,11 +59,22 @@ class AddResponse(BaseModel):
     ok: bool
 
 
+class UpdateRequest(BaseModel):
+    beliefId: str
+    text: str
+    user_id: str
+    metadata: Metadata
+
+
+class UpdateResponse(BaseModel):
+    ok: bool
+
+
 class SearchRequest(BaseModel):
     query: str
     user_id: str
     limit: int = 20
-    scope: str
+    scope: str | list[str]
 
 
 class SearchResult(BaseModel):
@@ -99,6 +114,11 @@ async def _poll_until_ready(client: httpx.AsyncClient, doc_id: str) -> None:
     log.warning("Poll timeout for doc %s after %ss", doc_id, POLL_TIMEOUT_S)
 
 
+@app.on_event("startup")
+async def wrapper_started():
+    print("Supermemory wrapper FastAPI startup complete", flush=True)
+
+
 @app.post("/add", response_model=AddResponse)
 async def add(req: AddRequest):
     """
@@ -136,12 +156,50 @@ async def add(req: AddRequest):
         doc_id = r.json().get("id", "")
 
         if doc_id:
+            DOCUMENT_IDS[belief_id] = doc_id
             await _poll_until_ready(client, doc_id)
 
         if SEED_DELAY_MS > 0:
             await asyncio.sleep(SEED_DELAY_MS / 1000)
 
     return AddResponse(ok=True)
+
+
+@app.put("/update", response_model=UpdateResponse)
+async def update(req: UpdateRequest):
+    belief_id = req.beliefId
+    doc_id = DOCUMENT_IDS.get(belief_id, belief_id)
+    payload: dict[str, Any] = {
+        "content": req.text,
+        "containerTag": req.user_id,
+        "customId": belief_id,
+        "metadata": {
+            "beliefId": belief_id,
+            "scope": req.metadata.scope,
+        },
+        "filterByMetadata": {"scope": req.metadata.scope},
+    }
+
+    async with httpx.AsyncClient() as client:
+        try:
+            r = await client.patch(
+                f"{BASE_URL}/v3/documents/{doc_id}",
+                headers=HEADERS,
+                json=payload,
+                timeout=30,
+            )
+            r.raise_for_status()
+        except httpx.HTTPStatusError as exc:
+            log.error(
+                "update failed: %s - %s", exc.response.status_code, exc.response.text
+            )
+            raise HTTPException(status_code=502, detail=exc.response.text) from exc
+
+        updated_doc_id = r.json().get("id", doc_id)
+        DOCUMENT_IDS[belief_id] = updated_doc_id
+        await _poll_until_ready(client, updated_doc_id)
+
+    return UpdateResponse(ok=True)
 
 
 @app.post("/search", response_model=SearchResponse)
@@ -152,12 +210,18 @@ async def search(req: SearchRequest):
     We use searchMode='memories' (not hybrid) so results are purely the
     extracted memory entries - the same unit the benchmark scored on ingest.
     """
+    scopes = [req.scope] if isinstance(req.scope, str) else req.scope
+    scope_filters = [{"key": "scope", "value": scope} for scope in scopes]
+    filters = (
+        {"AND": scope_filters} if len(scope_filters) == 1 else {"OR": scope_filters}
+    )
+
     payload: dict[str, Any] = {
         "q": req.query,
         "containerTag": req.user_id,
         "limit": req.limit,
         "searchMode": "memories",
-        "filters": {"AND": [{"key": "scope", "value": req.scope}]},
+        "filters": filters,
     }
 
     async with httpx.AsyncClient() as client:
@@ -207,6 +271,7 @@ async def reset():
             )
             raise HTTPException(status_code=502, detail=exc.response.text) from exc
 
+    DOCUMENT_IDS.clear()
     log.info("Organization reset: %s", r.json())
     return ResetResponse(ok=True)
 

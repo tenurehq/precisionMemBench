@@ -26,7 +26,8 @@
     "defaultUrl": "http://localhost:8080",
     "seedDelayMs": 5500,
     "beliefToText": "canonical_name_aliases",
-    "supportsUpdate": false
+    "supportsUpdate": true,
+    "supportsMultiScope": true
   },
   "yourmemory": {
     "envVar": "YOURMEMORY_URL",
