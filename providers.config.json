@@ -18,14 +18,16 @@
     "defaultUrl": "http://localhost:8080",
     "seedDelayMs": 5500,
     "beliefToText": "canonical_name_aliases",
-    "supportsUpdate": false
+    "supportsUpdate": true,
+    "supportsMultiScope": true
   },
   "supermemory": {
     "envVar": "SUPERMEMORY_URL",
     "defaultUrl": "http://localhost:8080",
     "seedDelayMs": 5500,
     "beliefToText": "canonical_name_aliases",
-    "supportsUpdate": false
+    "supportsUpdate": true,
+    "supportsMultiScope": true
   },
   "yourmemory": {
     "envVar": "YOURMEMORY_URL",
@@ -60,7 +62,7 @@
     "defaultUrl": "http://localhost:8082",
     "seedDelayMs": 2000,
     "beliefToText": "canonical_name_aliases",
-    "supportsUpdate": false
+    "supportsUpdate": true
   },
   "okf": {
     "envVar": "OKF_URL",

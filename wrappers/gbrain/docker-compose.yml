@@ -1,6 +1,8 @@
 services:
   infinity-reranker:
-    image: michaelf34/infinity:latest
+    image: michaelf34/infinity@sha256:11e8b3921b9f1a58965afaad4a844c435c9807cbc82c51e47cb147b7d977fc88
+    environment:
+      - HF_HUB_DISABLE_XET=1
     ports:
       - "7997:7997"
     command: >
@@ -19,7 +21,7 @@ services:
       start_period: 30s
 
   gbrain-wrapper:
-    image: tenureai/precisionmembench-gbrain:v1.0.0
+    image: tenureai/precisionmembench-gbrain:v1.0.1@sha256:a1f47db51812db5f4dfee7ea64982959c2cc44640bfa1703885eb78f9ec071a3
     ports:
       - "8082:8082"
     extra_hosts:

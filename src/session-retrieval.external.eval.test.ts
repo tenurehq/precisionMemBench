@@ -35,6 +35,7 @@ import {
   buildReportPayload,
   type ReportSummaryOptions,
 } from "./utils/buildRetrievalReport.js";
+import { collectRunProvenance } from "./utils/runProvenance.js";
 
 const rawProvider = process.env.MEMORY_PROVIDER?.trim().toLowerCase();
 if (!rawProvider) {
@@ -205,10 +206,20 @@ test.after.always(() => {
     };
   }
 
+  const payload = buildReportPayload(opts, sessionReport);
+  const repositoryRoot = resolve(__dirname, "..");
+
   mkdirSync(REPORT_DIR, { recursive: true });
   writeFileSync(
     REPORT_PATH,
-    JSON.stringify(buildReportPayload(opts, sessionReport), null, 2),
+    JSON.stringify(
+      {
+        ...payload,
+        provenance: collectRunProvenance(PROVIDER, repositoryRoot),
+      },
+      null,
+      2,
+    ),
   );
 });
 

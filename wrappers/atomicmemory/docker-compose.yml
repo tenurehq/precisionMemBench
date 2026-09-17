@@ -1,6 +1,6 @@
 services:
   atomicmemory-core:
-    image: ghcr.io/atomicstrata/atomicmemory-core@sha256:511227d38dae85f55b45ca96e8f5e92389374ec76ff82b7b95e0ce0abc6ebc5b
+    image: ghcr.io/atomicstrata/atomicmemory-core@sha256:927aff798381c6fed25206f73f1e177a9419bd67e45d3ef2477b769d97f386c6
     pull_policy: always
     ports:
       - "17350:17350"

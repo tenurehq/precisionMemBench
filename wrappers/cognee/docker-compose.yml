@@ -14,7 +14,7 @@ services:
       retries: 5
 
   cognee:
-    image: cognee/cognee@sha256:fd1d2b9cea2c22746da93b9e084433627c9c028c58b58530fada82014e6759f1
+    image: cognee/cognee@sha256:214be852e0f2344416942876d57759ff567a0f38e7f10656b91b34aeac4d3e21
     ports:
       - "8000:8000"
     extra_hosts:
@@ -35,7 +35,7 @@ services:
       - LLM_API_KEY=LLM_API_KEY
       - EMBEDDING_PROVIDER=ollama
       - EMBEDDING_MODEL=mxbai-embed-large:latest
-      - EMBEDDING_ENDPOINT=http://192.168.1.154:11434/api/embed
+      - EMBEDDING_ENDPOINT=http://host.docker.internal:11434/api/embed
       - EMBEDDING_DIMENSIONS=1024
       - HUGGINGFACE_TOKENIZER=mixedbread-ai/mxbai-embed-large-v1
       - DB_PROVIDER=postgres
@@ -46,6 +46,7 @@ services:
       - DB_NAME=cognee_db
       - VECTOR_DB_PROVIDER=pgvector
       - GRAPH_DATABASE_PROVIDER=kuzu
+      - CACHING=false
 
   cognee-wrapper:
     build: .

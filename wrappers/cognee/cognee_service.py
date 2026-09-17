@@ -1,13 +1,13 @@
 import io
 import os
 
-import httpx
+import httpx2
 import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 
 COGNEE_URL = os.getenv("COGNEE_URL", "http://localhost:8000")
-TIMEOUT = httpx.Timeout(240.0)
+TIMEOUT = httpx2.Timeout(240.0)
 
 app = FastAPI()
 
@@ -31,7 +31,7 @@ def add(req: AddRequest):
     belief_id = req.metadata.get("beliefId")
     dataset_name = f"user_{req.user_id}"
 
-    httpx.post(
+    httpx2.post(
         f"{COGNEE_URL}/api/v1/remember",
         data={"datasetName": dataset_name},
         files={
@@ -51,7 +51,7 @@ def add(req: AddRequest):
 def search(req: SearchRequest):
     dataset_name = f"user_{req.user_id}"
 
-    response = httpx.post(
+    response = httpx2.post(
         f"{COGNEE_URL}/api/v1/search",
         json={
             "query": req.query,
@@ -99,10 +99,10 @@ def search(req: SearchRequest):
 def reset():
     id_map.clear()
 
-    httpx.delete(f"{COGNEE_URL}/api/v1/datasets", timeout=TIMEOUT)
+    httpx2.delete(f"{COGNEE_URL}/api/v1/datasets", timeout=TIMEOUT)
 
     for name in ["user_test-user", "user_other-user", "user_brand-new-user"]:
-        httpx.post(
+        httpx2.post(
             f"{COGNEE_URL}/api/v1/datasets",
             json={"name": name},
             timeout=TIMEOUT,

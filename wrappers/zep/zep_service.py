@@ -1,21 +1,20 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
-import uvicorn
+import asyncio
 import os
+from contextlib import asynccontextmanager
+from datetime import datetime, timezone
+
+import uvicorn
+from fastapi import FastAPI
 
 # Zep OSS uses the local server, not the cloud client
 # We use the open source self-hosted version via graphiti
 from graphiti_core import Graphiti
-from graphiti_core.nodes import EpisodeType
+from graphiti_core.cross_encoder.openai_reranker_client import OpenAIRerankerClient
+from graphiti_core.embedder.openai import OpenAIEmbedder, OpenAIEmbedderConfig
 from graphiti_core.llm_client.config import LLMConfig
 from graphiti_core.llm_client.openai_generic_client import OpenAIGenericClient
-from graphiti_core.embedder.openai import OpenAIEmbedder, OpenAIEmbedderConfig
-from graphiti_core.cross_encoder.openai_reranker_client import OpenAIRerankerClient
-
-import asyncio
-from datetime import datetime, timezone
-
-app = FastAPI()
+from graphiti_core.nodes import EpisodeType
+from pydantic import BaseModel
 
 uuid_to_belief_id: dict[str, str] = {}
 
@@ -46,6 +45,18 @@ graphiti = Graphiti(
 )
 
 
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    await graphiti.build_indices_and_constraints()
+    try:
+        yield
+    finally:
+        await graphiti.close()
+
+
+app = FastAPI(lifespan=lifespan)
+
+
 class AddRequest(BaseModel):
     text: str
     user_id: str
@@ -60,11 +71,6 @@ class SearchRequest(BaseModel):
 
 class ResetRequest(BaseModel):
     user_id: str
-
-
-@app.on_event("startup")
-async def startup():
-    await graphiti.build_indices_and_constraints()
 
 
 @app.post("/add")
@@ -136,18 +142,7 @@ async def search(req: SearchRequest):
 @app.delete("/reset")
 async def reset():
     uuid_to_belief_id.clear()
-    await graphiti.driver.execute_query(
-        "MATCH (n) WHERE n.group_id = $group_id DETACH DELETE n",
-        group_id="test-user",
-    )
-    await graphiti.driver.execute_query(
-        "MATCH (n) WHERE n.group_id = $group_id DETACH DELETE n",
-        group_id="other-user",
-    )
-    await graphiti.driver.execute_query(
-        "MATCH (n) WHERE n.group_id = $group_id DETACH DELETE n",
-        group_id="brand-new-user",
-    )
+    await graphiti.driver.execute_query("MATCH (n) DETACH DELETE n")
     return {"ok": True}
 
 

@@ -1,68 +1,68 @@
 {
   "provider": "atomicmemory",
   "retrieval": {
-    "meanLatencyMs": 66.77,
-    "p50LatencyMs": 71.01,
-    "p95LatencyMs": 86.07,
+    "meanLatencyMs": 609.48,
+    "p50LatencyMs": 163.85,
+    "p95LatencyMs": 3497.54,
     "caseCount": 77,
-    "meanPrecision": 0.1454,
-    "meanRecall": 0.9513,
-    "totalPassed": 9,
+    "meanPrecision": 0.2269,
+    "meanRecall": 0.5421,
+    "totalPassed": 16,
     "totalCases": 77,
-    "passRate": 0.1169,
-    "activeRetrievalPasses": 0,
+    "passRate": 0.2078,
+    "activeRetrievalPasses": 5,
     "passTypes": {
-      "activeRetrieval": 0,
-      "structural": 6,
+      "activeRetrieval": 5,
+      "structural": 8,
       "triviallyEmpty": 3
     },
     "categories": [
       {
         "category": "Alias resolution",
         "caseCount": 23,
-        "passed": 0,
-        "failed": 23,
-        "meanPrecision": 0.259,
-        "meanRecall": 0.9502
+        "passed": 1,
+        "failed": 22,
+        "meanPrecision": 0.3058,
+        "meanRecall": 0.4913
       },
       {
         "category": "Scope disambiguation",
         "caseCount": 12,
-        "passed": 0,
-        "failed": 12,
-        "meanPrecision": 0.073,
-        "meanRecall": 1
+        "passed": 2,
+        "failed": 10,
+        "meanPrecision": 0.15,
+        "meanRecall": 0.625
       },
       {
         "category": "Fuzzy matching and prefix guards",
         "caseCount": 7,
-        "passed": 0,
-        "failed": 7,
-        "meanPrecision": 0.0773,
-        "meanRecall": 0.8
+        "passed": 1,
+        "failed": 6,
+        "meanPrecision": 0.2857,
+        "meanRecall": 0.6
       },
       {
         "category": "Type routing and open questions",
         "caseCount": 6,
         "passed": 0,
         "failed": 6,
-        "meanPrecision": 0.0278,
-        "meanRecall": 1
+        "meanPrecision": 0,
+        "meanRecall": 0
       },
       {
         "category": "Design boundary cases",
         "caseCount": 6,
         "passed": 2,
         "failed": 4,
-        "meanPrecision": 0.0357,
+        "meanPrecision": 0.0833,
         "meanRecall": 1
       },
       {
         "category": "Budget eviction and capacity",
         "caseCount": 5,
-        "passed": 3,
-        "failed": 2,
-        "meanPrecision": 0.1625,
+        "passed": 5,
+        "failed": 0,
+        "meanPrecision": 1,
         "meanRecall": 1
       },
       {
@@ -76,10 +76,10 @@
       {
         "category": "Relation expansion",
         "caseCount": 4,
-        "passed": 0,
-        "failed": 4,
-        "meanPrecision": 0.3083,
-        "meanRecall": 1
+        "passed": 1,
+        "failed": 3,
+        "meanPrecision": 0.5,
+        "meanRecall": 0.75
       },
       {
         "category": "Supersession chain exclusion",
@@ -94,16 +94,16 @@
         "caseCount": 3,
         "passed": 1,
         "failed": 2,
-        "meanPrecision": 0.25,
-        "meanRecall": 1
+        "meanPrecision": 0,
+        "meanRecall": 0
       },
       {
         "category": "Counter-signal retrieval",
         "caseCount": 2,
         "passed": 0,
         "failed": 2,
-        "meanPrecision": 0.1458,
-        "meanRecall": 1
+        "meanPrecision": 0.1667,
+        "meanRecall": 0.5
       },
       {
         "category": "Cross-user isolation",
@@ -133,15 +133,9 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-zero-reinforcement-fresh",
-        "b-composition-inheritance",
         "b-ci-gha-entity",
-        "b-prose-style-user-edited",
-        "b-react-expertise",
-        "b-kubernetes-entity",
-        "b-dead-letter-queue",
-        "b-functional-pipeline",
-        "b-pov-shift-entity"
+        "b-zero-reinforcement-fresh",
+        "b-chapter-structure-q"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -151,17 +145,11 @@
       "pinnedCoverage": 1,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
         "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-kubernetes-entity",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity"
+        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
+        "unexpected belief in relevantBeliefs: b-chapter-structure-q"
       ],
-      "retrievalLatencyMs": 66.85
+      "retrievalLatencyMs": 3077.05
     },
     {
       "caseId": "happy-alias-match-kubernetes",
@@ -173,25 +161,19 @@
       ],
       "relevantBeliefs": [
         "b-kubernetes-entity",
-        "b-pov-shift-entity",
-        "b-ci-gha-entity",
-        "b-zero-reinforcement-fresh",
-        "b-dead-letter-queue"
+        "b-ci-gha-entity"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.2,
+      "retrievalPrecision": 0.5,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue"
+        "unexpected belief in relevantBeliefs: b-ci-gha-entity"
       ],
-      "retrievalLatencyMs": 77.86
+      "retrievalLatencyMs": 162.84
     },
     {
       "caseId": "alias-kube-resolves",
@@ -203,24 +185,17 @@
       ],
       "relevantBeliefs": [
         "b-kubernetes-entity",
-        "b-ci-gha-entity",
-        "b-zero-reinforcement-fresh",
-        "b-functional-pipeline",
-        "b-react-entity"
+        "b-ci-gha-entity"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.4,
+      "retrievalPrecision": 1,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
-      "passed": false,
-      "failures": [
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-react-entity"
-      ],
-      "retrievalLatencyMs": 85.07
+      "passed": true,
+      "failures": [],
+      "retrievalLatencyMs": 4518.97
     },
     {
       "caseId": "alias-gha-resolves",
@@ -231,30 +206,20 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-zero-reinforcement-fresh",
-        "b-dead-letter-queue",
-        "b-protagonist-entity",
         "b-ci-gha-entity",
-        "b-prose-style-user-edited",
-        "b-functional-pipeline",
-        "b-pov-shift-entity"
+        "b-zero-reinforcement-fresh"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.14285714285714285,
+      "retrievalPrecision": 0.5,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-protagonist-entity",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity"
+        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh"
       ],
-      "retrievalLatencyMs": 69.88
+      "retrievalLatencyMs": 163.89
     },
     {
       "caseId": "long-query-rambling-kubernetes",
@@ -266,25 +231,19 @@
       ],
       "relevantBeliefs": [
         "b-kubernetes-entity",
-        "b-chapter-structure-q",
-        "b-prose-style-user-edited",
-        "b-ci-gha-entity",
-        "b-dead-letter-queue"
+        "b-ci-gha-entity"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.2,
+      "retrievalPrecision": 0.5,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-chapter-structure-q",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue"
+        "unexpected belief in relevantBeliefs: b-ci-gha-entity"
       ],
-      "retrievalLatencyMs": 116.98
+      "retrievalLatencyMs": 347.24
     },
     {
       "caseId": "out-of-scope-coin-collecting",
@@ -292,14 +251,9 @@
       "description": "Query in a domain the user has no beliefs about: personaPrelude only, no scope/relevant leakage",
       "pinnedBeliefs": [],
       "relevantBeliefs": [
-        "b-dead-letter-queue",
-        "b-composition-inheritance",
-        "b-prose-style-user-edited",
-        "b-functional-pipeline",
-        "b-db-decision",
-        "b-ci-gha-entity",
-        "b-linting-current",
-        "b-redis-writing"
+        "b-sqlalchemy-superseded",
+        "b-hosting-resolved",
+        "b-linting-current"
       ],
       "retrievedQuestions": [],
       "retrievalPrecision": 0,
@@ -307,16 +261,11 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-db-decision",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-linting-current",
-        "unexpected belief in relevantBeliefs: b-redis-writing"
+        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded",
+        "unexpected belief in relevantBeliefs: b-hosting-resolved",
+        "unexpected belief in relevantBeliefs: b-linting-current"
       ],
-      "retrievalLatencyMs": 71.83
+      "retrievalLatencyMs": 190.11
     },
     {
       "caseId": "happy-writing-scope",
@@ -328,12 +277,7 @@
         "b-prose-style-user-edited"
       ],
       "relevantBeliefs": [
-        "b-redis-writing",
-        "b-chapter-structure-q",
-        "b-db-decision",
-        "b-ts-pref",
-        "b-narrator-superseded",
-        "b-pov-shift-entity"
+        "b-chapter-structure-q"
       ],
       "retrievedQuestions": [
         "b-chapter-structure-q"
@@ -343,14 +287,9 @@
       "pinnedCoverage": 1,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-redis-writing",
-        "unexpected belief in relevantBeliefs: b-chapter-structure-q",
-        "unexpected belief in relevantBeliefs: b-db-decision",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-narrator-superseded",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity"
+        "unexpected belief in relevantBeliefs: b-chapter-structure-q"
       ],
-      "retrievalLatencyMs": 82.85
+      "retrievalLatencyMs": 4369.32
     },
     {
       "caseId": "conflict-scope-disambiguation-redis-writing",
@@ -362,30 +301,24 @@
         "b-prose-style-user-edited"
       ],
       "relevantBeliefs": [
-        "b-redis-writing",
         "b-redis-code",
-        "b-auth-depends-redis",
-        "b-react-entity",
-        "b-fastify-pref",
-        "b-zero-reinforcement-fresh",
-        "b-functional-pipeline"
+        "b-ci-gha-entity",
+        "b-auth-depends-redis"
       ],
       "retrievedQuestions": [
         "b-chapter-structure-q"
       ],
-      "retrievalPrecision": 0.14285714285714285,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-redis-code",
+        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
         "unexpected belief in relevantBeliefs: b-auth-depends-redis",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-fastify-pref",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline"
+        "missing expected belief: b-redis-writing"
       ],
-      "retrievalLatencyMs": 71.13
+      "retrievalLatencyMs": 147.07
     },
     {
       "caseId": "conflict-scope-disambiguation-redis-code",
@@ -397,25 +330,19 @@
       ],
       "relevantBeliefs": [
         "b-auth-depends-redis",
-        "b-redis-writing",
-        "b-redis-code",
-        "b-functional-pipeline",
-        "b-auth-open-q"
+        "b-redis-code"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.2,
+      "retrievalPrecision": 0.5,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-auth-depends-redis",
-        "unexpected belief in relevantBeliefs: b-redis-writing",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "unexpected belief in relevantBeliefs: b-auth-depends-redis"
       ],
-      "retrievalLatencyMs": 72.88
+      "retrievalLatencyMs": 150.39
     },
     {
       "caseId": "multi-scope-redis-both-surfaces",
@@ -429,28 +356,22 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-redis-writing",
-        "b-auth-depends-redis",
         "b-redis-code",
-        "b-react-entity",
-        "b-fastify-pref",
-        "b-auth-open-q"
+        "b-auth-depends-redis"
       ],
       "retrievedQuestions": [
         "b-auth-open-q",
         "b-chapter-structure-q"
       ],
-      "retrievalPrecision": 0.3333333333333333,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0.5,
+      "retrievalRecall": 0.5,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-auth-depends-redis",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-fastify-pref",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "missing expected belief: b-redis-writing"
       ],
-      "retrievalLatencyMs": 55.97
+      "retrievalLatencyMs": 252.79
     },
     {
       "caseId": "conflict-mongodb-supersedes-sqlalchemy",
@@ -461,13 +382,7 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-sqlalchemy-superseded",
-        "b-functional-pipeline",
-        "b-react-entity",
-        "b-zero-reinforcement-fresh",
-        "b-dead-letter-queue",
-        "b-ts-pref",
-        "b-composition-inheritance"
+        "b-sqlalchemy-superseded"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -477,15 +392,9 @@
       "pinnedCoverage": 1,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance"
+        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded"
       ],
-      "retrievalLatencyMs": 66.9
+      "retrievalLatencyMs": 153.91
     },
     {
       "caseId": "edge-empty-query",
@@ -516,29 +425,19 @@
       ],
       "relevantBeliefs": [
         "b-fastify-pref",
-        "b-zero-reinforcement-fresh",
-        "b-react-entity",
-        "b-ci-gha-entity",
-        "b-functional-pipeline",
-        "b-kubernetes-entity",
-        "b-ts-pref"
+        "b-kubernetes-entity"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.14285714285714285,
+      "retrievalPrecision": 0.5,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-kubernetes-entity",
-        "unexpected belief in relevantBeliefs: b-ts-pref"
+        "unexpected belief in relevantBeliefs: b-kubernetes-entity"
       ],
-      "retrievalLatencyMs": 64.13
+      "retrievalLatencyMs": 156.28
     },
     {
       "caseId": "isolation-user-scoping",
@@ -549,15 +448,9 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-narrator-superseded",
         "b-narrator-voice",
-        "b-prose-style-user-edited",
-        "b-protagonist-entity",
-        "b-ts-pref",
-        "b-functional-pipeline",
-        "b-redis-writing",
-        "b-pov-shift-entity",
-        "b-zero-reinforcement-fresh"
+        "b-authorship-mode",
+        "b-narrator-superseded"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -567,7 +460,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 64.49
+      "retrievalLatencyMs": 137.45
     },
     {
       "caseId": "questions-pinned-active-only",
@@ -578,17 +471,8 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-dead-letter-queue",
-        "b-composition-inheritance",
-        "b-protagonist-entity",
-        "b-functional-pipeline",
-        "b-auth-depends-redis",
-        "b-zero-reinforcement-fresh",
         "b-ci-gha-entity",
-        "b-pov-shift-entity",
-        "b-ts-pref",
-        "b-redis-code",
-        "b-auth-open-q"
+        "b-ts-pref"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -598,19 +482,10 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-protagonist-entity",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-auth-depends-redis",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
         "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-redis-code",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "unexpected belief in relevantBeliefs: b-ts-pref"
       ],
-      "retrievalLatencyMs": 64.19
+      "retrievalLatencyMs": 164.54
     },
     {
       "caseId": "alias-ts-resolves",
@@ -623,28 +498,20 @@
       "relevantBeliefs": [
         "b-ts-pref",
         "b-linting-v0",
-        "b-functional-pipeline",
-        "b-error-handling",
-        "b-composition-inheritance",
-        "b-react-expertise",
-        "b-react-entity"
+        "b-hosting-resolved"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.14285714285714285,
+      "retrievalPrecision": 0.3333333333333333,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-linting-v0",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-error-handling",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-react-entity"
+        "unexpected belief in relevantBeliefs: b-hosting-resolved"
       ],
-      "retrievalLatencyMs": 77.7
+      "retrievalLatencyMs": 163.85
     },
     {
       "caseId": "alias-mongo-resolves",
@@ -655,30 +522,24 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-mongo-raw-driver",
-        "b-functional-pipeline",
-        "b-dead-letter-queue",
-        "b-error-handling",
-        "b-pinned-resolved-interaction",
-        "b-composition-inheritance",
-        "b-linting-v0"
+        "b-narrator-voice",
+        "b-sqlalchemy-superseded",
+        "b-dead-letter-queue"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.14285714285714285,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
+        "unexpected belief in relevantBeliefs: b-narrator-voice",
+        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded",
         "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-error-handling",
-        "unexpected belief in relevantBeliefs: b-pinned-resolved-interaction",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-linting-v0"
+        "missing expected belief: b-mongo-raw-driver"
       ],
-      "retrievalLatencyMs": 73.8
+      "retrievalLatencyMs": 181.03
     },
     {
       "caseId": "alias-reactjs-resolves",
@@ -690,29 +551,21 @@
       ],
       "relevantBeliefs": [
         "b-react-expertise",
-        "b-react-entity",
-        "b-zero-reinforcement-fresh",
-        "b-composition-inheritance",
-        "b-functional-pipeline",
-        "b-ts-pref",
-        "b-pov-shift-entity"
+        "b-kubernetes-entity"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.14285714285714285,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity"
+        "unexpected belief in relevantBeliefs: b-kubernetes-entity",
+        "missing expected belief: b-react-entity"
       ],
-      "retrievalLatencyMs": 83.66
+      "retrievalLatencyMs": 3467.43
     },
     {
       "caseId": "alias-protagonist-resolves",
@@ -724,24 +577,20 @@
         "b-prose-style-user-edited"
       ],
       "relevantBeliefs": [
-        "b-pov-shift-entity",
-        "b-narrator-superseded",
-        "b-chapter-structure-q",
-        "b-redis-writing"
+        "b-ci-gha-entity"
       ],
       "retrievedQuestions": [
         "b-chapter-structure-q"
       ],
-      "retrievalPrecision": 0.25,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": 1,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-narrator-superseded",
-        "unexpected belief in relevantBeliefs: b-chapter-structure-q",
-        "unexpected belief in relevantBeliefs: b-redis-writing"
+        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
+        "missing expected belief: b-pov-shift-entity"
       ],
-      "retrievalLatencyMs": 71.78
+      "retrievalLatencyMs": 170.05
     },
     {
       "caseId": "canonical-name-match-mara",
@@ -753,10 +602,6 @@
         "b-prose-style-user-edited"
       ],
       "relevantBeliefs": [
-        "b-dead-letter-queue",
-        "b-ts-pref",
-        "b-sqlalchemy-superseded",
-        "b-linting-v0",
         "b-chapter-structure-q"
       ],
       "retrievedQuestions": [
@@ -767,13 +612,9 @@
       "pinnedCoverage": 1,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded",
-        "unexpected belief in relevantBeliefs: b-linting-v0",
         "unexpected belief in relevantBeliefs: b-chapter-structure-q"
       ],
-      "retrievalLatencyMs": 74.61
+      "retrievalLatencyMs": 169
     },
     {
       "caseId": "alias-pov-shift-resolves",
@@ -786,27 +627,23 @@
       ],
       "relevantBeliefs": [
         "b-pov-shift-entity",
-        "b-zero-reinforcement-fresh",
-        "b-react-entity",
-        "b-narrator-superseded",
-        "b-kubernetes-entity",
-        "b-chapter-structure-q"
+        "b-sqlalchemy-superseded",
+        "b-linting-current",
+        "b-narrator-superseded"
       ],
       "retrievedQuestions": [
         "b-chapter-structure-q"
       ],
-      "retrievalPrecision": 0.16666666666666666,
+      "retrievalPrecision": 0.25,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-narrator-superseded",
-        "unexpected belief in relevantBeliefs: b-kubernetes-entity",
-        "unexpected belief in relevantBeliefs: b-chapter-structure-q"
+        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded",
+        "unexpected belief in relevantBeliefs: b-linting-current",
+        "unexpected belief in relevantBeliefs: b-narrator-superseded"
       ],
-      "retrievalLatencyMs": 76.4
+      "retrievalLatencyMs": 153.58
     },
     {
       "caseId": "alias-base-class-retrieves-composition",
@@ -817,26 +654,24 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-composition-inheritance",
-        "b-functional-pipeline",
-        "b-pinned-resolved-interaction",
-        "b-zero-reinforcement-fresh",
-        "b-vitest-pref"
+        "b-mongo-raw-driver",
+        "b-dead-letter-queue",
+        "b-narrator-voice"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.2,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-pinned-resolved-interaction",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-vitest-pref"
+        "unexpected belief in relevantBeliefs: b-mongo-raw-driver",
+        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
+        "unexpected belief in relevantBeliefs: b-narrator-voice",
+        "missing expected belief: b-composition-inheritance"
       ],
-      "retrievalLatencyMs": 72.33
+      "retrievalLatencyMs": 166.02
     },
     {
       "caseId": "alias-exceptions-retrieves-error-handling",
@@ -847,30 +682,20 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-error-handling",
-        "b-composition-inheritance",
-        "b-dead-letter-queue",
-        "b-functional-pipeline",
-        "b-fastify-pref",
-        "b-narrator-superseded",
-        "b-ts-pref"
+        "b-hosting-resolved"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.14285714285714285,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-fastify-pref",
-        "unexpected belief in relevantBeliefs: b-narrator-superseded",
-        "unexpected belief in relevantBeliefs: b-ts-pref"
+        "unexpected belief in relevantBeliefs: b-hosting-resolved",
+        "missing expected belief: b-error-handling"
       ],
-      "retrievalLatencyMs": 80.75
+      "retrievalLatencyMs": 184.21
     },
     {
       "caseId": "filter-resolved-at-excluded",
@@ -881,12 +706,10 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
+        "b-authorship-mode",
         "b-linting-v0",
-        "b-prose-style-user-edited",
-        "b-chapter-structure-q",
-        "b-dead-letter-queue",
-        "b-sqlalchemy-superseded",
-        "b-ts-pref"
+        "b-auth-open-q",
+        "b-hosting-resolved"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -896,14 +719,12 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
+        "unexpected belief in relevantBeliefs: b-authorship-mode",
         "unexpected belief in relevantBeliefs: b-linting-v0",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-chapter-structure-q",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded",
-        "unexpected belief in relevantBeliefs: b-ts-pref"
+        "unexpected belief in relevantBeliefs: b-auth-open-q",
+        "unexpected belief in relevantBeliefs: b-hosting-resolved"
       ],
-      "retrievalLatencyMs": 73.7
+      "retrievalLatencyMs": 175.51
     },
     {
       "caseId": "scope-bleed-questions-code-excludes-writing",
@@ -914,15 +735,10 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-zero-reinforcement-fresh",
-        "b-chapter-structure-q",
-        "b-narrator-voice",
-        "b-dead-letter-queue",
-        "b-protagonist-entity",
-        "b-functional-pipeline",
-        "b-ci-gha-entity",
         "b-ts-pref",
-        "b-pov-shift-entity"
+        "b-hosting-resolved",
+        "b-ci-gha-entity",
+        "b-zero-reinforcement-fresh"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -932,17 +748,12 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-chapter-structure-q",
-        "unexpected belief in relevantBeliefs: b-narrator-voice",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-protagonist-entity",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
         "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity"
+        "unexpected belief in relevantBeliefs: b-hosting-resolved",
+        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
+        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh"
       ],
-      "retrievalLatencyMs": 74.94
+      "retrievalLatencyMs": 166.76
     },
     {
       "caseId": "persona-prelude-content-present",
@@ -953,14 +764,8 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-zero-reinforcement-fresh",
-        "b-functional-pipeline",
-        "b-react-entity",
-        "b-react-expertise",
-        "b-dead-letter-queue",
         "b-sqlalchemy-superseded",
-        "b-ci-gha-entity",
-        "b-kubernetes-entity"
+        "b-ci-gha-entity"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -970,16 +775,10 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
         "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-kubernetes-entity"
+        "unexpected belief in relevantBeliefs: b-ci-gha-entity"
       ],
-      "retrievalLatencyMs": 70.53
+      "retrievalLatencyMs": 155.07
     },
     {
       "caseId": "edge-short-query-score-clears",
@@ -991,27 +790,19 @@
       ],
       "relevantBeliefs": [
         "b-kubernetes-entity",
-        "b-zero-reinforcement-fresh",
-        "b-react-entity",
-        "b-composition-inheritance",
-        "b-ci-gha-entity",
-        "b-ts-pref"
+        "b-zero-reinforcement-fresh"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.16666666666666666,
+      "retrievalPrecision": 0.5,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-ts-pref"
+        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh"
       ],
-      "retrievalLatencyMs": 67.87
+      "retrievalLatencyMs": 138.53
     },
     {
       "caseId": "edge-whitespace-query",
@@ -1030,7 +821,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 0.05
+      "retrievalLatencyMs": 0.06
     },
     {
       "caseId": "score-boundary-weak-match-filtered",
@@ -1041,17 +832,7 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-react-entity",
-        "b-pov-shift-entity",
-        "b-kubernetes-entity",
-        "b-functional-pipeline",
-        "b-react-expertise",
-        "b-composition-inheritance",
-        "b-auth-depends-redis",
-        "b-ci-gha-entity",
-        "b-zero-reinforcement-fresh",
-        "b-redis-code",
-        "b-auth-open-q"
+        "b-react-expertise"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -1061,19 +842,9 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity",
-        "unexpected belief in relevantBeliefs: b-kubernetes-entity",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-auth-depends-redis",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-redis-code",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "unexpected belief in relevantBeliefs: b-react-expertise"
       ],
-      "retrievalLatencyMs": 67.34
+      "retrievalLatencyMs": 168.57
     },
     {
       "caseId": "user-edited-cross-scope-surfaces",
@@ -1084,14 +855,9 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-narrator-voice",
-        "b-functional-pipeline",
-        "b-composition-inheritance",
-        "b-react-expertise",
+        "b-comm-recommendation",
         "b-zero-reinforcement-fresh",
-        "b-narrator-superseded",
-        "b-react-entity",
-        "b-prose-style-user-edited"
+        "b-react-expertise"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -1101,16 +867,11 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-narrator-voice",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-react-expertise",
+        "unexpected belief in relevantBeliefs: b-comm-recommendation",
         "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-narrator-superseded",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited"
+        "unexpected belief in relevantBeliefs: b-react-expertise"
       ],
-      "retrievalLatencyMs": 70.22
+      "retrievalLatencyMs": 154.22
     },
     {
       "caseId": "user-edited-absent-without-flag",
@@ -1121,14 +882,9 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-narrator-voice",
+        "b-authorship-mode",
         "b-narrator-superseded",
-        "b-prose-style-user-edited",
-        "b-functional-pipeline",
-        "b-pov-shift-entity",
-        "b-chapter-structure-q",
-        "b-protagonist-entity",
-        "b-kubernetes-entity"
+        "b-narrator-voice"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -1138,16 +894,11 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-narrator-voice",
+        "unexpected belief in relevantBeliefs: b-authorship-mode",
         "unexpected belief in relevantBeliefs: b-narrator-superseded",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity",
-        "unexpected belief in relevantBeliefs: b-chapter-structure-q",
-        "unexpected belief in relevantBeliefs: b-protagonist-entity",
-        "unexpected belief in relevantBeliefs: b-kubernetes-entity"
+        "unexpected belief in relevantBeliefs: b-narrator-voice"
       ],
-      "retrievalLatencyMs": 73.74
+      "retrievalLatencyMs": 145.69
     },
     {
       "caseId": "ranking-canonical-name-over-content",
@@ -1159,27 +910,23 @@
       ],
       "relevantBeliefs": [
         "b-functional-pipeline",
-        "b-composition-inheritance",
-        "b-pov-shift-entity",
-        "b-ts-pref",
-        "b-react-expertise",
-        "b-pinned-resolved-interaction"
+        "b-narrator-voice",
+        "b-dead-letter-queue"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.16666666666666666,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-pinned-resolved-interaction"
+        "unexpected belief in relevantBeliefs: b-narrator-voice",
+        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
+        "missing expected belief: b-composition-inheritance"
       ],
-      "retrievalLatencyMs": 72.91
+      "retrievalLatencyMs": 162.47
     },
     {
       "caseId": "messy-typo-blind-spot",
@@ -1191,31 +938,19 @@
       ],
       "relevantBeliefs": [
         "b-ts-pref",
-        "b-prose-style-user-edited",
-        "b-linting-v0",
-        "b-error-handling",
-        "b-react-entity",
-        "b-functional-pipeline",
-        "b-vitest-pref",
-        "b-zero-reinforcement-fresh"
+        "b-linting-v0"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.125,
+      "retrievalPrecision": 0.5,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-linting-v0",
-        "unexpected belief in relevantBeliefs: b-error-handling",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-vitest-pref",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh"
+        "unexpected belief in relevantBeliefs: b-linting-v0"
       ],
-      "retrievalLatencyMs": 72.36
+      "retrievalLatencyMs": 156.97
     },
     {
       "caseId": "messy-all-caps-case-insensitive",
@@ -1226,32 +961,20 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-react-expertise",
-        "b-react-entity",
-        "b-functional-pipeline",
-        "b-ts-pref",
-        "b-composition-inheritance",
-        "b-vitest-pref",
-        "b-zero-reinforcement-fresh",
-        "b-error-handling"
+        "b-react-expertise"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.125,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-vitest-pref",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-error-handling"
+        "missing expected belief: b-react-entity"
       ],
-      "retrievalLatencyMs": 68.83
+      "retrievalLatencyMs": 143.33
     },
     {
       "caseId": "messy-filler-heavy-extraction",
@@ -1262,30 +985,20 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-chapter-structure-q",
-        "b-error-handling",
-        "b-dead-letter-queue",
-        "b-prose-style-user-edited",
-        "b-pinned-resolved-interaction",
-        "b-composition-inheritance",
-        "b-functional-pipeline"
+        "b-chapter-structure-q"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.14285714285714285,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-chapter-structure-q",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-pinned-resolved-interaction",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline"
+        "missing expected belief: b-error-handling"
       ],
-      "retrievalLatencyMs": 71.17
+      "retrievalLatencyMs": 245.95
     },
     {
       "caseId": "messy-negation-surfaces-topic",
@@ -1296,28 +1009,22 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-composition-inheritance",
-        "b-functional-pipeline",
-        "b-ts-pref",
-        "b-zero-reinforcement-fresh",
-        "b-react-entity",
-        "b-error-handling"
+        "b-authorship-mode",
+        "b-react-expertise"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.16666666666666666,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-error-handling"
+        "unexpected belief in relevantBeliefs: b-authorship-mode",
+        "unexpected belief in relevantBeliefs: b-react-expertise",
+        "missing expected belief: b-composition-inheritance"
       ],
-      "retrievalLatencyMs": 71.12
+      "retrievalLatencyMs": 177.63
     },
     {
       "caseId": "messy-compound-surfaces-two-beliefs",
@@ -1328,33 +1035,21 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-react-entity",
-        "b-react-expertise",
-        "b-error-handling",
-        "b-ts-pref",
-        "b-composition-inheritance",
-        "b-fastify-pref",
-        "b-functional-pipeline",
-        "b-prose-style-user-edited",
-        "b-mongo-raw-driver"
+        "b-react-expertise"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.2222222222222222,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-fastify-pref",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-mongo-raw-driver"
+        "missing expected belief: b-react-entity",
+        "missing expected belief: b-error-handling"
       ],
-      "retrievalLatencyMs": 80.13
+      "retrievalLatencyMs": 3497.54
     },
     {
       "caseId": "cap-stress-compound-six-entities",
@@ -1365,23 +1060,23 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-react-entity",
-        "b-kubernetes-entity",
         "b-ci-gha-entity",
-        "b-error-handling",
-        "b-ts-pref"
+        "b-kubernetes-entity"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
       "retrievalPrecision": 1,
-      "retrievalRecall": 0.8333333333333334,
+      "retrievalRecall": 0.3333333333333333,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "missing expected belief: b-mongo-raw-driver"
+        "missing expected belief: b-react-entity",
+        "missing expected belief: b-error-handling",
+        "missing expected belief: b-mongo-raw-driver",
+        "missing expected belief: b-ts-pref"
       ],
-      "retrievalLatencyMs": 96.14
+      "retrievalLatencyMs": 225.89
     },
     {
       "caseId": "cap-stress-kitchen-sink-exceeds-twelve",
@@ -1393,25 +1088,25 @@
       ],
       "relevantBeliefs": [
         "b-ci-gha-entity",
-        "b-kubernetes-entity",
-        "b-react-expertise",
-        "b-react-entity",
-        "b-functional-pipeline"
+        "b-react-expertise"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.8,
-      "retrievalRecall": 0.5714285714285714,
+      "retrievalPrecision": 0.5,
+      "retrievalRecall": 0.14285714285714285,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-react-expertise",
+        "missing expected belief: b-react-entity",
         "missing expected belief: b-error-handling",
+        "missing expected belief: b-kubernetes-entity",
         "missing expected belief: b-mongo-raw-driver",
-        "missing expected belief: b-ts-pref"
+        "missing expected belief: b-ts-pref",
+        "missing expected belief: b-functional-pipeline"
       ],
-      "retrievalLatencyMs": 78.55
+      "retrievalLatencyMs": 214.8
     },
     {
       "caseId": "cap-stress-late-position-entity-at-risk",
@@ -1422,25 +1117,23 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-react-entity",
-        "b-kubernetes-entity",
         "b-ci-gha-entity",
-        "b-react-expertise"
+        "b-kubernetes-entity"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.75,
-      "retrievalRecall": 0.5,
+      "retrievalPrecision": 1,
+      "retrievalRecall": 0.3333333333333333,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-react-expertise",
+        "missing expected belief: b-react-entity",
         "missing expected belief: b-mongo-raw-driver",
         "missing expected belief: b-ts-pref",
         "missing expected belief: b-error-handling"
       ],
-      "retrievalLatencyMs": 86.07
+      "retrievalLatencyMs": 3676.51
     },
     {
       "caseId": "fuzzy-single-edit-fires-non-pinned",
@@ -1451,54 +1144,7 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-error-handling",
-        "b-functional-pipeline",
-        "b-composition-inheritance",
         "b-dead-letter-queue",
-        "b-zero-reinforcement-fresh",
-        "b-pov-shift-entity",
-        "b-ts-pref",
-        "b-auth-depends-redis",
-        "b-react-entity",
-        "b-redis-code",
-        "b-auth-open-q"
-      ],
-      "retrievedQuestions": [
-        "b-auth-open-q"
-      ],
-      "retrievalPrecision": 0.09090909090909091,
-      "retrievalRecall": 1,
-      "pinnedCoverage": null,
-      "passed": false,
-      "failures": [
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-auth-depends-redis",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-redis-code",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
-      ],
-      "retrievalLatencyMs": 69.6
-    },
-    {
-      "caseId": "fuzzy-scope-filter-discriminates-after-fuzzy-fires",
-      "category": "Fuzzy matching and prefix guards",
-      "description": "Typo 'Reedis' fuzzy-matches alias 'Redis' in both scopes — scope filter returns only code belief",
-      "pinnedBeliefs": [
-        "b-db-decision",
-        "b-linting-current"
-      ],
-      "relevantBeliefs": [
-        "b-auth-open-q",
-        "b-dead-letter-queue",
-        "b-functional-pipeline",
-        "b-prose-style-user-edited",
-        "b-error-handling",
-        "b-composition-inheritance",
         "b-ts-pref"
       ],
       "retrievedQuestions": [
@@ -1509,16 +1155,37 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-auth-open-q",
         "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-error-handling",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
         "unexpected belief in relevantBeliefs: b-ts-pref",
+        "missing expected belief: b-error-handling"
+      ],
+      "retrievalLatencyMs": 143.39
+    },
+    {
+      "caseId": "fuzzy-scope-filter-discriminates-after-fuzzy-fires",
+      "category": "Fuzzy matching and prefix guards",
+      "description": "Typo 'Reedis' fuzzy-matches alias 'Redis' in both scopes — scope filter returns only code belief",
+      "pinnedBeliefs": [
+        "b-db-decision",
+        "b-linting-current"
+      ],
+      "relevantBeliefs": [
+        "b-sqlalchemy-superseded",
+        "b-hosting-resolved"
+      ],
+      "retrievedQuestions": [
+        "b-auth-open-q"
+      ],
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
+      "pinnedCoverage": null,
+      "passed": false,
+      "failures": [
+        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded",
+        "unexpected belief in relevantBeliefs: b-hosting-resolved",
         "missing expected belief: b-redis-code"
       ],
-      "retrievalLatencyMs": 82.78
+      "retrievalLatencyMs": 147.95
     },
     {
       "caseId": "fuzzy-prefix-blocks-transitive-match",
@@ -1530,17 +1197,7 @@
       ],
       "relevantBeliefs": [
         "b-kubernetes-entity",
-        "b-functional-pipeline",
-        "b-zero-reinforcement-fresh",
-        "b-auth-depends-redis",
-        "b-react-entity",
-        "b-dead-letter-queue",
-        "b-redis-writing",
-        "b-protagonist-entity",
-        "b-pov-shift-entity",
-        "b-ci-gha-entity",
-        "b-redis-code",
-        "b-auth-open-q"
+        "b-zero-reinforcement-fresh"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -1551,19 +1208,9 @@
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-kubernetes-entity",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-auth-depends-redis",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-redis-writing",
-        "unexpected belief in relevantBeliefs: b-protagonist-entity",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-redis-code",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh"
       ],
-      "retrievalLatencyMs": 65.23
+      "retrievalLatencyMs": 150.7
     },
     {
       "caseId": "fuzzy-abbreviation-prefix-blind-spot",
@@ -1575,11 +1222,7 @@
       ],
       "relevantBeliefs": [
         "b-kubernetes-entity",
-        "b-zero-reinforcement-fresh",
-        "b-functional-pipeline",
-        "b-dead-letter-queue",
-        "b-react-entity",
-        "b-ci-gha-entity"
+        "b-zero-reinforcement-fresh"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -1590,13 +1233,9 @@
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-kubernetes-entity",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity"
+        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh"
       ],
-      "retrievalLatencyMs": 69.26
+      "retrievalLatencyMs": 134.84
     },
     {
       "caseId": "fuzzy-two-edit-transposition-blocked",
@@ -1608,31 +1247,19 @@
       ],
       "relevantBeliefs": [
         "b-ts-pref",
-        "b-prose-style-user-edited",
-        "b-zero-reinforcement-fresh",
-        "b-functional-pipeline",
-        "b-linting-v0",
-        "b-vitest-pref",
-        "b-ci-gha-entity",
-        "b-dead-letter-queue"
+        "b-zero-reinforcement-fresh"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.125,
+      "retrievalPrecision": 0.5,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-linting-v0",
-        "unexpected belief in relevantBeliefs: b-vitest-pref",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue"
+        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh"
       ],
-      "retrievalLatencyMs": 69.87
+      "retrievalLatencyMs": 144.36
     },
     {
       "caseId": "fuzzy-single-term-only-signal",
@@ -1643,26 +1270,17 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-mongo-raw-driver",
-        "b-dead-letter-queue",
-        "b-sqlalchemy-superseded",
-        "b-composition-inheritance",
-        "b-redis-writing"
+        "b-mongo-raw-driver"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.2,
+      "retrievalPrecision": 1,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
-      "passed": false,
-      "failures": [
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-redis-writing"
-      ],
-      "retrievalLatencyMs": 64.92
+      "passed": true,
+      "failures": [],
+      "retrievalLatencyMs": 140.58
     },
     {
       "caseId": "universal-scope-belief-content-in-persona-prelude",
@@ -1670,14 +1288,9 @@
       "description": "user:universal belief content appears in personaPrelude for a domain with no per-scope description",
       "pinnedBeliefs": [],
       "relevantBeliefs": [
-        "b-dead-letter-queue",
-        "b-composition-inheritance",
-        "b-prose-style-user-edited",
-        "b-functional-pipeline",
-        "b-db-decision",
-        "b-ci-gha-entity",
-        "b-linting-current",
-        "b-redis-writing"
+        "b-sqlalchemy-superseded",
+        "b-hosting-resolved",
+        "b-linting-current"
       ],
       "retrievedQuestions": [],
       "retrievalPrecision": 0,
@@ -1685,16 +1298,11 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-db-decision",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-linting-current",
-        "unexpected belief in relevantBeliefs: b-redis-writing"
+        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded",
+        "unexpected belief in relevantBeliefs: b-hosting-resolved",
+        "unexpected belief in relevantBeliefs: b-linting-current"
       ],
-      "retrievalLatencyMs": 69.69
+      "retrievalLatencyMs": 93.19
     },
     {
       "caseId": "type-isolation-open-question-not-in-relevant",
@@ -1706,15 +1314,7 @@
       ],
       "relevantBeliefs": [
         "b-auth-open-q",
-        "b-auth-depends-redis",
-        "b-react-entity",
-        "b-kubernetes-entity",
-        "b-dead-letter-queue",
-        "b-ci-gha-entity",
-        "b-react-expertise",
-        "b-functional-pipeline",
-        "b-fastify-pref",
-        "b-redis-code"
+        "b-pinned-resolved-interaction"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -1725,17 +1325,9 @@
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-auth-open-q",
-        "unexpected belief in relevantBeliefs: b-auth-depends-redis",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-kubernetes-entity",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-fastify-pref",
-        "unexpected belief in relevantBeliefs: b-redis-code"
+        "unexpected belief in relevantBeliefs: b-pinned-resolved-interaction"
       ],
-      "retrievalLatencyMs": 63.08
+      "retrievalLatencyMs": 145.37
     },
     {
       "caseId": "multi-hop-supersession-chain-all-excluded",
@@ -1747,11 +1339,7 @@
       ],
       "relevantBeliefs": [
         "b-linting-v0",
-        "b-ts-pref",
-        "b-react-expertise",
-        "b-zero-reinforcement-fresh",
-        "b-react-entity",
-        "b-linting-v1"
+        "b-ts-pref"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -1762,13 +1350,9 @@
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-linting-v0",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-linting-v1"
+        "unexpected belief in relevantBeliefs: b-ts-pref"
       ],
-      "retrievalLatencyMs": 72.34
+      "retrievalLatencyMs": 165.96
     },
     {
       "caseId": "cross-scope-one-empty-domain-does-not-degrade",
@@ -1780,25 +1364,19 @@
       ],
       "relevantBeliefs": [
         "b-auth-depends-redis",
-        "b-redis-writing",
-        "b-redis-code",
-        "b-functional-pipeline",
-        "b-auth-open-q"
+        "b-redis-code"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.2,
+      "retrievalPrecision": 0.5,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-auth-depends-redis",
-        "unexpected belief in relevantBeliefs: b-redis-writing",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "unexpected belief in relevantBeliefs: b-auth-depends-redis"
       ],
-      "retrievalLatencyMs": 67.47
+      "retrievalLatencyMs": 171.28
     },
     {
       "caseId": "ranking-orderedbefore-alias-beats-content",
@@ -1809,27 +1387,21 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-functional-pipeline",
-        "b-error-handling",
-        "b-pov-shift-entity",
-        "b-ts-pref",
-        "b-ci-gha-entity",
         "b-dead-letter-queue"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.3333333333333333,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue"
+        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
+        "missing expected belief: b-functional-pipeline",
+        "missing expected belief: b-error-handling"
       ],
-      "retrievalLatencyMs": 55.18
+      "retrievalLatencyMs": 153.39
     },
     {
       "caseId": "cold-start-user-no-beliefs",
@@ -1843,7 +1415,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 44.62
+      "retrievalLatencyMs": 2582.39
     },
     {
       "caseId": "narrator-voice-pinned-in-own-scope",
@@ -1863,7 +1435,7 @@
       "pinnedCoverage": 1,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 0.05
+      "retrievalLatencyMs": 0.06
     },
     {
       "caseId": "multi-scope-prelude-uses-primary-scope-only",
@@ -1877,13 +1449,7 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-functional-pipeline",
-        "b-composition-inheritance",
-        "b-ts-pref",
-        "b-dead-letter-queue",
-        "b-chapter-structure-q",
-        "b-ci-gha-entity",
-        "b-react-expertise"
+        "b-authorship-mode"
       ],
       "retrievedQuestions": [
         "b-auth-open-q",
@@ -1894,15 +1460,9 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-chapter-structure-q",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-react-expertise"
+        "unexpected belief in relevantBeliefs: b-authorship-mode"
       ],
-      "retrievalLatencyMs": 38.69
+      "retrievalLatencyMs": 288.22
     },
     {
       "caseId": "why-it-matters-not-indexed-blind-spot",
@@ -1913,11 +1473,6 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-react-entity",
-        "b-functional-pipeline",
-        "b-composition-inheritance",
-        "b-ts-pref",
-        "b-prose-style-user-edited",
         "b-react-expertise"
       ],
       "retrievedQuestions": [
@@ -1928,14 +1483,9 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
         "unexpected belief in relevantBeliefs: b-react-expertise"
       ],
-      "retrievalLatencyMs": 39.5
+      "retrievalLatencyMs": 146.14
     },
     {
       "caseId": "budget-ceiling-evicts-relevant-beliefs",
@@ -1954,7 +1504,7 @@
       "pinnedCoverage": null,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 123.76
+      "retrievalLatencyMs": 3302.68
     },
     {
       "caseId": "negative-guidance-mongoose",
@@ -1966,27 +1516,21 @@
       ],
       "relevantBeliefs": [
         "b-mongo-raw-driver",
-        "b-composition-inheritance",
-        "b-dead-letter-queue",
-        "b-linting-v0",
-        "b-pinned-resolved-interaction",
-        "b-chapter-structure-q"
+        "b-narrator-voice",
+        "b-sqlalchemy-superseded"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.16666666666666666,
+      "retrievalPrecision": 0.3333333333333333,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-linting-v0",
-        "unexpected belief in relevantBeliefs: b-pinned-resolved-interaction",
-        "unexpected belief in relevantBeliefs: b-chapter-structure-q"
+        "unexpected belief in relevantBeliefs: b-narrator-voice",
+        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded"
       ],
-      "retrievalLatencyMs": 68.37
+      "retrievalLatencyMs": 164.76
     },
     {
       "caseId": "recency-tiebreak-reinforcement",
@@ -2016,26 +1560,17 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-ci-gha-entity",
-        "b-functional-pipeline",
-        "b-dead-letter-queue",
-        "b-zero-reinforcement-fresh",
-        "b-pinned-resolved-interaction"
+        "b-ci-gha-entity"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.2,
+      "retrievalPrecision": 1,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
-      "passed": false,
-      "failures": [
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-pinned-resolved-interaction"
-      ],
-      "retrievalLatencyMs": 71.01
+      "passed": true,
+      "failures": [],
+      "retrievalLatencyMs": 2338.82
     },
     {
       "caseId": "cross-scope-non-user-edited-blocked",
@@ -2045,29 +1580,16 @@
         "b-db-decision",
         "b-linting-current"
       ],
-      "relevantBeliefs": [
-        "b-protagonist-entity",
-        "b-redis-writing",
-        "b-dead-letter-queue",
-        "b-functional-pipeline",
-        "b-prose-style-user-edited"
-      ],
+      "relevantBeliefs": [],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0,
+      "retrievalPrecision": null,
       "retrievalRecall": null,
       "pinnedCoverage": null,
-      "passed": false,
-      "failures": [
-        "forbidden belief surfaced: b-protagonist-entity",
-        "unexpected belief in relevantBeliefs: b-protagonist-entity",
-        "unexpected belief in relevantBeliefs: b-redis-writing",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited"
-      ],
-      "retrievalLatencyMs": 57.46
+      "passed": true,
+      "failures": [],
+      "retrievalLatencyMs": 149.96
     },
     {
       "caseId": "alias-two-word-shingle-dead-letter",
@@ -2079,29 +1601,23 @@
       ],
       "relevantBeliefs": [
         "b-dead-letter-queue",
-        "b-auth-depends-redis",
-        "b-vitest-pref",
-        "b-error-handling",
+        "b-hosting-resolved",
         "b-narrator-superseded",
-        "b-redis-code",
-        "b-auth-open-q"
+        "b-authorship-mode"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.14285714285714285,
+      "retrievalPrecision": 0.25,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-auth-depends-redis",
-        "unexpected belief in relevantBeliefs: b-vitest-pref",
-        "unexpected belief in relevantBeliefs: b-error-handling",
+        "unexpected belief in relevantBeliefs: b-hosting-resolved",
         "unexpected belief in relevantBeliefs: b-narrator-superseded",
-        "unexpected belief in relevantBeliefs: b-redis-code",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "unexpected belief in relevantBeliefs: b-authorship-mode"
       ],
-      "retrievalLatencyMs": 72.11
+      "retrievalLatencyMs": 171.28
     },
     {
       "caseId": "alias-dlq-abbreviation-resolves",
@@ -2113,27 +1629,25 @@
       ],
       "relevantBeliefs": [
         "b-dead-letter-queue",
-        "b-react-expertise",
-        "b-zero-reinforcement-fresh",
+        "b-hosting-resolved",
         "b-ci-gha-entity",
-        "b-functional-pipeline",
-        "b-ts-pref"
+        "b-react-expertise",
+        "b-authorship-mode"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.16666666666666666,
+      "retrievalPrecision": 0.2,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
+        "unexpected belief in relevantBeliefs: b-hosting-resolved",
         "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-ts-pref"
+        "unexpected belief in relevantBeliefs: b-react-expertise",
+        "unexpected belief in relevantBeliefs: b-authorship-mode"
       ],
-      "retrievalLatencyMs": 62.23
+      "retrievalLatencyMs": 2863.05
     },
     {
       "caseId": "counter-signal-jest-surfaces-vitest",
@@ -2144,32 +1658,22 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-vitest-pref",
-        "b-prose-style-user-edited",
-        "b-linting-v0",
-        "b-chapter-structure-q",
-        "b-sqlalchemy-superseded",
-        "b-ts-pref",
-        "b-functional-pipeline",
+        "b-narrator-voice",
         "b-react-expertise"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.125,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-linting-v0",
-        "unexpected belief in relevantBeliefs: b-chapter-structure-q",
-        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-react-expertise"
+        "unexpected belief in relevantBeliefs: b-narrator-voice",
+        "unexpected belief in relevantBeliefs: b-react-expertise",
+        "missing expected belief: b-vitest-pref"
       ],
-      "retrievalLatencyMs": 73.91
+      "retrievalLatencyMs": 170.66
     },
     {
       "caseId": "relation-type-expands-participants",
@@ -2181,34 +1685,26 @@
       ],
       "relevantBeliefs": [
         "b-auth-depends-redis",
+        "b-hosting-resolved",
         "b-ts-pref",
-        "b-zero-reinforcement-fresh",
-        "b-dead-letter-queue",
-        "b-react-entity",
-        "b-kubernetes-entity",
-        "b-ci-gha-entity",
-        "b-fastify-pref",
         "b-auth-open-q",
+        "b-kubernetes-entity",
         "b-redis-code"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.2,
+      "retrievalPrecision": 0.3333333333333333,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
+        "unexpected belief in relevantBeliefs: b-hosting-resolved",
         "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-kubernetes-entity",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-fastify-pref",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "unexpected belief in relevantBeliefs: b-auth-open-q",
+        "unexpected belief in relevantBeliefs: b-kubernetes-entity"
       ],
-      "retrievalLatencyMs": 74.58
+      "retrievalLatencyMs": 153.2
     },
     {
       "caseId": "relation-participant-open-question-routes-correctly",
@@ -2219,35 +1715,23 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-auth-depends-redis",
-        "b-react-expertise",
-        "b-zero-reinforcement-fresh",
-        "b-react-entity",
-        "b-functional-pipeline",
-        "b-dead-letter-queue",
-        "b-pov-shift-entity",
-        "b-composition-inheritance",
-        "b-redis-code",
-        "b-auth-open-q"
+        "b-auth-open-q",
+        "b-zero-reinforcement-fresh"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.2,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-react-expertise",
+        "unexpected belief in relevantBeliefs: b-auth-open-q",
         "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "missing expected belief: b-auth-depends-redis",
+        "missing expected belief: b-redis-code"
       ],
-      "retrievalLatencyMs": 63.12
+      "retrievalLatencyMs": 157.62
     },
     {
       "caseId": "relation-expansion-respects-scope-filter",
@@ -2259,27 +1743,20 @@
       ],
       "relevantBeliefs": [
         "b-auth-depends-redis",
-        "b-redis-writing",
         "b-ts-pref",
-        "b-redis-code",
-        "b-dead-letter-queue",
-        "b-auth-open-q"
+        "b-redis-code"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.3333333333333333,
+      "retrievalPrecision": 0.6666666666666666,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "forbidden belief surfaced: b-redis-writing",
-        "unexpected belief in relevantBeliefs: b-redis-writing",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
+        "unexpected belief in relevantBeliefs: b-ts-pref"
       ],
-      "retrievalLatencyMs": 70.8
+      "retrievalLatencyMs": 152.51
     },
     {
       "caseId": "subtype-expertise-retrieval",
@@ -2290,28 +1767,20 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-react-entity",
-        "b-react-expertise",
-        "b-composition-inheritance",
-        "b-ts-pref",
-        "b-functional-pipeline",
-        "b-vitest-pref"
+        "b-react-expertise"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.16666666666666666,
-      "retrievalRecall": 1,
+      "retrievalPrecision": 0,
+      "retrievalRecall": 0,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-vitest-pref"
+        "missing expected belief: b-react-entity"
       ],
-      "retrievalLatencyMs": 79.87
+      "retrievalLatencyMs": 177.82
     },
     {
       "caseId": "pinned-plus-resolved-excluded-from-questions",
@@ -2323,17 +1792,9 @@
       ],
       "relevantBeliefs": [
         "b-pinned-resolved-interaction",
-        "b-zero-reinforcement-fresh",
         "b-ci-gha-entity",
-        "b-kubernetes-entity",
-        "b-vitest-pref",
-        "b-functional-pipeline",
-        "b-react-entity",
-        "b-dead-letter-queue",
-        "b-fastify-pref",
-        "b-ts-pref",
-        "b-composition-inheritance",
-        "b-pov-shift-entity"
+        "b-zero-reinforcement-fresh",
+        "b-dead-letter-queue"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -2344,19 +1805,11 @@
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-pinned-resolved-interaction",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
         "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-kubernetes-entity",
-        "unexpected belief in relevantBeliefs: b-vitest-pref",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-react-entity",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-fastify-pref",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity"
+        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
+        "unexpected belief in relevantBeliefs: b-dead-letter-queue"
       ],
-      "retrievalLatencyMs": 73.08
+      "retrievalLatencyMs": 156.19
     },
     {
       "caseId": "zero-reinforcement-fresh-belief-surfaces",
@@ -2367,32 +1820,17 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-zero-reinforcement-fresh",
-        "b-functional-pipeline",
-        "b-composition-inheritance",
-        "b-prose-style-user-edited",
-        "b-ts-pref",
-        "b-dead-letter-queue",
-        "b-pinned-resolved-interaction",
-        "b-chapter-structure-q"
+        "b-zero-reinforcement-fresh"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.125,
+      "retrievalPrecision": 1,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
-      "passed": false,
-      "failures": [
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-pinned-resolved-interaction",
-        "unexpected belief in relevantBeliefs: b-chapter-structure-q"
-      ],
-      "retrievalLatencyMs": 73.85
+      "passed": true,
+      "failures": [],
+      "retrievalLatencyMs": 162.82
     },
     {
       "caseId": "budget-zero-graceful-empty",
@@ -2426,7 +1864,7 @@
       "pinnedCoverage": 1,
       "passed": true,
       "failures": [],
-      "retrievalLatencyMs": 61.61
+      "retrievalLatencyMs": 128.26
     },
     {
       "caseId": "multi-scope-code-writing-dedup-no-double-surface",
@@ -2440,13 +1878,9 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-linting-v1",
-        "b-pov-shift-entity",
-        "b-react-expertise",
-        "b-functional-pipeline",
-        "b-dead-letter-queue",
         "b-zero-reinforcement-fresh",
-        "b-vitest-pref"
+        "b-react-expertise",
+        "b-sqlalchemy-superseded"
       ],
       "retrievedQuestions": [
         "b-auth-open-q",
@@ -2457,15 +1891,11 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-linting-v1",
-        "unexpected belief in relevantBeliefs: b-pov-shift-entity",
-        "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
         "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-vitest-pref"
+        "unexpected belief in relevantBeliefs: b-react-expertise",
+        "unexpected belief in relevantBeliefs: b-sqlalchemy-superseded"
       ],
-      "retrievalLatencyMs": 51.6
+      "retrievalLatencyMs": 243.04
     },
     {
       "caseId": "empty-alias-belief-content-path-only",
@@ -2476,12 +1906,10 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-composition-inheritance",
-        "b-functional-pipeline",
-        "b-dead-letter-queue",
-        "b-react-expertise",
+        "b-comm-recommendation",
+        "b-hosting-resolved",
         "b-zero-reinforcement-fresh",
-        "b-kubernetes-entity"
+        "b-react-expertise"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -2491,14 +1919,12 @@
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-react-expertise",
+        "unexpected belief in relevantBeliefs: b-comm-recommendation",
+        "unexpected belief in relevantBeliefs: b-hosting-resolved",
         "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-kubernetes-entity"
+        "unexpected belief in relevantBeliefs: b-react-expertise"
       ],
-      "retrievalLatencyMs": 62.89
+      "retrievalLatencyMs": 170.49
     },
     {
       "caseId": "universal-scope-explicit-query-no-relevant",
@@ -2508,34 +1934,14 @@
         "b-comm-response-length",
         "b-comm-pushback"
       ],
-      "relevantBeliefs": [
-        "b-dead-letter-queue",
-        "b-functional-pipeline",
-        "b-narrator-voice",
-        "b-ci-gha-entity",
-        "b-composition-inheritance",
-        "b-react-expertise",
-        "b-prose-style-user-edited",
-        "b-narrator-superseded",
-        "b-zero-reinforcement-fresh"
-      ],
+      "relevantBeliefs": [],
       "retrievedQuestions": [],
-      "retrievalPrecision": 0,
+      "retrievalPrecision": null,
       "retrievalRecall": null,
       "pinnedCoverage": null,
-      "passed": false,
-      "failures": [
-        "unexpected belief in relevantBeliefs: b-dead-letter-queue",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-narrator-voice",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-composition-inheritance",
-        "unexpected belief in relevantBeliefs: b-react-expertise",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-narrator-superseded",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh"
-      ],
-      "retrievalLatencyMs": 77.36
+      "passed": true,
+      "failures": [],
+      "retrievalLatencyMs": 2930.93
     },
     {
       "caseId": "negation-query-still-surfaces-rejected-tool",
@@ -2546,30 +1952,22 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-fastify-pref",
-        "b-linting-v0",
-        "b-chapter-structure-q",
-        "b-functional-pipeline",
-        "b-ts-pref",
-        "b-prose-style-user-edited",
-        "b-react-entity"
+        "b-authorship-mode",
+        "b-react-expertise",
+        "b-fastify-pref"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.14285714285714285,
+      "retrievalPrecision": 0.3333333333333333,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
       "passed": false,
       "failures": [
-        "unexpected belief in relevantBeliefs: b-linting-v0",
-        "unexpected belief in relevantBeliefs: b-chapter-structure-q",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-prose-style-user-edited",
-        "unexpected belief in relevantBeliefs: b-react-entity"
+        "unexpected belief in relevantBeliefs: b-authorship-mode",
+        "unexpected belief in relevantBeliefs: b-react-expertise"
       ],
-      "retrievalLatencyMs": 78.35
+      "retrievalLatencyMs": 168.14
     },
     {
       "caseId": "superseded-chain-query-terminal-only",
@@ -2581,13 +1979,7 @@
       ],
       "relevantBeliefs": [
         "b-linting-v0",
-        "b-ts-pref",
-        "b-zero-reinforcement-fresh",
-        "b-linting-v1",
-        "b-functional-pipeline",
-        "b-pinned-resolved-interaction",
-        "b-ci-gha-entity",
-        "b-fastify-pref"
+        "b-pinned-resolved-interaction"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
@@ -2598,15 +1990,9 @@
       "passed": false,
       "failures": [
         "unexpected belief in relevantBeliefs: b-linting-v0",
-        "unexpected belief in relevantBeliefs: b-ts-pref",
-        "unexpected belief in relevantBeliefs: b-zero-reinforcement-fresh",
-        "unexpected belief in relevantBeliefs: b-linting-v1",
-        "unexpected belief in relevantBeliefs: b-functional-pipeline",
-        "unexpected belief in relevantBeliefs: b-pinned-resolved-interaction",
-        "unexpected belief in relevantBeliefs: b-ci-gha-entity",
-        "unexpected belief in relevantBeliefs: b-fastify-pref"
+        "unexpected belief in relevantBeliefs: b-pinned-resolved-interaction"
       ],
-      "retrievalLatencyMs": 63.68
+      "retrievalLatencyMs": 145.86
     },
     {
       "caseId": "relation-does-not-appear-as-entity",
@@ -2617,170 +2003,177 @@
         "b-linting-current"
       ],
       "relevantBeliefs": [
-        "b-auth-depends-redis",
         "b-redis-code",
-        "b-redis-writing",
-        "b-auth-open-q"
+        "b-auth-depends-redis"
       ],
       "retrievedQuestions": [
         "b-auth-open-q"
       ],
-      "retrievalPrecision": 0.5,
+      "retrievalPrecision": 1,
       "retrievalRecall": 1,
       "pinnedCoverage": null,
-      "passed": false,
-      "failures": [
-        "unexpected belief in relevantBeliefs: b-redis-writing",
-        "unexpected belief in relevantBeliefs: b-auth-open-q"
-      ],
-      "retrievalLatencyMs": 71.88
+      "passed": true,
+      "failures": [],
+      "retrievalLatencyMs": 161.08
     }
   ],
   "ingestion": {
     "beliefCount": 35,
-    "totalMs": 658904.89,
-    "meanPerBeliefMs": 18825.85,
+    "totalMs": 664752.15,
+    "meanPerBeliefMs": 18992.92,
     "perBelief": [
       {
         "beliefId": "b-comm-response-length",
-        "latencyMs": 2781.83
+        "latencyMs": 6955.54
       },
       {
         "beliefId": "b-comm-pushback",
-        "latencyMs": 5252.3
+        "latencyMs": 6503.93
       },
       {
         "beliefId": "b-comm-recommendation",
-        "latencyMs": 2692.64
+        "latencyMs": 6795.6
       },
       {
         "beliefId": "b-authorship-mode",
-        "latencyMs": 3555.17
+        "latencyMs": 11414.63
       },
       {
         "beliefId": "b-ts-pref",
-        "latencyMs": 13467.57
+        "latencyMs": 18986.62
       },
       {
         "beliefId": "b-fastify-pref",
-        "latencyMs": 8917.72
+        "latencyMs": 15747.49
       },
       {
         "beliefId": "b-mongo-raw-driver",
-        "latencyMs": 16393.21
+        "latencyMs": 31976.59
       },
       {
         "beliefId": "b-composition-inheritance",
-        "latencyMs": 23661.24
+        "latencyMs": 8532.77
       },
       {
         "beliefId": "b-error-handling",
-        "latencyMs": 24023.08
+        "latencyMs": 12077.32
       },
       {
         "beliefId": "b-db-decision",
-        "latencyMs": 23002.36
+        "latencyMs": 19258.84
       },
       {
         "beliefId": "b-sqlalchemy-superseded",
-        "latencyMs": 30428.24
+        "latencyMs": 37403.4
       },
       {
         "beliefId": "b-kubernetes-entity",
-        "latencyMs": 35551.15
+        "latencyMs": 41090.49
       },
       {
         "beliefId": "b-react-entity",
-        "latencyMs": 35754.38
+        "latencyMs": 20340.81
       },
       {
         "beliefId": "b-auth-open-q",
-        "latencyMs": 11398.46
+        "latencyMs": 17331.58
       },
       {
         "beliefId": "b-narrator-voice",
-        "latencyMs": 10260.93
+        "latencyMs": 10118.16
       },
       {
         "beliefId": "b-narrator-superseded",
-        "latencyMs": 11434.87
+        "latencyMs": 10796.06
       },
       {
         "beliefId": "b-protagonist-entity",
-        "latencyMs": 25515.83
+        "latencyMs": 19283.72
       },
       {
         "beliefId": "b-redis-writing",
-        "latencyMs": 22277.65
+        "latencyMs": 15338.72
       },
       {
         "beliefId": "b-redis-code",
-        "latencyMs": 35011.55
+        "latencyMs": 18654.85
       },
       {
         "beliefId": "b-chapter-structure-q",
-        "latencyMs": 18599.18
+        "latencyMs": 10765.79
       },
       {
         "beliefId": "b-other-user-leak-check",
-        "latencyMs": 5526.83
+        "latencyMs": 10671.27
       },
       {
         "beliefId": "b-ci-gha-entity",
-        "latencyMs": 40445.17
+        "latencyMs": 25012.65
       },
       {
         "beliefId": "b-pov-shift-entity",
-        "latencyMs": 23155.39
+        "latencyMs": 12878.77
       },
       {
         "beliefId": "b-hosting-resolved",
-        "latencyMs": 12864.76
+        "latencyMs": 19589.59
       },
       {
         "beliefId": "b-prose-style-user-edited",
-        "latencyMs": 10968.73
+        "latencyMs": 9739.15
       },
       {
         "beliefId": "b-functional-pipeline",
-        "latencyMs": 18249.17
+        "latencyMs": 16712.64
       },
       {
         "beliefId": "b-linting-v0",
-        "latencyMs": 17348.82
+        "latencyMs": 34039.09
       },
       {
         "beliefId": "b-linting-v1",
-        "latencyMs": 11541.41
+        "latencyMs": 19973.34
       },
       {
         "beliefId": "b-linting-current",
-        "latencyMs": 22760.51
+        "latencyMs": 28362.9
       },
       {
         "beliefId": "b-vitest-pref",
-        "latencyMs": 12080.95
+        "latencyMs": 25348.83
       },
       {
         "beliefId": "b-dead-letter-queue",
-        "latencyMs": 35602.73
+        "latencyMs": 19729.93
       },
       {
         "beliefId": "b-react-expertise",
-        "latencyMs": 22084.44
+        "latencyMs": 37428.79
       },
       {
         "beliefId": "b-auth-depends-redis",
-        "latencyMs": 36271.42
+        "latencyMs": 15508.78
       },
       {
         "beliefId": "b-pinned-resolved-interaction",
-        "latencyMs": 11134.08
+        "latencyMs": 21137.24
       },
       {
         "beliefId": "b-zero-reinforcement-fresh",
-        "latencyMs": 18891.12
+        "latencyMs": 29246.27
       }
+    ]
+  },
+  "provenance": {
+    "provider": "atomicmemory",
+    "generatedAt": "2026-09-15T19:29:35.780Z",
+    "benchmarkCommit": "85b48d5fd1b38babc7fe922f3beb0308cf3aa6cb",
+    "workingTreeClean": false,
+    "composeFile": "wrappers/atomicmemory/docker-compose.yml",
+    "resolvedComposeSha256": "28379598a6a1ea702ccc226e2307cf81de2c962e8ae73498ff162548ccace753",
+    "composeImages": [
+      "ghcr.io/atomicstrata/atomicmemory-core",
+      "atomicmemory-atomicmemory-wrapper"
     ]
   }
 }
