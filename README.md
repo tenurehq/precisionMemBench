@@ -28,7 +28,7 @@ The external-provider adapter was corrected to forward all active scopes and to 
 | `tenure`                | 43/43         | 77/77        | 1              | 1           | 9.25               | 0.80                | 09-16-2026      |
 | `open-knowledge-format` | 18/43         | 36/77        | 0.47           | 0.91        | 3534.53            | 0.00                | ---             |
 | `atomicmemory`          | 5/43          | 16/77        | 0.23           | 0.54        | 163.85             | 664.80              | 09-15-2026      |
-| `supermemory`           | 4/43          | 21/77        | 0.22           | 0.71        | 69.41              | 5.20                | ---             |
+| `supermemory`           | 2/43          | 15/77        | 0.18           | 0.82        | 45.77              | 1.70                | 09-17-2026      |
 | `yourmemory`            | 0/43          | 21/77        | 0.17           | 0.88        | 464.08             | 24.80               | 09-12-2026      |
 | `vector`                | 0/43          | 11/77        | 0.09           | 1.00        | 71.87              | ---                 | ---             |
 | `gbrain`                | 0/43          | 11/77        | 0.07           | 1           | 1455.98            | 52.60               | 09-13-2026      |
@@ -52,8 +52,8 @@ The counts below represent the 77 single-turn cases.
 | `tenure`                | 43               | 25         | 9               |
 | `open-knowledge-format` | 18               | 13         | 5               |
 | `atomicmemory`          | 5                | 8          | 3               |
-| `supermemory`           | 4                | 14         | 3               |
-| `a-mem`                 | 0                | 6          | 3               |
+| `supermemory`           | 2                | 10         | 3               |
+| `a-mem`                 | 0                | 5          | 2               |
 | `agentmemory`           | 0                | 6          | 3               |
 | `cognee`                | 0                | 6          | 3               |
 | `gbrain`                | 0                | 8          | 3               |
@@ -87,7 +87,7 @@ The drift score is the fraction of retrieved beliefs originating from off-topic 
 | ----------------------- | ------------ | --------- | ---------- | -------------- | ---------------- | --------------- |
 | `tenure`                | 12/12        | 1.00      | 0.0000     | 1.0000         | 49.74            | 09-16-2026      |
 | `open-knowledge-format` | 2/12         | 0.17      | 0.2153     | 0.5694         | 3349.45          | ---             |
-| `supermemory`           | 1/12         | 0.08      | 0.7493     | 0.1825         | 172.32           | ---             |
+| `supermemory`           | 1/12         | 0.08      | 0.6944     | 0.1668         | 164.38           | 09-17-2026      |
 | `yourmemory`            | 0/12         | 0.00      | 0.7444     | 0.1879         | 568.08           | 09-12-2026      |
 | `atomicmemory`          | 0/12         | 0.00      | 0.8611     | 0.1389         | 403.97           | 09-15-2026      |
 | `vector`                | 0/12         | 0.00      | 0.9142     | 0.0858         | 256.75           | ---             |
