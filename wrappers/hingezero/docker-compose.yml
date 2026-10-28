@@ -1,0 +1,16 @@
+services:
+  hingezero:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      HZ_DATABASE: /data/hingezero.sqlite3
+      HZ_MODEL_CACHE: /opt/hz-models
+      HZ_MIN_SCORE: "0.50"
+      HZ_STEPS: "8"
+    volumes:
+      - hingezero-data:/data
+volumes:
+  hingezero-data:
