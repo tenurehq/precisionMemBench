@@ -1,0 +1,42 @@
+services:
+  hippo:
+    build:
+      context: .
+      dockerfile: Dockerfile.hippo
+    init: true
+    ports:
+      - "127.0.0.1:8085:8085"
+    volumes:
+      - hippo-data:/data
+    environment:
+      HOME: /data
+      # One local caller sends the harness's parallel searches, so hippo's 20/s request limits are off.
+      HIPPO_CALLER_RPS: "0"
+      HIPPO_V1_RPS: "0"
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:6789/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
+      interval: 5s
+      timeout: 5s
+      start_period: 30s
+      retries: 12
+
+  hippo-wrapper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: service:hippo
+    depends_on:
+      hippo:
+        condition: service_healthy
+    volumes:
+      - hippo-data:/data:ro
+    environment:
+      HIPPO_URL: http://127.0.0.1:6789
+      HIPPO_KEY_FILE: /data/key.json
+
+volumes:
+  hippo-data:
